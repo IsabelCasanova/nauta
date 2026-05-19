@@ -315,20 +315,49 @@ svg text { font-family: var(--sans); }
 
 /* ── RESPONSIVE MOBILE ── */
 @media (max-width: 640px) {
-  .app-shell { grid-template-columns: 1fr; grid-template-rows: 56px auto 1fr; }
+  .app-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: 48px auto 1fr;
+    height: 100dvh;
+  }
+  .topbar { padding: 0 14px; height: 48px; }
+  .topbar-logo { font-size: 13px; }
+  .topbar-chip { display: none; }
+  .topbar-badge { display: none; }
   .sidebar {
     display: flex; overflow-x: auto; overflow-y: hidden;
     border-right: none; border-bottom: 1px solid var(--line);
-    padding: 6px 8px; gap: 4px;
-    scrollbar-width: none;
+    padding: 0 4px; gap: 0;
+    scrollbar-width: none; background: var(--bg2);
+    -webkit-overflow-scrolling: touch;
   }
   .sidebar::-webkit-scrollbar { display: none; }
   .sidebar-section-label { display: none; }
-  .nav-item { flex-direction: column; gap: 3px; font-size: 10px; padding: 6px 10px; white-space: nowrap; }
-  .nav-item i { font-size: 18px; }
+  .nav-item {
+    flex-direction: column; gap: 2px; font-size: 10px;
+    padding: 8px 10px; white-space: nowrap;
+    border-radius: 0; border: none;
+    border-bottom: 2px solid transparent;
+    min-width: fit-content;
+  }
+  .nav-item.active {
+    background: transparent;
+    border-color: transparent;
+    border-bottom-color: var(--accent);
+    color: var(--text);
+  }
+  .nav-item i { font-size: 19px; }
   .nav-item .nav-dot { display: none; }
-  .main { padding: 16px; }
+  .main { padding: 14px 14px 40px; }
+  .panel-title { font-size: 17px; }
   .grid-2 { grid-template-columns: 1fr; }
+  .mono-block { font-size: 11px; word-break: break-word; }
+  .rule-item { gap: 10px; }
+  .freq { width: 30px; height: 30px; font-size: 10px; }
+  .highlight { padding: 12px; }
+  .card { padding: 12px; }
+  .step-list li { font-size: 12px; }
+  .bullet-list li { font-size: 12px; }
 }
 </style>
 </head>
