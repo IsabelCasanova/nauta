@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gramática 4º ESO</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F2EB;
+    --ink: #1A1714;
+    --ink-muted: #6B6560;
+    --accent: #C84B2F;
+    --accent2: #2F5FC8;
+    --accent3: #2E8B57;
+    --card: #FFFFFF;
+    --border: rgba(26,23,20,0.12);
+    --purple: #6B4EBB;
+    --amber: #C8862F;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    padding: 3rem 2rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .header-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  header h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--ink);
+  }
+  header h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  header p {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: var(--ink-muted);
+    max-width: 480px;
+    line-height: 1.6;
+  }
+  .score-badge {
+    position: absolute;
+    top: 3rem;
+    right: 2rem;
+    background: var(--ink);
+    color: var(--bg);
+    border-radius: 50%;
+    width: 72px;
+    height: 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .score-badge span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    opacity: 0.6;
+    margin-top: 2px;
+  }
+
+  /* NAV TABS */
+  .tabs-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs-wrap::-webkit-scrollbar { display: none; }
+  .tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1.5px solid var(--border);
+    padding-bottom: 0;
+    white-space: nowrap;
+  }
+  .tab {
+    padding: 0.6rem 1.25rem;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-muted);
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: 'DM Sans', sans-serif;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1.5px;
+    transition: color 0.15s;
+  }
+  .tab:hover { color: var(--ink); }
+  .tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* MAIN */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .section { display: none; animation: fadeIn 0.25s ease; }
+  .section.visible { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+  .section-intro {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--ink-muted);
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.6;
+  }
+
+  /* CARDS */
+  .grid { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.25rem;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
+  .card-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 20px;
+    margin-bottom: 0.6rem;
+  }
+  .card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+  .card p { font-size: 13.5px; color: var(--ink-muted); line-height: 1.65; }
+
+  .example {
+    margin-top: 0.75rem;
+    padding: 0.65rem 0.9rem;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .example-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+    opacity: 0.7;
+  }
+  .tip {
+    margin-top: 0.75rem;
+    padding: 0.65rem 0.75rem 0.65rem 1rem;
+    border-left: 3px solid var(--accent);
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+  .tip strong { color: var(--ink); }
+
+  .full { grid-column: 1 / -1; }
+
+  /* COLOR THEMES PER SECTION */
+  .purple .card-tag { background: #EDE8F9; color: #4A32A0; }
+  .purple .example { background: #EDE8F9; color: #4A32A0; }
+  .purple .example-label { color: #6B4EBB; }
+
+  .coral .card-tag { background: #FAEAE6; color: #A33420; }
+  .coral .example { background: #FAEAE6; color: #A33420; }
+  .coral .example-label { color: #C84B2F; }
+
+  .blue .card-tag { background: #E6EEF9; color: #1D3E8C; }
+  .blue .example { background: #E6EEF9; color: #1D3E8C; }
+  .blue .example-label { color: #2F5FC8; }
+
+  .green .card-tag { background: #E4F3EB; color: #1C5E3A; }
+  .green .example { background: #E4F3EB; color: #1C5E3A; }
+  .green .example-label { color: #2E8B57; }
+
+  .amber .card-tag { background: #FBF0E0; color: #8A5B14; }
+  .amber .example { background: #FBF0E0; color: #8A5B14; }
+  .amber .example-label { color: #C8862F; }
+
+  /* QUIZ */
+  .quiz-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 1rem;
+  }
+  .quiz-progress {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 1.5rem;
+  }
+  .quiz-dot {
+    height: 4px;
+    flex: 1;
+    border-radius: 4px;
+    background: var(--border);
+    transition: background 0.3s;
+  }
+  .quiz-dot.done { background: var(--accent3); }
+  .quiz-dot.active { background: var(--accent); }
+
+  .quiz-q {
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+  }
+  .quiz-context {
+    font-size: 13px;
+    color: var(--ink-muted);
+    margin-bottom: 1.25rem;
+    font-style: italic;
+  }
+  .options { display: grid; gap: 0.5rem; }
+  .option {
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s;
+  }
+  .option:hover { border-color: var(--accent); background: #FFF5F3; }
+  .option.correct { border-color: var(--accent3); background: #E4F3EB; color: #1C5E3A; pointer-events: none; }
+  .option.wrong   { border-color: var(--accent); background: #FAEAE6; color: #A33420; pointer-events: none; }
+  .option.disabled { pointer-events: none; opacity: 0.5; }
+  .feedback {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    display: none;
+  }
+  .feedback.show { display: block; }
+  .feedback.ok { background: #E4F3EB; color: #1C5E3A; }
+  .feedback.ko { background: #FAEAE6; color: #A33420; }
+
+  .quiz-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.25rem;
+  }
+  .quiz-counter { font-size: 13px; color: var(--ink-muted); }
+  .btn-next {
+    padding: 0.6rem 1.5rem;
+    background: var(--ink);
+    color: var(--bg);
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: none;
+    transition: opacity 0.15s;
+  }
+  .btn-next:hover { opacity: 0.8; }
+  .btn-next.show { display: block; }
+
+  .result-box {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    display: none;
+  }
+  .result-box.show { display: block; }
+  .result-box .big {
+    font-family: 'Fraunces', serif;
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .result-box p { font-size: 1rem; color: var(--ink-muted); margin-top: 1rem; line-height: 1.6; }
+  .btn-retry {
+    margin-top: 1.5rem;
+    padding: 0.75rem 2rem;
+    border: 1.5px solid var(--ink);
+    border-radius: 10px;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    color: var(--ink);
+  }
+  .btn-retry:hover { background: var(--ink); color: var(--bg); }
+
+  /* ANÁLISIS SINTÁCTICO */
+  .analizador {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 1rem;
+  }
+  .analizador label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--ink-muted);
+  }
+  .oracion-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--bg);
+    margin-bottom: 1rem;
+    cursor: pointer;
+  }
+  .btn-analizar {
+    padding: 0.7rem 1.75rem;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .btn-analizar:hover { opacity: 0.85; }
+
+  .analysis-result {
+    margin-top: 1.5rem;
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .analysis-result.show { display: block; }
+
+  .oracion-display {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.8;
+  }
+  .oracion-display .chunk {
+    display: inline-block;
+    margin: 2px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    cursor: default;
+    transition: all 0.15s;
+  }
+  .chunk-sujeto    { background: #E6EEF9; color: #1D3E8C; border-bottom: 2px solid #2F5FC8; }
+  .chunk-verbo     { background: #FAEAE6; color: #A33420; border-bottom: 2px solid #C84B2F; }
+  .chunk-cd        { background: #E4F3EB; color: #1C5E3A; border-bottom: 2px solid #2E8B57; }
+  .chunk-ci        { background: #FBF0E0; color: #8A5B14; border-bottom: 2px solid #C8862F; }
+  .chunk-cc        { background: #EDE8F9; color: #4A32A0; border-bottom: 2px solid #6B4EBB; }
+  .chunk-atributo  { background: #FAEAE6; color: #A33420; border-bottom: 2px dashed #C84B2F; }
+  .chunk-pred      { background: #FBF0E0; color: #8A5B14; border-bottom: 2px dashed #C8862F; }
+  .chunk-cr        { background: #EDE8F9; color: #4A32A0; border-bottom: 2px dashed #6B4EBB; }
+
+  .leyenda {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1rem;
+  }
+  .leyenda-item {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  .funcion-list { display: grid; gap: 0.5rem; }
+  .funcion-row {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+  }
+  .funcion-row:last-child { border-bottom: none; }
+  .funcion-label {
+    font-weight: 500;
+    min-width: 100px;
+    font-size: 12px;
+  }
+  .funcion-text { color: var(--ink-muted); line-height: 1.5; }
+
+  /* RESUMEN FINAL */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+  td {
+    padding: 0.55rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(0,0,0,0.02); }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 12px;
+    color: var(--ink-muted);
+    max-width: 900px;
+    margin: 0 auto;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">4º ESO · Lengua Castellana</div>
+  <h1>Gramática<br><em>interactiva</em></h1>
+  <p>Morfología, sintaxis, subordinadas y más. Aprende con ejemplos claros y pon a prueba tus conocimientos.</p>
+  <div class="score-badge" id="scoreBadge">0<span>puntos</span></div>
+</header>
+
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab active" onclick="showSection('morfologia',this)">Morfología</button>
+    <button class="tab" onclick="showSection('sintaxis',this)">Sintaxis</button>
+    <button class="tab" onclick="showSection('subordinadas',this)">Subordinadas</button>
+    <button class="tab" onclick="showSection('perifrastica',this)">Perífrasis</button>
+    <button class="tab" onclick="showSection('semantica',this)">Semántica</button>
+    <button class="tab" onclick="showSection('figuras',this)">Figuras retóricas</button>
+    <button class="tab" onclick="showSection('analisis',this)">Analizador</button>
+    <button class="tab" onclick="showSection('quiz',this)">Quiz ✦</button>
+  </div>
+</div>
+
+<main>
+
+<!-- MORFOLOGÍA -->
+<div id="morfologia" class="section visible">
+  <p class="section-intro">La morfología estudia las clases de palabras y cómo se forman. En 4º ESO debes saber identificar cada categoría y sus características.</p>
+  <div class="grid purple">
+    <div class="card">
+      <span class="card-tag">Sustantivo</span>
+      <h3>Nombra la realidad</h3>
+      <p>Personas, animales, lugares o ideas. Tiene género y número. Puede ser común/propio, concreto/abstracto, individual/colectivo.</p>
+      <div class="example"><span class="example-label">Ejemplos</span>el <strong>perro</strong> · la <strong>ciudad</strong> · la <strong>libertad</strong> · la <strong>bandada</strong></div>
+    </div>
+    <div class="card">
+      <span class="card-tag">Adjetivo</span>
+      <h3>Describe o especifica</h3>
+      <p>Acompaña al sustantivo. Concuerda en género y número. Puede ser calificativo (describe) o determinativo (especifica).</p>
+      <div class="example"><span class="example-label">Ejemplos</span>perro <strong>grande</strong> · la <strong>tercera</strong> vez · libro <strong>azul</strong></div>
+    </div>
+    <div class="card">
+      <span class="card-tag">Verbo</span>
+      <h3>Expresa acción o estado</h3>
+      <p>Tiene persona, número, tiempo, modo y aspecto. Tipos: copulativos (ser, estar, parecer) y predicativos (el resto).</p>
+      <div class="example"><span class="example-label">Ejemplos</span>Ella <strong>corre</strong> · Estoy <strong>cansado</strong> · Quiero que <strong>vengas</strong></div>
+    </div>
+    <div class="card">
+      <span class="card-tag">Pronombre</span>
+      <h3>Sustituye al sustantivo</h3>
+      <p>Evita repeticiones. Tipos: personal (yo, tú, él), relativo (que, quien), demostrativo (este, ese), indefinido (alguien).</p>
+      <div class="example"><span class="example-label">Ejemplos</span><strong>Ella</strong> llegó · El libro <strong>que</strong> leí · <strong>Alguien</strong> llamó</div>
+    </div>
+    <div class="card">
+      <span class="card-tag">Determinante</span>
+      <h3>Presenta al sustantivo</h3>
+      <p>Introduce el nombre e indica si es conocido (artículo), a quién pertenece (posesivo), o a cuál nos referimos (demostrativo).</p>
+      <div class="example"><span class="example-label">Ejemplos</span><strong>El</strong> gato · <strong>mi</strong> libro · <strong>este</strong> chico · <strong>tres</strong> días</div>
+    </div>
+    <div class="card">
+      <span class="card-tag">Adverbio</span>
+      <h3>Invariable y modificador</h3>
+      <p>Modifica al verbo, adjetivo u otro adverbio. No cambia ni en género ni en número. Indica lugar, tiempo, modo, cantidad, afirmación o negación.</p>
+      <div class="example"><span class="example-label">Ejemplos</span>Vive <strong>cerca</strong> · Llega <strong>tarde</strong> · Habla <strong>muy</strong> bien</div>
+    </div>
+    <div class="card">
+      <span class="card-tag">Preposición</span>
+      <h3>Une palabras</h3>
+      <p>Palabra invariable que conecta dos elementos dentro de la oración. Las más comunes: a, ante, bajo, con, contra, de, desde, en, entre, hacia, hasta, para, por, según, sin, sobre, tras.</p>
+      <div class="example"><span class="example-label">Ejemplos</span>Voy <strong>a</strong> Madrid · Salgo <strong>de</strong> casa · Hablo <strong>con</strong> ella</div>
+    </div>
+    <div class="card">
+      <span class="card-tag">Conjunción</span>
+      <h3>Une oraciones</h3>
+      <p>Coordinadas: y, pero, o, sino, pues. Subordinadas: que, porque, cuando, si, aunque, para que...</p>
+      <div class="example"><span class="example-label">Ejemplos</span>Llueve <strong>pero</strong> salgo · Estudia <strong>para que</strong> apruebes</div>
+    </div>
+    <div class="card full">
+      <span class="card-tag">Formación de palabras</span>
+      <h3>Prefijos, lexemas y sufijos</h3>
+      <p>Toda palabra se puede analizar morfológicamente: <strong>prefijo</strong> (delante, cambia el significado) + <strong>lexema</strong> (raíz, da el significado base) + <strong>sufijo</strong> (detrás, modifica o crea nuevas palabras).</p>
+      <div class="example"><span class="example-label">Ejemplos</span>
+        <strong>des</strong>·<strong>agrad</strong>·<strong>able</strong> → desagradable &nbsp;|&nbsp;
+        <strong>re</strong>·<strong>escrib</strong>·<strong>ir</strong> → reescribir &nbsp;|&nbsp;
+        <strong>panad</strong>·<strong>ero</strong> → panadero
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SINTAXIS -->
+<div id="sintaxis" class="section">
+  <p class="section-intro">La sintaxis analiza la función de cada palabra dentro de la oración. Necesitas identificar el sujeto, el predicado y todos los complementos del verbo.</p>
+  <div class="grid coral">
+    <div class="card full">
+      <span class="card-tag">Estructura básica</span>
+      <h3>Sujeto y Predicado</h3>
+      <p>Toda oración tiene dos partes. El <strong>sujeto</strong> (SN) es quien realiza la acción. El <strong>predicado</strong> (SV) es lo que se dice del sujeto, y su núcleo es siempre el verbo.</p>
+      <div class="example">
+        <span class="example-label">Ejemplo</span>
+        <span style="background:#E6EEF9; color:#1D3E8C; padding:1px 6px; border-radius:4px;">[La profesora]</span><small style="color:#2F5FC8; font-size:11px; margin-right:6px;"> Sujeto</small>
+        <span style="background:#FAEAE6; color:#A33420; padding:1px 6px; border-radius:4px;">[explica la lección en clase]</span><small style="color:#C84B2F; font-size:11px;"> Predicado</small>
+      </div>
+      <div class="tip"><strong>Truco del sujeto:</strong> Haz concordar el verbo en plural. Si cambia → eso era el sujeto. "La profesora explica" → "Las profesoras explican" ✓</div>
+    </div>
+    <div class="card">
+      <span class="card-tag">CD</span>
+      <h3>Complemento Directo</h3>
+      <p>Recibe la acción directamente del verbo. Pregunta: ¿<em>qué</em>? ¿<em>a quién</em>?</p>
+      <div class="example"><span class="example-label">Cómo identificarlo</span>Se sustituye por <strong>lo / la / los / las</strong><br>"Compré <u>pan</u>" → "Lo compré" ✓</div>
+    </div>
+    <div class="card">
+      <span class="card-tag">CI</span>
+      <h3>Complemento Indirecto</h3>
+      <p>Indica a quién beneficia o perjudica la acción. Pregunta: ¿<em>a quién</em>? ¿<em>para quién</em>?</p>
+      <div class="example"><span class="example-label">Cómo identificarlo</span>Se sustituye por <strong>le / les</strong><br>"Di flores <u>a mi madre</u>" → "Le di flores" ✓</div>
+    </div>
+    <div class="card">
+      <span class="card-tag">CC</span>
+      <h3>Complemento Circunstancial</h3>
+      <p>Indica las circunstancias de la acción. Tipos: lugar, tiempo, modo, cantidad, causa, finalidad, compañía...</p>
+      <div class="example"><span class="example-label">Ejemplos</span>Vive <u>en Madrid</u> (lugar) · Llegó <u>tarde</u> (tiempo) · Habló <u>con calma</u> (modo)</div>
+    </div>
+    <div class="card">
+      <span class="card-tag">CR</span>
+      <h3>Complemento de Régimen</h3>
+      <p>Va con una preposición que exige el propio verbo. No se puede eliminar sin que la oración pierda sentido.</p>
+      <div class="example"><span class="example-label">Ejemplos</span>Confío <u>en ti</u> · Me alegro <u>de verte</u> · Pienso <u>en ella</u></div>
+    </div>
+    <div class="card">
+      <span class="card-tag">Atributo</span>
+      <h3>Atributo</h3>
+      <p>Solo con verbos copulativos (ser, estar, parecer). Describe al sujeto y se puede sustituir por <strong>lo</strong>.</p>
+      <div class="example"><span class="example-label">Ejemplos</span>Mi madre <u>es médica</u> → "Lo es" ✓ · Pareces <u>cansada</u> → "Lo pareces" ✓</div>
+    </div>
+    <div class="card">
+      <span class="card-tag">CPred</span>
+      <h3>Complemento Predicativo</h3>
+      <p>Describe al sujeto o al CD, pero con verbos no copulativos. Concuerda en género y número.</p>
+      <div class="example"><span class="example-label">Ejemplos</span>Ella llegó <u>cansada</u> (predic. de sujeto) · Lo encontré <u>dormido</u> (predic. de CD)</div>
+    </div>
+    <div class="card full">
+      <span class="card-tag">Resumen visual</span>
+      <h3>Mi madre regaló un libro a mi hermana con mucho cariño ayer</h3>
+      <div style="margin-top:0.75rem; line-height:2.2; font-size:15px;">
+        <span style="background:#E6EEF9;color:#1D3E8C;padding:2px 8px;border-radius:6px;margin:2px;">Mi madre</span><small style="color:#2F5FC8;font-size:11px;"> Sujeto</small>
+        <span style="background:#FAEAE6;color:#A33420;padding:2px 8px;border-radius:6px;margin:2px;">regaló</span><small style="color:#C84B2F;font-size:11px;"> Verbo</small>
+        <span style="background:#E4F3EB;color:#1C5E3A;padding:2px 8px;border-radius:6px;margin:2px;">un libro</span><small style="color:#2E8B57;font-size:11px;"> CD</small>
+        <span style="background:#FBF0E0;color:#8A5B14;padding:2px 8px;border-radius:6px;margin:2px;">a mi hermana</span><small style="color:#C8862F;font-size:11px;"> CI</small>
+        <span style="background:#EDE8F9;color:#4A32A0;padding:2px 8px;border-radius:6px;margin:2px;">con mucho cariño</span><small style="color:#6B4EBB;font-size:11px;"> CC modo</small>
+        <span style="background:#EDE8F9;color:#4A32A0;padding:2px 8px;border-radius:6px;margin:2px;">ayer</span><small style="color:#6B4EBB;font-size:11px;"> CC tiempo</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SUBORDINADAS -->
+<div id="subordinadas" class="section">
+  <p class="section-intro">Las oraciones subordinadas dependen de una oración principal y funcionan dentro de ella como si fueran una parte de la misma. Hay tres tipos fundamentales.</p>
+  <div class="grid blue">
+    <div class="card full" style="border-left:4px solid #2F5FC8; border-radius:0 16px 16px 0;">
+      <span class="card-tag">Tipo 1</span>
+      <h3>Subordinadas sustantivas</h3>
+      <p>Funcionan como un sustantivo dentro de la oración principal: pueden ser sujeto, CD, CI, atributo... Se introducen con <em>que, si, quién</em> o infinitivos.</p>
+      <div class="example">
+        <span class="example-label">Ejemplos</span>
+        Quiero <strong>[que vengas]</strong> → "que vengas" = CD<br>
+        <strong>[Que estudies]</strong> es importante → "que estudies" = Sujeto<br>
+        No sé <strong>[si vendrá]</strong> → "si vendrá" = CD
+      </div>
+      <div class="tip"><strong>Truco:</strong> Sustitúyela por "eso" o "algo". Si funciona → es sustantiva. "Quiero <em>eso</em>" ✓</div>
+    </div>
+    <div class="card full" style="border-left:4px solid #2E8B57; border-radius:0 16px 16px 0;">
+      <span class="card-tag">Tipo 2</span>
+      <h3>Subordinadas adjetivas (de relativo)</h3>
+      <p>Funcionan como un adjetivo: modifican a un sustantivo llamado <strong>antecedente</strong>. Se introducen con pronombres relativos: <em>que, quien, cuyo, donde, cuando, como</em>.</p>
+      <div class="example">
+        <span class="example-label">Ejemplos</span>
+        El chico <strong>[que me prestó el libro]</strong> es de mi clase → antecedente: "el chico"<br>
+        La ciudad <strong>[donde nació]</strong> es preciosa → antecedente: "la ciudad"<br>
+        El profesor <strong>[cuyo libro leí]</strong> es brillante → antecedente: "el profesor"
+      </div>
+      <div class="tip"><strong>Truco:</strong> Busca a qué sustantivo describe. Ese es el antecedente. El pronombre relativo siempre lo sustituye dentro de la subordinada.</div>
+    </div>
+    <div class="card full" style="border-left:4px solid #C84B2F; border-radius:0 16px 16px 0;">
+      <span class="card-tag">Tipo 3</span>
+      <h3>Subordinadas adverbiales</h3>
+      <p>Funcionan como un adverbio: expresan circunstancias. Hay muchos subtipos:</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin-top:0.75rem;">
+        <div class="example"><span class="example-label">Tiempo</span>Llámame <strong>cuando llegues</strong> · (cuando, antes de que, después de que)</div>
+        <div class="example"><span class="example-label">Causa</span>No voy <strong>porque estoy cansado</strong> · (porque, ya que, puesto que)</div>
+        <div class="example"><span class="example-label">Condición</span><strong>Si estudias</strong>, aprobarás · (si, a menos que, con tal de que)</div>
+        <div class="example"><span class="example-label">Concesión</span><strong>Aunque llueva</strong>, saldré · (aunque, a pesar de que)</div>
+        <div class="example"><span class="example-label">Finalidad</span>Estudio <strong>para aprobar</strong> · (para que, a fin de que)</div>
+        <div class="example"><span class="example-label">Consecuencia</span>Habló tanto <strong>que enmudeció</strong> · (tan...que, tanto...que)</div>
+        <div class="example"><span class="example-label">Comparativa</span>Es más alto <strong>que yo</strong> · (más que, menos que, igual que)</div>
+        <div class="example"><span class="example-label">Lugar</span>Vive <strong>donde nació</strong> · (donde)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PERÍFRASIS -->
+<div id="perifrastica" class="section">
+  <p class="section-intro">Una perífrasis verbal es la unión de un verbo auxiliar conjugado más un infinitivo, gerundio o participio. Juntos forman una unidad de significado.</p>
+  <div class="grid green">
+    <div class="card full">
+      <span class="card-tag">Estructura</span>
+      <h3>Auxiliar + (nexo) + Infinitivo / Gerundio / Participio</h3>
+      <div class="example">
+        <span class="example-label">Los tres tipos</span>
+        Voy <strong>a estudiar</strong> esta tarde → de <strong>infinitivo</strong><br>
+        Llevo una hora <strong>esperando</strong> → de <strong>gerundio</strong><br>
+        Tengo los deberes <strong>hechos</strong> → de <strong>participio</strong>
+      </div>
+      <div class="tip"><strong>¿Cómo saber si es perífrasis?</strong> Los dos verbos forman una sola unidad de significado. Si puedes separar los sujetos (El niño quiere [ir al parque]) → NO es perífrasis. Si no puedes (Voy a estudiar = tengo intención) → SÍ es perífrasis.</div>
+    </div>
+    <div class="card">
+      <span class="card-tag">Modales</span>
+      <h3>Expresan actitud</h3>
+      <p style="font-size:13px; line-height:2;">
+        <strong>Obligación:</strong> tener que, haber de, deber + inf.<br>
+        → <em>Tienes que estudiar · Debes respetar</em><br><br>
+        <strong>Posibilidad:</strong> poder, deber de + inf.<br>
+        → <em>Puede llegar tarde · Debe de estar enfermo</em>
+      </p>
+      <div class="tip"><strong>Ojo:</strong> <em>deber</em> + inf. = obligación &nbsp;|&nbsp; <em>deber de</em> + inf. = suposición</div>
+    </div>
+    <div class="card">
+      <span class="card-tag">Aspectuales</span>
+      <h3>Expresan la fase de la acción</h3>
+      <p style="font-size:13px; line-height:2;">
+        <strong>Inicio:</strong> ir a, empezar a, ponerse a + inf.<br>
+        → <em>Voy a salir · Se puso a llover</em><br><br>
+        <strong>Desarrollo:</strong> estar, seguir, llevar + ger.<br>
+        → <em>Está comiendo · Sigue estudiando</em><br><br>
+        <strong>Final/resultado:</strong> acabar de, dejar de + inf.<br>
+        → <em>Acabo de llegar · Dejó de fumar</em>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- SEMÁNTICA -->
+<div id="semantica" class="section">
+  <p class="section-intro">La semántica estudia el significado de las palabras y sus relaciones. Fundamental también para el comentario de texto.</p>
+  <div class="grid amber">
+    <div class="card">
+      <span class="card-tag">Sinónimos y antónimos</span>
+      <h3>Palabras relacionadas</h3>
+      <p><strong>Sinónimo:</strong> mismo significado → <em>casa / hogar</em><br><br><strong>Antónimo:</strong> significado contrario → <em>frío / caliente</em></p>
+    </div>
+    <div class="card">
+      <span class="card-tag">Polisemia vs Homonimia</span>
+      <h3>Una forma, varios significados</h3>
+      <p><strong>Polisemia:</strong> significados relacionados → <em>banco</em> (asiento / entidad financiera / de peces)<br><br><strong>Homonimia:</strong> significados sin relación → <em>vela</em> (de barco) ≠ <em>vela</em> (de cera)</p>
+    </div>
+    <div class="card">
+      <span class="card-tag">Denotación y Connotación</span>
+      <h3>Objetivo vs subjetivo</h3>
+      <p><strong>Denotación:</strong> significado del diccionario → <em>serpiente</em> = reptil sin patas<br><br><strong>Connotación:</strong> significado emotivo → <em>serpiente</em> = traicionero</p>
+    </div>
+    <div class="card">
+      <span class="card-tag">Campo semántico</span>
+      <h3>Palabras del mismo ámbito</h3>
+      <p>Grupo de palabras con significado relacionado por compartir un tema común.</p>
+      <div class="example"><span class="example-label">Ejemplo</span>Campo del deporte: <em>balón, árbitro, cancha, partido, gol, portero</em></div>
+    </div>
+    <div class="card full">
+      <span class="card-tag">Figuras retóricas</span>
+      <h3>Para el comentario de texto</h3>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin-top:0.75rem;">
+        <div class="example"><span class="example-label">Metáfora</span>Identificación sin "como": <em>"Tus ojos son estrellas"</em></div>
+        <div class="example"><span class="example-label">Símil / Comparación</span>Con "como": <em>"Corre como el viento"</em></div>
+        <div class="example"><span class="example-label">Hipérbole</span>Exageración: <em>"Te lo he dicho mil veces"</em></div>
+        <div class="example"><span class="example-label">Personificación</span>Humano a lo inanimado: <em>"El viento susurra"</em></div>
+        <div class="example"><span class="example-label">Antítesis</span>Ideas contrarias: <em>"Era tan corto el amor y tan largo el olvido"</em></div>
+        <div class="example"><span class="example-label">Anáfora</span>Repetición inicial: <em>"No dormí, no comí, no hablé"</em></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FIGURAS RETÓRICAS -->
+<div id="figuras" class="section">
+  <p class="section-intro">Las figuras retóricas son recursos del lenguaje que dan expresividad y belleza al texto. Son imprescindibles para el comentario de texto de 4º ESO.</p>
+
+  <div class="grid" style="--col:1fr 1fr;">
+
+    <!-- SEMÁNTICAS -->
+    <div class="card full" style="background:#EDE8F9; border-color:#AFA9EC;">
+      <span class="card-tag" style="background:#D5CFFE; color:#3C3489;">Figuras semánticas</span>
+      <h3 style="color:#3C3489;">Basadas en el significado</h3>
+      <p style="color:#534AB7; font-size:13px;">Modifican o comparan el significado de las palabras.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-tag" style="background:#EDE8F9; color:#3C3489;">Metáfora</span>
+      <h3>Identificación directa</h3>
+      <p>Se identifica una cosa con otra sin usar "como". Es la figura más importante. Puede ser <strong>pura</strong> (solo aparece el término imaginario) o <strong>impura</strong> (aparecen los dos términos).</p>
+      <div class="example" style="background:#EDE8F9; color:#3C3489;"><span class="example-label" style="color:#534AB7;">Ejemplos</span>
+        "Tus ojos son <strong>estrellas</strong>" (impura: ojos = estrellas)<br>
+        "Las <strong>perlas</strong> de tu boca" (pura: perlas = dientes)<br>
+        "El <strong>oro</strong> de su cabello" (pura: oro = cabello rubio)
+      </div>
+      <div class="tip">Diferencia clave con el símil: la metáfora <strong>iguala</strong> ("es"), el símil <strong>compara</strong> ("como").</div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag" style="background:#EDE8F9; color:#3C3489;">Símil o comparación</span>
+      <h3>Comparación explícita</h3>
+      <p>Compara dos realidades usando un nexo comparativo: <em>como, igual que, parece, semejante a, tal como...</em></p>
+      <div class="example" style="background:#EDE8F9; color:#3C3489;"><span class="example-label" style="color:#534AB7;">Ejemplos</span>
+        "Corre <strong>como</strong> el viento"<br>
+        "Sus dientes, <strong>semejantes a</strong> perlas"<br>
+        "La luna <strong>parece</strong> un espejo roto"
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag" style="background:#EDE8F9; color:#3C3489;">Metonimia</span>
+      <h3>Sustitución por relación real</h3>
+      <p>Se sustituye una palabra por otra con la que tiene una relación real (causa-efecto, contenedor-contenido, autor-obra...).</p>
+      <div class="example" style="background:#EDE8F9; color:#3C3489;"><span class="example-label" style="color:#534AB7;">Ejemplos</span>
+        "Me tomé una <strong>copa</strong>" (copa → vino que contiene)<br>
+        "Leí a <strong>Lorca</strong>" (autor → obra)<br>
+        "Vive de su <strong>pluma</strong>" (pluma → escritura)
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag" style="background:#EDE8F9; color:#3C3489;">Hipérbole</span>
+      <h3>Exageración expresiva</h3>
+      <p>Se exagera una realidad para enfatizarla. Muy común en el lenguaje coloquial.</p>
+      <div class="example" style="background:#EDE8F9; color:#3C3489;"><span class="example-label" style="color:#534AB7;">Ejemplos</span>
+        "Te lo he dicho <strong>mil veces</strong>"<br>
+        "Tengo un hambre que me <strong>muero</strong>"<br>
+        "Lloró un <strong>río</strong> de lágrimas"
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag" style="background:#EDE8F9; color:#3C3489;">Personificación (prosopopeya)</span>
+      <h3>Lo inanimado habla o siente</h3>
+      <p>Se atribuyen cualidades o acciones humanas a animales, objetos o ideas abstractas.</p>
+      <div class="example" style="background:#EDE8F9; color:#3C3489;"><span class="example-label" style="color:#534AB7;">Ejemplos</span>
+        "El viento <strong>susurra</strong> entre los árboles"<br>
+        "La muerte <strong>llegó</strong> sin llamar"<br>
+        "Las flores <strong>lloran</strong> rocío"
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag" style="background:#EDE8F9; color:#3C3489;">Antítesis y oxímoron</span>
+      <h3>Ideas contrarias juntas</h3>
+      <p><strong>Antítesis:</strong> contraposición de dos ideas opuestas.<br><strong>Oxímoron:</strong> unión de dos palabras de significado contradictorio.</p>
+      <div class="example" style="background:#EDE8F9; color:#3C3489;"><span class="example-label" style="color:#534AB7;">Ejemplos</span>
+        "Era tan <strong>corto</strong> el amor y tan <strong>largo</strong> el olvido" (antítesis)<br>
+        "Hielo <strong>abrasador</strong>, fuego <strong>helado</strong>" (oxímoron)<br>
+        "Es un <strong>silencio atronador</strong>" (oxímoron)
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag" style="background:#EDE8F9; color:#3C3489;">Ironía y paradoja</span>
+      <h3>Lo contrario de lo que se dice</h3>
+      <p><strong>Ironía:</strong> se dice lo contrario de lo que se piensa con intención crítica o humorística.<br><strong>Paradoja:</strong> afirmación aparentemente absurda que encierra una verdad.</p>
+      <div class="example" style="background:#EDE8F9; color:#3C3489;"><span class="example-label" style="color:#534AB7;">Ejemplos</span>
+        "¡Qué <strong>listo</strong> eres!" (dicho a alguien torpe) (ironía)<br>
+        "Muero porque <strong>no muero</strong>" — Santa Teresa (paradoja)<br>
+        "Vivo sin <strong>vivir</strong> en mí" (paradoja)
+      </div>
+    </div>
+
+    <!-- FÓNICAS -->
+    <div class="card full" style="background:#FAEAE6; border-color:#F0997B;">
+      <span class="card-tag" style="background:#F5C4B3; color:#712B13;">Figuras fónicas</span>
+      <h3 style="color:#712B13;">Basadas en el sonido</h3>
+      <p style="color:#993C1D; font-size:13px;">Crean efectos musicales o rítmicos mediante la repetición de sonidos.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-tag" style="background:#FAEAE6; color:#712B13;">Aliteración</span>
+      <h3>Repetición de sonidos</h3>
+      <p>Se repite un mismo sonido o grupo de sonidos para crear un efecto musical o imitar un sonido real.</p>
+      <div class="example" style="background:#FAEAE6; color:#712B13;"><span class="example-label" style="color:#993C1D;">Ejemplos</span>
+        "En el <strong>s</strong>ilencio <strong>s</strong>olo <strong>s</strong>e e<strong>sc</strong>uchaba un <strong>s</strong>usurro" (imita el sonido del agua)<br>
+        "El <strong>r</strong>uido con que <strong>r</strong>ueda la <strong>r</strong>onda" — Rubén Darío
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag" style="background:#FAEAE6; color:#712B13;">Onomatopeya</span>
+      <h3>Imita sonidos reales</h3>
+      <p>Las palabras imitan fonéticamente el sonido de lo que describen.</p>
+      <div class="example" style="background:#FAEAE6; color:#712B13;"><span class="example-label" style="color:#993C1D;">Ejemplos</span>
+        "El <strong>murmullo</strong> del río"<br>
+        "El <strong>zumbido</strong> de las abejas"<br>
+        "Las campanas <strong>tintineaban</strong>"
+      </div>
+    </div>
+
+    <!-- SINTÁCTICAS -->
+    <div class="card full" style="background:#E4F3EB; border-color:#5DCAA5;">
+      <span class="card-tag" style="background:#9FE1CB; color:#04342C;">Figuras sintácticas</span>
+      <h3 style="color:#085041;">Basadas en la estructura</h3>
+      <p style="color:#0F6E56; font-size:13px;">Alteran el orden o la estructura habitual de las palabras en la oración.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-tag" style="background:#E4F3EB; color:#085041;">Anáfora</span>
+      <h3>Repetición al inicio</h3>
+      <p>Se repite una misma palabra o grupo de palabras al principio de varios versos o frases consecutivas.</p>
+      <div class="example" style="background:#E4F3EB; color:#085041;"><span class="example-label" style="color:#0F6E56;">Ejemplos</span>
+        "<strong>No</strong> dormí, <strong>no</strong> comí, <strong>no</strong> hablé"<br>
+        "<strong>Aquí</strong> fue Troya, <strong>aquí</strong> la gran ruina"<br>
+        "<strong>Tú</strong> eres mi sol, <strong>tú</strong> eres mi luz, <strong>tú</strong> eres mi vida"
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag" style="background:#E4F3EB; color:#085041;">Hipérbaton</span>
+      <h3>Alteración del orden</h3>
+      <p>Se altera el orden normal de las palabras en la oración para dar énfasis o ritmo poético.</p>
+      <div class="example" style="background:#E4F3EB; color:#085041;"><span class="example-label" style="color:#0F6E56;">Ejemplos</span>
+        "Del monte en la ladera" (= En la ladera del monte)<br>
+        "Temprano levantó la muerte el vuelo" — Miguel Hernández<br>
+        "Verde que te quiero verde" — Lorca
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag" style="background:#E4F3EB; color:#085041;">Paralelismo</span>
+      <h3>Estructura repetida</h3>
+      <p>Se repite la misma estructura sintáctica en varias frases o versos consecutivos.</p>
+      <div class="example" style="background:#E4F3EB; color:#085041;"><span class="example-label" style="color:#0F6E56;">Ejemplos</span>
+        "Vine, vi, vencí"<br>
+        "Reír llorando, llorar riendo"<br>
+        "Con diez cañones por banda, / viento en popa a toda vela"
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag" style="background:#E4F3EB; color:#085041;">Elipsis</span>
+      <h3>Omisión de elementos</h3>
+      <p>Se omiten palabras que se sobreentienden por el contexto, dando mayor agilidad al texto.</p>
+      <div class="example" style="background:#E4F3EB; color:#085041;"><span class="example-label" style="color:#0F6E56;">Ejemplos</span>
+        "Yo pedí un café y ella, [pidió] una tila"<br>
+        "Unos nacen con estrella y otros [nacen] estrellados"
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag" style="background:#E4F3EB; color:#085041;">Enumeración y asíndeton / polisíndeton</span>
+      <h3>Listas con o sin nexos</h3>
+      <p><strong>Asíndeton:</strong> enumeración sin conjunciones (ritmo rápido).<br><strong>Polisíndeton:</strong> enumeración con muchas conjunciones (ritmo lento, enfático).</p>
+      <div class="example" style="background:#E4F3EB; color:#085041;"><span class="example-label" style="color:#0F6E56;">Ejemplos</span>
+        "Vine, vi, vencí" (asíndeton)<br>
+        "Y reía y lloraba y cantaba y corría" (polisíndeton)
+      </div>
+    </div>
+
+    <!-- TABLA RESUMEN -->
+    <div class="card full">
+      <span class="card-tag">Tabla resumen</span>
+      <h3>Todas las figuras de un vistazo</h3>
+      <div class="table-wrap" style="margin-top:0.75rem;">
+        <table>
+          <thead><tr><th>Figura</th><th>Tipo</th><th>Definición breve</th><th>Nexo clave</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Metáfora</strong></td><td>Semántica</td><td>A es B (sin "como")</td><td>es, son</td></tr>
+            <tr><td><strong>Símil</strong></td><td>Semántica</td><td>A es como B</td><td>como, igual que</td></tr>
+            <tr><td><strong>Metonimia</strong></td><td>Semántica</td><td>A sustituye a B (relación real)</td><td>—</td></tr>
+            <tr><td><strong>Hipérbole</strong></td><td>Semántica</td><td>Exageración</td><td>—</td></tr>
+            <tr><td><strong>Personificación</strong></td><td>Semántica</td><td>Lo inanimado actúa como humano</td><td>—</td></tr>
+            <tr><td><strong>Antítesis</strong></td><td>Semántica</td><td>Ideas contrarias enfrentadas</td><td>y, pero</td></tr>
+            <tr><td><strong>Oxímoron</strong></td><td>Semántica</td><td>Dos palabras contradictorias unidas</td><td>—</td></tr>
+            <tr><td><strong>Ironía</strong></td><td>Semántica</td><td>Se dice lo contrario de lo que se piensa</td><td>—</td></tr>
+            <tr><td><strong>Paradoja</strong></td><td>Semántica</td><td>Verdad en apariencia absurda</td><td>—</td></tr>
+            <tr><td><strong>Aliteración</strong></td><td>Fónica</td><td>Repetición de sonidos</td><td>—</td></tr>
+            <tr><td><strong>Onomatopeya</strong></td><td>Fónica</td><td>Imita sonidos reales</td><td>—</td></tr>
+            <tr><td><strong>Anáfora</strong></td><td>Sintáctica</td><td>Repetición al inicio de frases</td><td>—</td></tr>
+            <tr><td><strong>Hipérbaton</strong></td><td>Sintáctica</td><td>Orden alterado de palabras</td><td>—</td></tr>
+            <tr><td><strong>Paralelismo</strong></td><td>Sintáctica</td><td>Misma estructura repetida</td><td>—</td></tr>
+            <tr><td><strong>Elipsis</strong></td><td>Sintáctica</td><td>Omisión de palabras sobreentendidas</td><td>—</td></tr>
+            <tr><td><strong>Asíndeton</strong></td><td>Sintáctica</td><td>Enumeración sin conjunciones</td><td>—</td></tr>
+            <tr><td><strong>Polisíndeton</strong></td><td>Sintáctica</td><td>Enumeración con muchas conjunciones</td><td>y, ni, o</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ANALIZADOR -->
+<div id="analisis" class="section">
+  <p class="section-intro">Selecciona una oración y verás su análisis sintáctico completo con cada función destacada en color.</p>
+  <div class="analizador">
+    <label>Elige una oración para analizar:</label>
+    <select class="oracion-select" id="oracionSelect">
+      <option value="0">Mi madre regaló un libro a mi hermana con mucho cariño ayer.</option>
+      <option value="1">El médico recetó pastillas al enfermo en el hospital.</option>
+      <option value="2">María parece cansada después del examen.</option>
+      <option value="3">Juan confía en sus amigos desde siempre.</option>
+      <option value="4">Los niños juegan contentos en el parque.</option>
+      <option value="5">La profesora explicó el tema a los alumnos con paciencia.</option>
+    </select>
+    <button class="btn-analizar" onclick="analizar()">Analizar oración →</button>
+
+    <div class="analysis-result" id="analysisResult">
+      <div class="leyenda" id="leyenda"></div>
+      <div class="oracion-display" id="oracionDisplay"></div>
+      <div class="funcion-list" id="funcionList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz" class="section">
+  <p class="section-intro">Pon a prueba lo que has aprendido. 10 preguntas sobre morfología, sintaxis y subordinadas. ¡Cada respuesta correcta suma puntos!</p>
+  <div class="quiz-card" id="quizCard">
+    <div class="quiz-progress" id="quizProgress"></div>
+    <div class="quiz-q" id="quizQ"></div>
+    <div class="quiz-context" id="quizCtx"></div>
+    <div class="options" id="quizOptions"></div>
+    <div class="feedback" id="quizFeedback"></div>
+    <div class="quiz-nav">
+      <span class="quiz-counter" id="quizCounter"></span>
+      <button class="btn-next" id="btnNext" onclick="nextQuestion()">Siguiente →</button>
+    </div>
+  </div>
+  <div class="result-box" id="resultBox">
+    <div class="big" id="resultNum"></div>
+    <p id="resultMsg"></p>
+    <button class="btn-retry" onclick="resetQuiz()">Repetir quiz</button>
+  </div>
+</div>
+
+</main>
+
+<footer>Gramática 4º ESO · Recurso de estudio interactivo · Hecho con HTML, CSS y JavaScript</footer>
+
+<script>
+// NAVEGACIÓN
+function showSection(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('visible');
+  btn.classList.add('active');
+}
+
+// ANALIZADOR
+const oraciones = [
+  {
+    texto: [
+      {word:'Mi madre', clase:'chunk-sujeto', fn:'Sujeto (SN)', det:'Sintagma nominal. Núcleo: madre. Det.: mi.'},
+      {word:'regaló', clase:'chunk-verbo', fn:'Núcleo del predicado (V)', det:'Verbo en pretérito perfecto simple, 3ª persona singular.'},
+      {word:'un libro', clase:'chunk-cd', fn:'Complemento Directo (CD)', det:'Sintagma nominal. Se sustituye por "lo". ¿Qué regaló? Un libro.'},
+      {word:'a mi hermana', clase:'chunk-ci', fn:'Complemento Indirecto (CI)', det:'Sintagma preposicional. Se sustituye por "le". ¿A quién regaló?'},
+      {word:'con mucho cariño', clase:'chunk-cc', fn:'CC de Modo', det:'Sintagma preposicional. Indica cómo se realizó la acción.'},
+      {word:'ayer', clase:'chunk-cc', fn:'CC de Tiempo', det:'Adverbio. Indica cuándo ocurrió la acción.'},
+    ]
+  },
+  {
+    texto: [
+      {word:'El médico', clase:'chunk-sujeto', fn:'Sujeto (SN)', det:'Núcleo: médico. Det.: el.'},
+      {word:'recetó', clase:'chunk-verbo', fn:'Núcleo del predicado (V)', det:'Verbo en pretérito perfecto simple.'},
+      {word:'pastillas', clase:'chunk-cd', fn:'Complemento Directo (CD)', det:'¿Qué recetó? Pastillas. Se sustituye por "las".'},
+      {word:'al enfermo', clase:'chunk-ci', fn:'Complemento Indirecto (CI)', det:'¿A quién recetó? Al enfermo. Se sustituye por "le".'},
+      {word:'en el hospital', clase:'chunk-cc', fn:'CC de Lugar', det:'¿Dónde recetó? En el hospital.'},
+    ]
+  },
+  {
+    texto: [
+      {word:'María', clase:'chunk-sujeto', fn:'Sujeto (SN)', det:'Núcleo: María (nombre propio).'},
+      {word:'parece', clase:'chunk-verbo', fn:'Verbo copulativo (V)', det:'Verbo copulativo. Exige atributo.'},
+      {word:'cansada', clase:'chunk-atributo', fn:'Atributo (Atr)', det:'Adjetivo que describe al sujeto (María). Con verbo copulativo "parecer". Se sustituye por "lo": "Lo parece".'},
+      {word:'después del examen', clase:'chunk-cc', fn:'CC de Tiempo', det:'Sintagma preposicional. Indica cuándo.'},
+    ]
+  },
+  {
+    texto: [
+      {word:'Juan', clase:'chunk-sujeto', fn:'Sujeto (SN)', det:'Núcleo: Juan (nombre propio).'},
+      {word:'confía', clase:'chunk-verbo', fn:'Núcleo del predicado (V)', det:'Verbo "confiar", 3ª pers. sing., pres. ind.'},
+      {word:'en sus amigos', clase:'chunk-cr', fn:'Complemento de Régimen (CR)', det:'"Confiar en" exige la preposición "en". No se puede eliminar. ¿En quién confía?'},
+      {word:'desde siempre', clase:'chunk-cc', fn:'CC de Tiempo', det:'Indica desde cuándo.'},
+    ]
+  },
+  {
+    texto: [
+      {word:'Los niños', clase:'chunk-sujeto', fn:'Sujeto (SN)', det:'Núcleo: niños. Det.: los.'},
+      {word:'juegan', clase:'chunk-verbo', fn:'Núcleo del predicado (V)', det:'Verbo en presente de indicativo, 3ª pers. plural.'},
+      {word:'contentos', clase:'chunk-pred', fn:'Complemento Predicativo (CPred)', det:'Adjetivo que describe al sujeto (los niños) con un verbo no copulativo. Concuerda en género y número.'},
+      {word:'en el parque', clase:'chunk-cc', fn:'CC de Lugar', det:'¿Dónde juegan?'},
+    ]
+  },
+  {
+    texto: [
+      {word:'La profesora', clase:'chunk-sujeto', fn:'Sujeto (SN)', det:'Núcleo: profesora. Det.: la.'},
+      {word:'explicó', clase:'chunk-verbo', fn:'Núcleo del predicado (V)', det:'Verbo en pretérito perfecto simple.'},
+      {word:'el tema', clase:'chunk-cd', fn:'Complemento Directo (CD)', det:'¿Qué explicó? El tema. "Lo explicó".'},
+      {word:'a los alumnos', clase:'chunk-ci', fn:'Complemento Indirecto (CI)', det:'¿A quiénes? A los alumnos. "Les explicó".'},
+      {word:'con paciencia', clase:'chunk-cc', fn:'CC de Modo', det:'¿Cómo lo explicó? Con paciencia.'},
+    ]
+  }
+];
+
+const colorMap = {
+  'chunk-sujeto':  {bg:'#E6EEF9', text:'#1D3E8C', label:'Sujeto', dot:'#2F5FC8'},
+  'chunk-verbo':   {bg:'#FAEAE6', text:'#A33420', label:'Verbo', dot:'#C84B2F'},
+  'chunk-cd':      {bg:'#E4F3EB', text:'#1C5E3A', label:'CD', dot:'#2E8B57'},
+  'chunk-ci':      {bg:'#FBF0E0', text:'#8A5B14', label:'CI', dot:'#C8862F'},
+  'chunk-cc':      {bg:'#EDE8F9', text:'#4A32A0', label:'CC', dot:'#6B4EBB'},
+  'chunk-atributo':{bg:'#FAEAE6', text:'#A33420', label:'Atributo', dot:'#C84B2F'},
+  'chunk-pred':    {bg:'#FBF0E0', text:'#8A5B14', label:'CPred', dot:'#C8862F'},
+  'chunk-cr':      {bg:'#EDE8F9', text:'#4A32A0', label:'CR', dot:'#6B4EBB'},
+};
+
+function analizar() {
+  const idx = parseInt(document.getElementById('oracionSelect').value);
+  const o = oraciones[idx];
+  const result = document.getElementById('analysisResult');
+  const display = document.getElementById('oracionDisplay');
+  const funcs = document.getElementById('funcionList');
+  const leyenda = document.getElementById('leyenda');
+
+  result.classList.remove('show');
+  setTimeout(() => {
+    display.innerHTML = o.texto.map(t =>
+      `<span class="chunk ${t.clase}" title="${t.fn}">${t.word}</span>`
+    ).join(' ');
+
+    const seen = new Set();
+    leyenda.innerHTML = o.texto.filter(t => {
+      if (seen.has(t.clase)) return false; seen.add(t.clase); return true;
+    }).map(t => {
+      const c = colorMap[t.clase];
+      return `<span class="leyenda-item" style="background:${c.bg};color:${c.text}"><span class="dot" style="background:${c.dot}"></span>${c.label}</span>`;
+    }).join('');
+
+    funcs.innerHTML = o.texto.map(t => {
+      const c = colorMap[t.clase];
+      return `<div class="funcion-row">
+        <span class="funcion-label" style="color:${c.text}">${t.fn}</span>
+        <span class="funcion-text"><em style="color:${c.text}">${t.word}</em> — ${t.det}</span>
+      </div>`;
+    }).join('');
+
+    result.classList.add('show');
+  }, 50);
+}
+
+// QUIZ
+let questions = [
+  {q:'¿Qué función sintáctica tiene la parte subrayada?', ctx:'"El profesor <u>explicó la lección</u> a los alumnos."', opts:['Sujeto','Complemento Directo','Complemento Indirecto','Atributo'], ans:1, exp:'"la lección" responde a ¿qué explicó? y se sustituye por "la" → es CD.'},
+  {q:'¿A qué categoría gramatical pertenece "rápidamente"?', ctx:'Corrió rápidamente por el pasillo.', opts:['Adjetivo','Sustantivo','Adverbio','Verbo'], ans:2, exp:'"rápidamente" modifica al verbo "corrió", no varía → es adverbio de modo.'},
+  {q:'¿Qué tipo de oración subordinada es la subrayada?', ctx:'"El libro <u>que me prestaste</u> era muy interesante."', opts:['Sustantiva','Adverbial de tiempo','Adjetiva o de relativo','Adverbial causal'], ans:2, exp:'Introduce el pronombre relativo "que" y modifica al sustantivo "libro" (antecedente) → subordinada adjetiva.'},
+  {q:'¿Cuál de estas es una perífrasis verbal?', ctx:'', opts:['Quiero comer pizza','Voy a estudiar mañana','El niño come deprisa','Llegó y se sentó'], ans:1, exp:'"Voy a estudiar" = auxiliar + nexo + infinitivo. Forman una unidad de significado (intención futura). Las demás son verbos independientes.'},
+  {q:'¿Qué función tiene "a su madre" en esta oración?', ctx:'"Envió flores <u>a su madre</u> por su cumpleaños."', opts:['Complemento Directo','Complemento Circunstancial','Complemento de Régimen','Complemento Indirecto'], ans:3, exp:'"a su madre" responde a ¿a quién? y se sustituye por "le" → Complemento Indirecto.'},
+  {q:'¿Cuál es el sujeto de esta oración?', ctx:'"Ayer llegaron tarde los alumnos de 4ºB."', opts:['Ayer','llegaron tarde','los alumnos de 4ºB','de 4ºB'], ans:2, exp:'El verbo es "llegaron". ¿Quiénes llegaron? "Los alumnos de 4ºB". Concuerda: "llegaron" → plural ✓'},
+  {q:'¿Qué figura retórica es esta?', ctx:'"Sus ojos eran dos luceros brillantes."', opts:['Hipérbole','Anáfora','Metáfora','Símil'], ans:2, exp:'Se identifica directamente "ojos" con "luceros" sin usar "como" → metáfora.'},
+  {q:'¿Qué tipo de subordinada adverbial es esta?', ctx:'"No saldrás <u>a menos que termines los deberes</u>."', opts:['Causal','Concesiva','Condicional','Final'], ans:2, exp:'"a menos que" es una conjunción condicional. Expresa la condición necesaria para que ocurra algo → adverbial condicional.'},
+  {q:'¿Qué función tiene "cansada" en esta oración?', ctx:'"María llegó <u>cansada</u> del trabajo."', opts:['Atributo','Complemento Predicativo del sujeto','Complemento Directo','Adverbio'], ans:1, exp:'"llegó" no es copulativo, pero "cansada" describe al sujeto (María) y concuerda con él → Complemento Predicativo del sujeto.'},
+  {q:'¿Cuál de estas palabras tiene un prefijo?', ctx:'', opts:['Panadero','Deshacer','Corredor','Amable'], ans:1, exp:'"Deshacer" = prefijo "des-" + lexema "hac-" + sufijo "-er". El prefijo "des-" indica acción contraria.'},
+];
+
+let current = 0, score = 0, totalScore = 0, answered = false;
+
+function initQuiz() {
+  current = 0; score = 0; answered = false;
+  document.getElementById('quizCard').style.display = 'block';
+  document.getElementById('resultBox').classList.remove('show');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = questions[current];
+  answered = false;
+
+  // progress
+  const prog = document.getElementById('quizProgress');
+  prog.innerHTML = questions.map((_, i) =>
+    `<div class="quiz-dot ${i < current ? 'done' : i === current ? 'active' : ''}"></div>`
+  ).join('');
+
+  document.getElementById('quizQ').textContent = q.q;
+  document.getElementById('quizCtx').textContent = q.ctx;
+  document.getElementById('quizCtx').style.display = q.ctx ? 'block' : 'none';
+  document.getElementById('quizFeedback').className = 'feedback';
+  document.getElementById('quizFeedback').textContent = '';
+  document.getElementById('btnNext').classList.remove('show');
+  document.getElementById('quizCounter').textContent = `Pregunta ${current+1} de ${questions.length}`;
+
+  const opts = document.getElementById('quizOptions');
+  opts.innerHTML = q.opts.map((o, i) =>
+    `<button class="option" onclick="answer(${i})">${o}</button>`
+  ).join('');
+}
+
+function answer(i) {
+  if (answered) return;
+  answered = true;
+  const q = questions[current];
+  const btns = document.querySelectorAll('.option');
+  btns.forEach((b, idx) => {
+    b.classList.add(idx === q.ans ? 'correct' : idx === i ? 'wrong' : 'disabled');
+  });
+
+  const fb = document.getElementById('quizFeedback');
+  if (i === q.ans) {
+    score++;
+    totalScore += 10;
+    document.getElementById('scoreBadge').childNodes[0].textContent = totalScore;
+    fb.className = 'feedback ok show';
+    fb.textContent = '✓ ¡Correcto! ' + q.exp;
+  } else {
+    fb.className = 'feedback ko show';
+    fb.textContent = '✗ Incorrecto. ' + q.exp;
+  }
+  document.getElementById('btnNext').classList.add('show');
+  document.getElementById('btnNext').textContent = current < questions.length - 1 ? 'Siguiente →' : 'Ver resultado →';
+}
+
+function nextQuestion() {
+  current++;
+  if (current >= questions.length) showResult();
+  else renderQuestion();
+}
+
+function showResult() {
+  document.getElementById('quizCard').style.display = 'none';
+  const rb = document.getElementById('resultBox');
+  rb.classList.add('show');
+  document.getElementById('resultNum').textContent = score + '/' + questions.length;
+  const msgs = [
+    [0,3,'Sigue practicando. Repasa las secciones y vuelve a intentarlo. ¡Tú puedes!'],
+    [4,6,'Vas por buen camino. Repasa los temas en los que fallaste y lo conseguirás.'],
+    [7,8,'¡Muy bien! Tienes los conceptos claros. Repasa los detalles y estarás listo.'],
+    [9,10,'¡Sobresaliente! Dominas la gramática de 4º ESO. ¡Enhorabuena!']
+  ];
+  const m = msgs.find(([a,b]) => score >= a && score <= b);
+  document.getElementById('resultMsg').textContent = m[2];
+}
+
+function resetQuiz() {
+  questions = questions.sort(() => Math.random() - 0.5);
+  initQuiz();
+}
+
+initQuiz();
+</script>
+</body>
+</html>
