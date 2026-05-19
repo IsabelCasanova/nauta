@@ -3,1237 +3,1003 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gramática 4º ESO</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Vela · Guía de navegación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css">
 <style>
-  :root {
-    --bg: #F5F2EB;
-    --ink: #1A1714;
-    --ink-muted: #6B6560;
-    --accent: #C84B2F;
-    --accent2: #2F5FC8;
-    --accent3: #2E8B57;
-    --card: #FFFFFF;
-    --border: rgba(26,23,20,0.12);
-    --purple: #6B4EBB;
-    --amber: #C8862F;
-  }
+:root {
+  --bg: #0e1117;
+  --bg2: #161b26;
+  --bg3: #1e2535;
+  --bg4: #252d40;
+  --line: rgba(255,255,255,0.07);
+  --line2: rgba(255,255,255,0.13);
+  --text: #e8eaf2;
+  --text2: #8b93a8;
+  --text3: #5a6278;
+  --accent: #4a9eff;
+  --accent2: #2d7dd2;
+  --green: #3ecf8e;
+  --amber: #f5a623;
+  --red: #f06a6a;
+  --red-bg: rgba(240,106,106,0.1);
+  --red-border: rgba(240,106,106,0.25);
+  --green-bg: rgba(62,207,142,0.08);
+  --green-border: rgba(62,207,142,0.2);
+  --amber-bg: rgba(245,166,35,0.08);
+  --amber-border: rgba(245,166,35,0.2);
+  --accent-bg: rgba(74,158,255,0.08);
+  --accent-border: rgba(74,158,255,0.2);
+  --radius: 10px;
+  --radius-sm: 6px;
+  --mono: 'DM Mono', monospace;
+  --sans: 'DM Sans', sans-serif;
+}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--ink);
-    min-height: 100vh;
-  }
+html { font-size: 15px; }
 
-  /* HEADER */
-  header {
-    padding: 3rem 2rem 2rem;
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-  }
-  .header-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.75rem;
-  }
-  header h1 {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(2.2rem, 6vw, 4rem);
-    font-weight: 700;
-    line-height: 1.05;
-    color: var(--ink);
-  }
-  header h1 em {
-    font-style: italic;
-    color: var(--accent);
-  }
-  header p {
-    margin-top: 1rem;
-    font-size: 1rem;
-    color: var(--ink-muted);
-    max-width: 480px;
-    line-height: 1.6;
-  }
-  .score-badge {
-    position: absolute;
-    top: 3rem;
-    right: 2rem;
-    background: var(--ink);
-    color: var(--bg);
-    border-radius: 50%;
-    width: 72px;
-    height: 72px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Fraunces', serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 1;
-  }
-  .score-badge span {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 10px;
-    font-weight: 400;
-    opacity: 0.6;
-    margin-top: 2px;
-  }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
 
-  /* NAV TABS */
-  .tabs-wrap {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    overflow-x: auto;
+/* ── LAYOUT ── */
+.app-shell {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-rows: 56px 1fr;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  gap: 10px;
+  z-index: 10;
+}
+.topbar-logo {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 14px; font-weight: 500; color: var(--text);
+  letter-spacing: -0.01em;
+}
+.topbar-logo i { font-size: 18px; color: var(--accent); }
+.topbar-badge {
+  font-family: var(--mono); font-size: 10px; color: var(--text3);
+  border: 1px solid var(--line2); border-radius: 4px; padding: 2px 6px;
+  margin-left: 4px;
+}
+.topbar-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.topbar-chip {
+  font-size: 11px; color: var(--text3); font-family: var(--mono);
+  border: 1px solid var(--line); border-radius: 4px; padding: 3px 8px;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  background: var(--bg);
+  border-right: 1px solid var(--line);
+  overflow-y: auto;
+  padding: 12px 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--bg3) transparent;
+}
+
+.sidebar-section-label {
+  font-size: 10px; font-weight: 500; color: var(--text3);
+  font-family: var(--mono); letter-spacing: .08em;
+  padding: 8px 10px 4px; text-transform: uppercase;
+}
+
+.nav-item {
+  display: flex; align-items: center; gap: 9px;
+  padding: 7px 10px; border-radius: var(--radius-sm);
+  cursor: pointer; font-size: 13px; color: var(--text2);
+  transition: all .15s; border: 1px solid transparent;
+  user-select: none;
+}
+.nav-item:hover { background: var(--bg3); color: var(--text); }
+.nav-item.active {
+  background: var(--bg3); color: var(--text);
+  border-color: var(--line2);
+}
+.nav-item i { font-size: 15px; flex-shrink: 0; }
+.nav-item .nav-dot {
+  width: 5px; height: 5px; border-radius: 50%; margin-left: auto; flex-shrink: 0;
+}
+
+/* ── MAIN CONTENT ── */
+.main {
+  overflow-y: auto;
+  padding: 28px 32px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--bg3) transparent;
+}
+
+.panel { display: none; animation: fadeIn .15s ease; }
+.panel.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+.panel-title {
+  font-size: 20px; font-weight: 500; margin-bottom: 4px; letter-spacing: -0.02em;
+}
+.panel-subtitle { font-size: 13px; color: var(--text3); margin-bottom: 24px; font-family: var(--mono); }
+
+/* ── CARDS ── */
+.card {
+  background: var(--bg2); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 16px; margin-bottom: 12px;
+}
+.card-title {
+  font-size: 13px; font-weight: 500; margin-bottom: 8px;
+  display: flex; align-items: center; gap: 7px;
+}
+.card-title i { font-size: 15px; }
+
+.card.danger { background: var(--red-bg); border-color: var(--red-border); }
+.card.warning { background: var(--amber-bg); border-color: var(--amber-border); }
+.card.success { background: var(--green-bg); border-color: var(--green-border); }
+.card.info { background: var(--accent-bg); border-color: var(--accent-border); }
+
+.card.danger .card-title { color: var(--red); }
+.card.warning .card-title { color: var(--amber); }
+.card.success .card-title { color: var(--green); }
+.card.info .card-title { color: var(--accent); }
+
+/* ── BADGES / TAGS ── */
+.badge {
+  display: inline-block; font-size: 10px; font-weight: 500;
+  padding: 2px 7px; border-radius: 4px; font-family: var(--mono);
+  vertical-align: middle;
+}
+.badge.info { background: var(--accent-bg); color: var(--accent); border: 1px solid var(--accent-border); }
+.badge.danger { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+.badge.warning { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+.badge.success { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+
+/* ── RULE ITEMS ── */
+.rule-item {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 12px 0; border-bottom: 1px solid var(--line);
+}
+.rule-item:last-child { border-bottom: none; }
+.rule-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; flex-shrink: 0; margin-top: 1px;
+  border: 1px solid;
+}
+.rule-icon.info { background: var(--accent-bg); color: var(--accent); border-color: var(--accent-border); }
+.rule-icon.danger { background: var(--red-bg); color: var(--red); border-color: var(--red-border); }
+.rule-icon.warning { background: var(--amber-bg); color: var(--amber); border-color: var(--amber-border); }
+.rule-icon.neutral { background: var(--bg3); color: var(--text2); border-color: var(--line2); }
+.rule-text h4 { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+.rule-text p { font-size: 12px; color: var(--text2); line-height: 1.55; }
+
+/* ── STEP LIST ── */
+.step-list { list-style: none; counter-reset: s; }
+.step-list li {
+  counter-increment: s; padding: 6px 0 6px 28px; position: relative;
+  font-size: 12px; color: var(--text2); border-bottom: 1px solid var(--line);
+  line-height: 1.5;
+}
+.step-list li:last-child { border-bottom: none; }
+.step-list li::before {
+  content: counter(s); position: absolute; left: 0; top: 7px;
+  width: 17px; height: 17px; border-radius: 50%;
+  background: var(--bg4); color: var(--accent);
+  font-size: 9px; font-family: var(--mono); font-weight: 500;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ── BULLET LIST ── */
+.bullet-list { list-style: none; padding: 0; }
+.bullet-list li {
+  font-size: 12px; color: var(--text2); padding: 3px 0; padding-left: 14px; position: relative;
+  line-height: 1.55;
+}
+.bullet-list li::before { content: "→"; position: absolute; left: 0; color: var(--text3); }
+
+/* ── CODE / MONO BLOCKS ── */
+.mono-block {
+  font-family: var(--mono); font-size: 11px; background: var(--bg);
+  border-radius: var(--radius-sm); padding: 12px; margin-top: 8px;
+  border: 1px solid var(--line2); color: var(--text); line-height: 1.8;
+}
+.mono-block .hi { color: var(--red); font-weight: 500; }
+.mono-block .hi-amber { color: var(--amber); font-weight: 500; }
+
+/* ── FREQ BADGE ── */
+.freq {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 8px; font-family: var(--mono);
+  font-size: 11px; font-weight: 500; flex-shrink: 0;
+  background: var(--accent-bg); color: var(--accent); border: 1px solid var(--accent-border);
+}
+
+/* ── LIGHTS ── */
+.light-row {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 10px 0; border-bottom: 1px solid var(--line);
+}
+.light-row:last-child { border-bottom: none; }
+.light-dot {
+  width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; margin-top: 4px;
+}
+.light-row h4 { font-size: 12px; font-weight: 500; margin-bottom: 2px; }
+.light-row p { font-size: 11px; color: var(--text2); line-height: 1.4; }
+
+/* ── GRID ── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid-info {
+  background: var(--bg3); border-radius: var(--radius-sm); padding: 10px;
+}
+.grid-info .label { font-size: 10px; color: var(--text3); font-family: var(--mono); margin-bottom: 3px; }
+.grid-info .val { font-size: 12px; color: var(--text); }
+
+/* ── SECTION DIVIDER ── */
+.sdiv {
+  font-size: 10px; font-weight: 500; color: var(--text3);
+  font-family: var(--mono); letter-spacing: .08em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 8px; margin: 20px 0 10px;
+}
+.sdiv i { font-size: 13px; }
+.sdiv::after {
+  content: ''; flex: 1; height: 1px; background: var(--line);
+}
+
+/* ── PAREJA PANIC BUTTON ── */
+.panic-btn {
+  width: 100%; padding: 12px 16px; border-radius: var(--radius);
+  background: var(--red-bg); border: 1px solid var(--red-border);
+  color: var(--red); font-size: 12px; font-weight: 500; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: var(--sans); transition: background .15s;
+  margin-top: 8px;
+}
+.panic-btn:hover { background: rgba(240,106,106,0.16); }
+
+.panic-response {
+  display: none; background: var(--bg2);
+  border-radius: var(--radius); border: 1px solid var(--line2);
+  padding: 16px; margin-top: 8px;
+}
+.panic-response.visible { display: block; }
+.panic-step {
+  display: flex; gap: 10px; padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+.panic-step:last-child { border-bottom: none; }
+.panic-num {
+  font-family: var(--mono); font-size: 11px; color: var(--accent);
+  flex-shrink: 0; padding-top: 1px; min-width: 16px;
+}
+.panic-step p { font-size: 12px; color: var(--text2); line-height: 1.55; }
+.panic-step strong { color: var(--text); font-weight: 500; }
+
+/* ── HIGHLIGHT BOX ── */
+.highlight {
+  border-radius: var(--radius); padding: 14px 16px; margin-bottom: 12px;
+  border: 1px solid;
+}
+.highlight.yellow {
+  background: var(--amber-bg); border-color: var(--amber-border);
+}
+.highlight.yellow h3 { color: var(--amber); font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+.highlight.yellow p { font-size: 12px; color: var(--text2); line-height: 1.6; }
+.highlight.green {
+  background: var(--green-bg); border-color: var(--green-border);
+}
+.highlight.green h3 { color: var(--green); font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+
+/* ── VELA DETAIL ── */
+#vela-detail {
+  display: none; background: var(--bg3); border-radius: var(--radius);
+  border: 1px solid var(--line2); padding: 14px; margin-top: 8px;
+}
+
+/* ── SVG VELAS ── */
+svg text { font-family: var(--sans); }
+
+/* ── RESPONSIVE MOBILE ── */
+@media (max-width: 640px) {
+  .app-shell { grid-template-columns: 1fr; grid-template-rows: 56px auto 1fr; }
+  .sidebar {
+    display: flex; overflow-x: auto; overflow-y: hidden;
+    border-right: none; border-bottom: 1px solid var(--line);
+    padding: 6px 8px; gap: 4px;
     scrollbar-width: none;
   }
-  .tabs-wrap::-webkit-scrollbar { display: none; }
-  .tabs {
-    display: flex;
-    gap: 4px;
-    border-bottom: 1.5px solid var(--border);
-    padding-bottom: 0;
-    white-space: nowrap;
-  }
-  .tab {
-    padding: 0.6rem 1.25rem;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--ink-muted);
-    cursor: pointer;
-    border: none;
-    background: none;
-    font-family: 'DM Sans', sans-serif;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1.5px;
-    transition: color 0.15s;
-  }
-  .tab:hover { color: var(--ink); }
-  .tab.active {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-  }
-
-  /* MAIN */
-  main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 2rem;
-  }
-
-  .section { display: none; animation: fadeIn 0.25s ease; }
-  .section.visible { display: block; }
-  @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
-
-  .section-intro {
-    font-family: 'Fraunces', serif;
-    font-size: 1.1rem;
-    font-style: italic;
-    color: var(--ink-muted);
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border);
-    line-height: 1.6;
-  }
-
-  /* CARDS */
-  .grid { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; }
-  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
-
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.25rem;
-    position: relative;
-    overflow: hidden;
-    transition: box-shadow 0.2s, transform 0.2s;
-  }
-  .card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
-  .card-tag {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 3px 9px;
-    border-radius: 20px;
-    margin-bottom: 0.6rem;
-  }
-  .card h3 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    color: var(--ink);
-  }
-  .card p { font-size: 13.5px; color: var(--ink-muted); line-height: 1.65; }
-
-  .example {
-    margin-top: 0.75rem;
-    padding: 0.65rem 0.9rem;
-    border-radius: 8px;
-    font-size: 13px;
-    line-height: 1.6;
-  }
-  .example-label {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 4px;
-    opacity: 0.7;
-  }
-  .tip {
-    margin-top: 0.75rem;
-    padding: 0.65rem 0.75rem 0.65rem 1rem;
-    border-left: 3px solid var(--accent);
-    font-size: 13px;
-    color: var(--ink-muted);
-    line-height: 1.6;
-  }
-  .tip strong { color: var(--ink); }
-
-  .full { grid-column: 1 / -1; }
-
-  /* COLOR THEMES PER SECTION */
-  .purple .card-tag { background: #EDE8F9; color: #4A32A0; }
-  .purple .example { background: #EDE8F9; color: #4A32A0; }
-  .purple .example-label { color: #6B4EBB; }
-
-  .coral .card-tag { background: #FAEAE6; color: #A33420; }
-  .coral .example { background: #FAEAE6; color: #A33420; }
-  .coral .example-label { color: #C84B2F; }
-
-  .blue .card-tag { background: #E6EEF9; color: #1D3E8C; }
-  .blue .example { background: #E6EEF9; color: #1D3E8C; }
-  .blue .example-label { color: #2F5FC8; }
-
-  .green .card-tag { background: #E4F3EB; color: #1C5E3A; }
-  .green .example { background: #E4F3EB; color: #1C5E3A; }
-  .green .example-label { color: #2E8B57; }
-
-  .amber .card-tag { background: #FBF0E0; color: #8A5B14; }
-  .amber .example { background: #FBF0E0; color: #8A5B14; }
-  .amber .example-label { color: #C8862F; }
-
-  /* QUIZ */
-  .quiz-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 2rem;
-    margin-bottom: 1rem;
-  }
-  .quiz-progress {
-    display: flex;
-    gap: 4px;
-    margin-bottom: 1.5rem;
-  }
-  .quiz-dot {
-    height: 4px;
-    flex: 1;
-    border-radius: 4px;
-    background: var(--border);
-    transition: background 0.3s;
-  }
-  .quiz-dot.done { background: var(--accent3); }
-  .quiz-dot.active { background: var(--accent); }
-
-  .quiz-q {
-    font-family: 'Fraunces', serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-bottom: 0.4rem;
-    line-height: 1.4;
-  }
-  .quiz-context {
-    font-size: 13px;
-    color: var(--ink-muted);
-    margin-bottom: 1.25rem;
-    font-style: italic;
-  }
-  .options { display: grid; gap: 0.5rem; }
-  .option {
-    padding: 0.75rem 1rem;
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    font-size: 14px;
-    font-family: 'DM Sans', sans-serif;
-    background: transparent;
-    color: var(--ink);
-    cursor: pointer;
-    text-align: left;
-    transition: all 0.15s;
-  }
-  .option:hover { border-color: var(--accent); background: #FFF5F3; }
-  .option.correct { border-color: var(--accent3); background: #E4F3EB; color: #1C5E3A; pointer-events: none; }
-  .option.wrong   { border-color: var(--accent); background: #FAEAE6; color: #A33420; pointer-events: none; }
-  .option.disabled { pointer-events: none; opacity: 0.5; }
-  .feedback {
-    margin-top: 1rem;
-    padding: 0.75rem 1rem;
-    border-radius: 10px;
-    font-size: 14px;
-    line-height: 1.6;
-    display: none;
-  }
-  .feedback.show { display: block; }
-  .feedback.ok { background: #E4F3EB; color: #1C5E3A; }
-  .feedback.ko { background: #FAEAE6; color: #A33420; }
-
-  .quiz-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1.25rem;
-  }
-  .quiz-counter { font-size: 13px; color: var(--ink-muted); }
-  .btn-next {
-    padding: 0.6rem 1.5rem;
-    background: var(--ink);
-    color: var(--bg);
-    border: none;
-    border-radius: 8px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    display: none;
-    transition: opacity 0.15s;
-  }
-  .btn-next:hover { opacity: 0.8; }
-  .btn-next.show { display: block; }
-
-  .result-box {
-    text-align: center;
-    padding: 3rem 2rem;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    display: none;
-  }
-  .result-box.show { display: block; }
-  .result-box .big {
-    font-family: 'Fraunces', serif;
-    font-size: 5rem;
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1;
-  }
-  .result-box p { font-size: 1rem; color: var(--ink-muted); margin-top: 1rem; line-height: 1.6; }
-  .btn-retry {
-    margin-top: 1.5rem;
-    padding: 0.75rem 2rem;
-    border: 1.5px solid var(--ink);
-    border-radius: 10px;
-    background: transparent;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.15s;
-    color: var(--ink);
-  }
-  .btn-retry:hover { background: var(--ink); color: var(--bg); }
-
-  /* ANÁLISIS SINTÁCTICO */
-  .analizador {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 2rem;
-    margin-bottom: 1rem;
-  }
-  .analizador label {
-    display: block;
-    font-size: 13px;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    color: var(--ink-muted);
-  }
-  .oracion-select {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    color: var(--ink);
-    background: var(--bg);
-    margin-bottom: 1rem;
-    cursor: pointer;
-  }
-  .btn-analizar {
-    padding: 0.7rem 1.75rem;
-    background: var(--accent);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: opacity 0.15s;
-  }
-  .btn-analizar:hover { opacity: 0.85; }
-
-  .analysis-result {
-    margin-top: 1.5rem;
-    display: none;
-    animation: fadeIn 0.3s ease;
-  }
-  .analysis-result.show { display: block; }
-
-  .oracion-display {
-    font-family: 'Fraunces', serif;
-    font-size: 1.15rem;
-    margin-bottom: 1.25rem;
-    line-height: 1.8;
-  }
-  .oracion-display .chunk {
-    display: inline-block;
-    margin: 2px;
-    padding: 2px 8px;
-    border-radius: 6px;
-    cursor: default;
-    transition: all 0.15s;
-  }
-  .chunk-sujeto    { background: #E6EEF9; color: #1D3E8C; border-bottom: 2px solid #2F5FC8; }
-  .chunk-verbo     { background: #FAEAE6; color: #A33420; border-bottom: 2px solid #C84B2F; }
-  .chunk-cd        { background: #E4F3EB; color: #1C5E3A; border-bottom: 2px solid #2E8B57; }
-  .chunk-ci        { background: #FBF0E0; color: #8A5B14; border-bottom: 2px solid #C8862F; }
-  .chunk-cc        { background: #EDE8F9; color: #4A32A0; border-bottom: 2px solid #6B4EBB; }
-  .chunk-atributo  { background: #FAEAE6; color: #A33420; border-bottom: 2px dashed #C84B2F; }
-  .chunk-pred      { background: #FBF0E0; color: #8A5B14; border-bottom: 2px dashed #C8862F; }
-  .chunk-cr        { background: #EDE8F9; color: #4A32A0; border-bottom: 2px dashed #6B4EBB; }
-
-  .leyenda {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 1rem;
-  }
-  .leyenda-item {
-    font-size: 12px;
-    font-weight: 500;
-    padding: 3px 10px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  .dot { width: 8px; height: 8px; border-radius: 50%; }
-
-  .funcion-list { display: grid; gap: 0.5rem; }
-  .funcion-row {
-    display: flex;
-    gap: 0.75rem;
-    align-items: flex-start;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 13.5px;
-  }
-  .funcion-row:last-child { border-bottom: none; }
-  .funcion-label {
-    font-weight: 500;
-    min-width: 100px;
-    font-size: 12px;
-  }
-  .funcion-text { color: var(--ink-muted); line-height: 1.5; }
-
-  /* RESUMEN FINAL */
-  .table-wrap { overflow-x: auto; }
-  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-  th {
-    background: var(--ink);
-    color: var(--bg);
-    padding: 0.6rem 0.75rem;
-    text-align: left;
-    font-weight: 500;
-    font-size: 12px;
-    letter-spacing: 0.04em;
-  }
-  td {
-    padding: 0.55rem 0.75rem;
-    border-bottom: 1px solid var(--border);
-    color: var(--ink);
-    vertical-align: top;
-    line-height: 1.5;
-  }
-  tr:last-child td { border-bottom: none; }
-  tr:nth-child(even) td { background: rgba(0,0,0,0.02); }
-
-  footer {
-    text-align: center;
-    padding: 2rem;
-    font-size: 12px;
-    color: var(--ink-muted);
-    max-width: 900px;
-    margin: 0 auto;
-    border-top: 1px solid var(--border);
-  }
+  .sidebar::-webkit-scrollbar { display: none; }
+  .sidebar-section-label { display: none; }
+  .nav-item { flex-direction: column; gap: 3px; font-size: 10px; padding: 6px 10px; white-space: nowrap; }
+  .nav-item i { font-size: 18px; }
+  .nav-item .nav-dot { display: none; }
+  .main { padding: 16px; }
+  .grid-2 { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
+<div class="app-shell">
 
-<header>
-  <div class="header-label">4º ESO · Lengua Castellana</div>
-  <h1>Gramática<br><em>interactiva</em></h1>
-  <p>Morfología, sintaxis, subordinadas y más. Aprende con ejemplos claros y pon a prueba tus conocimientos.</p>
-  <div class="score-badge" id="scoreBadge">0<span>puntos</span></div>
-</header>
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-logo">
+      <i class="ti ti-sail"></i>
+      vela.guide
+      <span class="topbar-badge">v1.0</span>
+    </div>
+    <div class="topbar-right">
+      <span class="topbar-chip">Egadi · Sicilia</span>
+    </div>
+  </header>
 
-<div class="tabs-wrap">
-  <div class="tabs">
-    <button class="tab active" onclick="showSection('morfologia',this)">Morfología</button>
-    <button class="tab" onclick="showSection('sintaxis',this)">Sintaxis</button>
-    <button class="tab" onclick="showSection('subordinadas',this)">Subordinadas</button>
-    <button class="tab" onclick="showSection('perifrastica',this)">Perífrasis</button>
-    <button class="tab" onclick="showSection('semantica',this)">Semántica</button>
-    <button class="tab" onclick="showSection('figuras',this)">Figuras retóricas</button>
-    <button class="tab" onclick="showSection('analisis',this)">Analizador</button>
-    <button class="tab" onclick="showSection('quiz',this)">Quiz ✦</button>
-  </div>
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="sidebar-section-label">navegación</div>
+    <div class="nav-item active" onclick="show('velas',this)">
+      <i class="ti ti-wind"></i> Velas
+      <span class="nav-dot" style="background:var(--accent)"></span>
+    </div>
+    <div class="nav-item" onclick="show('maniobras',this)">
+      <i class="ti ti-rotate"></i> Maniobras
+    </div>
+    <div class="nav-item" onclick="show('atracar',this)">
+      <i class="ti ti-anchor"></i> Puerto
+    </div>
+    <div class="nav-item" onclick="show('noche',this)">
+      <i class="ti ti-moon"></i> Noche
+    </div>
+    <div class="sidebar-section-label" style="margin-top:8px">emergencias</div>
+    <div class="nav-item" onclick="show('radio',this)">
+      <i class="ti ti-radio"></i> Radio VHF
+    </div>
+    <div class="nav-item" onclick="show('seguridad',this)">
+      <i class="ti ti-lifebuoy"></i> Seguridad
+    </div>
+    <div class="sidebar-section-label" style="margin-top:8px">a bordo</div>
+    <div class="nav-item" onclick="show('pareja',this)">
+      <i class="ti ti-heart"></i> Pareja
+      <span class="nav-dot" style="background:var(--red)"></span>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- ─── VELAS ─── -->
+    <div id="panel-velas" class="panel active">
+      <div class="panel-title">Puntos de vela</div>
+      <div class="panel-subtitle">ángulos de navegación respecto al viento</div>
+
+      <svg width="100%" viewBox="0 0 640 320" style="margin-bottom:16px;display:block">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+        <text x="320" y="14" text-anchor="middle" font-size="10" fill="#5a6278" font-family="DM Mono,monospace">VIENTO</text>
+        <line x1="320" y1="18" x2="320" y2="46" stroke="#5a6278" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+        <path d="M320 52 L284 96 L320 91 L356 96 Z" fill="rgba(240,106,106,0.12)" stroke="rgba(240,106,106,0.3)" stroke-width="0.5" stroke-dasharray="3 3"/>
+        <text x="320" y="74" text-anchor="middle" font-size="9" fill="#f06a6a" font-weight="500" font-family="DM Mono,monospace">zona muerta</text>
+        <text x="320" y="86" text-anchor="middle" font-size="8" fill="#f06a6a" font-family="DM Mono,monospace">≈45°</text>
+
+        <g style="cursor:pointer" onclick="showVela('cenida')">
+          <g transform="translate(160,118)">
+            <ellipse rx="9" ry="20" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(-25)"/>
+            <line x1="-6" y1="-19" x2="6" y2="19" stroke="#3a4558" stroke-width="0.7" transform="rotate(-25)"/>
+            <line x1="-4" y1="-18" x2="-18" y2="2" stroke="#4a9eff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="-2" y1="-6" x2="-13" y2="8" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round"/>
+          </g>
+          <rect x="104" y="148" width="56" height="18" rx="4" fill="rgba(74,158,255,0.12)" stroke="rgba(74,158,255,0.3)" stroke-width="0.5"/>
+          <text x="132" y="160" text-anchor="middle" font-size="10" fill="#4a9eff" font-weight="500" font-family="DM Mono,monospace">Ceñida</text>
+          <g transform="translate(480,118)">
+            <ellipse rx="9" ry="20" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(25)"/>
+            <line x1="6" y1="-19" x2="-6" y2="19" stroke="#3a4558" stroke-width="0.7" transform="rotate(25)"/>
+            <line x1="4" y1="-18" x2="18" y2="2" stroke="#4a9eff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="2" y1="-6" x2="13" y2="8" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round"/>
+          </g>
+          <rect x="452" y="148" width="56" height="18" rx="4" fill="rgba(74,158,255,0.12)" stroke="rgba(74,158,255,0.3)" stroke-width="0.5"/>
+          <text x="480" y="160" text-anchor="middle" font-size="10" fill="#4a9eff" font-weight="500" font-family="DM Mono,monospace">Ceñida</text>
+        </g>
+
+        <g style="cursor:pointer" onclick="showVela('traves')">
+          <g transform="translate(108,208)">
+            <ellipse rx="20" ry="9" fill="#1e2535" stroke="#3a4558" stroke-width="1"/>
+            <line x1="-20" y1="0" x2="20" y2="0" stroke="#3a4558" stroke-width="0.7"/>
+            <line x1="0" y1="-2" x2="-4" y2="-20" stroke="#f5a623" stroke-width="2" stroke-linecap="round"/>
+            <line x1="7" y1="-1" x2="3" y2="-14" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"/>
+          </g>
+          <rect x="62" y="226" width="52" height="18" rx="4" fill="rgba(245,166,35,0.1)" stroke="rgba(245,166,35,0.3)" stroke-width="0.5"/>
+          <text x="88" y="238" text-anchor="middle" font-size="10" fill="#f5a623" font-weight="500" font-family="DM Mono,monospace">Través</text>
+          <g transform="translate(532,208)">
+            <ellipse rx="20" ry="9" fill="#1e2535" stroke="#3a4558" stroke-width="1"/>
+            <line x1="-20" y1="0" x2="20" y2="0" stroke="#3a4558" stroke-width="0.7"/>
+            <line x1="0" y1="-2" x2="4" y2="-20" stroke="#f5a623" stroke-width="2" stroke-linecap="round"/>
+            <line x1="-7" y1="-1" x2="-3" y2="-14" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"/>
+          </g>
+          <rect x="506" y="226" width="52" height="18" rx="4" fill="rgba(245,166,35,0.1)" stroke="rgba(245,166,35,0.3)" stroke-width="0.5"/>
+          <text x="532" y="238" text-anchor="middle" font-size="10" fill="#f5a623" font-weight="500" font-family="DM Mono,monospace">Través</text>
+        </g>
+
+        <g style="cursor:pointer" onclick="showVela('largo')">
+          <g transform="translate(158,268)">
+            <ellipse rx="16" ry="7" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(-18)"/>
+            <line x1="-13" y1="-9" x2="13" y2="9" stroke="#3a4558" stroke-width="0.7"/>
+            <line x1="-2" y1="-7" x2="-20" y2="-13" stroke="#3ecf8e" stroke-width="2" stroke-linecap="round"/>
+          </g>
+          <rect x="110" y="285" width="48" height="18" rx="4" fill="rgba(62,207,142,0.1)" stroke="rgba(62,207,142,0.25)" stroke-width="0.5"/>
+          <text x="134" y="297" text-anchor="middle" font-size="10" fill="#3ecf8e" font-weight="500" font-family="DM Mono,monospace">Largo</text>
+          <g transform="translate(482,268)">
+            <ellipse rx="16" ry="7" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(18)"/>
+            <line x1="13" y1="-9" x2="-13" y2="9" stroke="#3a4558" stroke-width="0.7"/>
+            <line x1="2" y1="-7" x2="20" y2="-13" stroke="#3ecf8e" stroke-width="2" stroke-linecap="round"/>
+          </g>
+          <rect x="458" y="285" width="48" height="18" rx="4" fill="rgba(62,207,142,0.1)" stroke="rgba(62,207,142,0.25)" stroke-width="0.5"/>
+          <text x="482" y="297" text-anchor="middle" font-size="10" fill="#3ecf8e" font-weight="500" font-family="DM Mono,monospace">Largo</text>
+        </g>
+
+        <g style="cursor:pointer" onclick="showVela('popa')">
+          <g transform="translate(320,290)">
+            <ellipse rx="11" ry="24" fill="#1e2535" stroke="#3a4558" stroke-width="1"/>
+            <line x1="0" y1="-24" x2="0" y2="24" stroke="#3a4558" stroke-width="0.7"/>
+            <line x1="0" y1="-18" x2="-22" y2="2" stroke="#f06a6a" stroke-width="2" stroke-linecap="round"/>
+            <line x1="0" y1="-8" x2="22" y2="4" stroke="#f06a6a" stroke-width="2" stroke-linecap="round"/>
+          </g>
+          <rect x="292" y="296" width="56" height="18" rx="4" fill="rgba(240,106,106,0.1)" stroke="rgba(240,106,106,0.25)" stroke-width="0.5"/>
+          <text x="320" y="308" text-anchor="middle" font-size="10" fill="#f06a6a" font-weight="500" font-family="DM Mono,monospace">Popa</text>
+        </g>
+
+        <path d="M320 52 L202 128" stroke="#252d40" stroke-width="0.5" stroke-dasharray="3 5"/>
+        <path d="M320 52 L438 128" stroke="#252d40" stroke-width="0.5" stroke-dasharray="3 5"/>
+        <path d="M320 52 L140 218" stroke="#252d40" stroke-width="0.5" stroke-dasharray="2 6"/>
+        <path d="M320 52 L500 218" stroke="#252d40" stroke-width="0.5" stroke-dasharray="2 6"/>
+
+        <text x="320" y="315" text-anchor="middle" font-size="9" fill="#5a6278" font-family="DM Mono,monospace">· toca cada punto de vela ·</text>
+      </svg>
+
+      <div id="vela-detail">
+        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px">
+          <span id="vd-titulo" style="font-size:14px;font-weight:500"></span>
+          <span id="vd-angulo" style="font-size:11px;color:var(--text3);font-family:var(--mono)"></span>
+        </div>
+        <p id="vd-desc" style="font-size:12px;color:var(--text2);line-height:1.6"></p>
+      </div>
+    </div>
+
+    <!-- ─── MANIOBRAS ─── -->
+    <div id="panel-maniobras" class="panel">
+      <div class="panel-title">Maniobras</div>
+      <div class="panel-subtitle">virada, trasluchada y rizos</div>
+
+      <div class="card">
+        <div class="card-title"><span class="badge info">virada</span> proa pasa por el viento</div>
+        <svg width="100%" viewBox="0 0 620 150" style="margin-bottom:12px;display:block">
+          <defs>
+            <marker id="am" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <text x="300" y="13" text-anchor="middle" font-size="9" fill="#5a6278" font-family="DM Mono,monospace">↓ VIENTO ↓</text>
+          <g transform="translate(80,88)">
+            <ellipse rx="8" ry="18" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(-28)"/>
+            <line x1="-4" y1="-18" x2="-18" y2="1" stroke="#4a9eff" stroke-width="2" stroke-linecap="round"/>
+          </g>
+          <text x="80" y="122" text-anchor="middle" font-size="9" fill="#4a9eff" font-family="DM Mono,monospace">babor ceñida</text>
+          <path d="M128 88 Q200 28 300 74 Q378 112 438 88" fill="none" stroke="#4a9eff" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#am)"/>
+          <g transform="translate(300,74)">
+            <ellipse rx="8" ry="18" fill="rgba(240,106,106,0.15)" stroke="rgba(240,106,106,0.4)" stroke-width="1"/>
+            <line x1="0" y1="-18" x2="0" y2="18" stroke="#5a6278" stroke-width="0.7"/>
+          </g>
+          <text x="300" y="108" text-anchor="middle" font-size="9" fill="#f06a6a" font-family="DM Mono,monospace">ojo del viento</text>
+          <text x="300" y="120" text-anchor="middle" font-size="8" fill="#5a6278" font-family="DM Mono,monospace">"listos" → "avante"</text>
+          <g transform="translate(498,88)">
+            <ellipse rx="8" ry="18" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(28)"/>
+            <line x1="4" y1="-18" x2="18" y2="1" stroke="#4a9eff" stroke-width="2" stroke-linecap="round"/>
+          </g>
+          <text x="498" y="122" text-anchor="middle" font-size="9" fill="#4a9eff" font-family="DM Mono,monospace">estribor ceñida</text>
+        </svg>
+        <ul class="step-list">
+          <li><strong>"¿Listos para virar?" → "¡Avante!"</strong> — timonel gira caña a sotavento</li>
+          <li>Soltar escota del génova al cruzar la proa</li>
+          <li>Cobrar escota nueva banda, cazar velas</li>
+          <li>Ajustar rumbo cuando la proa ya pasó el viento</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="badge danger">trasluchada</span> popa pasa por el viento — riesgo botavara</div>
+        <svg width="100%" viewBox="0 0 620 150" style="margin-bottom:12px;display:block">
+          <defs>
+            <marker id="am2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <text x="300" y="13" text-anchor="middle" font-size="9" fill="#5a6278" font-family="DM Mono,monospace">↑ VIENTO ↑</text>
+          <g transform="translate(80,78)">
+            <ellipse rx="8" ry="18" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(22)"/>
+            <line x1="-18" y1="-8" x2="2" y2="14" stroke="#3ecf8e" stroke-width="2" stroke-linecap="round"/>
+          </g>
+          <text x="80" y="112" text-anchor="middle" font-size="9" fill="#3ecf8e" font-family="DM Mono,monospace">largo babor</text>
+          <path d="M128 78 Q200 126 300 98 Q378 74 438 78" fill="none" stroke="#f06a6a" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#am2)"/>
+          <g transform="translate(300,98)">
+            <ellipse rx="8" ry="18" fill="rgba(245,166,35,0.12)" stroke="rgba(245,166,35,0.35)" stroke-width="1"/>
+            <line x1="-18" y1="1" x2="18" y2="-1" stroke="#f5a623" stroke-width="2" stroke-linecap="round"/>
+          </g>
+          <text x="300" y="132" text-anchor="middle" font-size="9" fill="#f5a623" font-family="DM Mono,monospace">popa al viento — ¡agacha la cabeza!</text>
+          <g transform="translate(498,78)">
+            <ellipse rx="8" ry="18" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(-22)"/>
+            <line x1="18" y1="-8" x2="-2" y2="14" stroke="#3ecf8e" stroke-width="2" stroke-linecap="round"/>
+          </g>
+          <text x="498" y="112" text-anchor="middle" font-size="9" fill="#3ecf8e" font-family="DM Mono,monospace">largo estribor</text>
+        </svg>
+        <ul class="step-list">
+          <li><strong>"¡Cuidado a la botavara!"</strong> — todos agachan la cabeza</li>
+          <li>Cobrar escota mayor para controlar el volteo</li>
+          <li>Girar caña a barlovento, dejar pasar la popa</li>
+          <li>Largar escota mayor a la nueva banda con control</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><i class="ti ti-minus"></i> Tomar rizos</div>
+        <ul class="step-list">
+          <li>Navegar en ceñida o través antes de tomar rizo</li>
+          <li>Cazar escota mayor, soltar driza ligeramente</li>
+          <li>Enganchar el punto de amura del rizo en el mástil</li>
+          <li>Cobrar la retenida (puja) hasta tensar el gratil</li>
+          <li>Liar el paño sobrante o meter los tomadores</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ─── PUERTO ─── -->
+    <div id="panel-atracar" class="panel">
+      <div class="panel-title">Puerto</div>
+      <div class="panel-subtitle">atracar, desatracar y fondear</div>
+
+      <div class="card">
+        <div class="card-title"><i class="ti ti-anchor"></i> Atracar en muelle</div>
+        <svg width="100%" viewBox="0 0 620 200" style="margin-bottom:12px;display:block">
+          <defs>
+            <marker id="am3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <rect x="40" y="142" width="560" height="38" rx="4" fill="#1e2535" stroke="#3a4558" stroke-width="1"/>
+          <text x="320" y="165" text-anchor="middle" font-size="10" fill="#5a6278" font-family="DM Mono,monospace">MUELLE / PANTALÁN</text>
+          <g transform="translate(320,112)">
+            <ellipse rx="15" ry="38" fill="rgba(74,158,255,0.08)" stroke="rgba(74,158,255,0.25)" stroke-width="1"/>
+            <text x="0" y="4" text-anchor="middle" font-size="12" fill="#4a9eff" font-family="DM Sans,sans-serif">⚓</text>
+          </g>
+          <line x1="308" y1="76" x2="184" y2="142" stroke="#f5a623" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <line x1="332" y1="76" x2="456" y2="142" stroke="#f5a623" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <line x1="306" y1="150" x2="204" y2="142" stroke="#f5a623" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <line x1="334" y1="150" x2="436" y2="142" stroke="#f5a623" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <circle cx="184" cy="142" r="3" fill="#f5a623"/><circle cx="456" cy="142" r="3" fill="#f5a623"/>
+          <circle cx="204" cy="142" r="3" fill="#f5a623"/><circle cx="436" cy="142" r="3" fill="#f5a623"/>
+          <ellipse cx="308" cy="142" rx="3.5" ry="5.5" fill="rgba(245,166,35,0.15)" stroke="rgba(245,166,35,0.4)" stroke-width="0.5"/>
+          <ellipse cx="332" cy="142" rx="3.5" ry="5.5" fill="rgba(245,166,35,0.15)" stroke="rgba(245,166,35,0.4)" stroke-width="0.5"/>
+          <path d="M320 26 L320 70" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#am3)"/>
+          <text x="334" y="50" font-size="8" fill="var(--accent)" font-family="DM Mono,monospace">aproximación lenta</text>
+        </svg>
+        <div class="grid-2" style="margin-top:4px">
+          <div class="grid-info"><div class="label">defensas</div><div class="val">poner antes de entrar</div></div>
+          <div class="grid-info"><div class="label">velocidad</div><div class="val">paso de peatón o menos</div></div>
+          <div class="grid-info"><div class="label">velas</div><div class="val">arriadas en puerto</div></div>
+          <div class="grid-info"><div class="label">amarras</div><div class="val">proa, popa y esprínes</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><i class="ti ti-logout"></i> Desatracar</div>
+        <ul class="step-list">
+          <li>Motor en marcha mínimo 5 min antes. Velas preparadas pero no izadas.</li>
+          <li>Conservar el esprín de proa para pivotar. Soltar popa y esprín de popa.</li>
+          <li>Motor atrás suave — sacar la popa del muelle.</li>
+          <li>Soltar último esprín, motor avante, gobierno firme.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><i class="ti ti-circle-dot"></i> Fondear</div>
+        <ul class="step-list">
+          <li>Arena o fango, 3–10 m de profundidad. Sin otros barcos en el arco de borneo.</li>
+          <li>Arribar proa al viento hasta parar completamente.</li>
+          <li>Dejar caer el ancla — no tirarla. Cadena cae mientras el barco retrocede.</li>
+          <li>Cadena: mínimo 3× profundidad, ideal 5–7× con viento. Tensar para que muerda.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ─── NOCHE ─── -->
+    <div id="panel-noche" class="panel">
+      <div class="panel-title">Navegación nocturna</div>
+      <div class="panel-subtitle">luces de navegación y guardias</div>
+
+      <div class="card">
+        <div class="card-title"><i class="ti ti-bulb"></i> Luces de navegación</div>
+        <svg width="100%" viewBox="0 0 620 280" style="margin-bottom:4px;display:block">
+          <ellipse cx="310" cy="140" rx="19" ry="52" fill="#1e2535" stroke="#3a4558" stroke-width="1.5"/>
+          <path d="M310 140 L172 58 A152 152 0 0 0 158 222 Z" fill="rgba(240,106,106,0.08)" stroke="none"/>
+          <path d="M310 140 L172 58" stroke="rgba(240,106,106,0.25)" stroke-width="0.5" stroke-dasharray="4 4"/>
+          <path d="M310 140 L158 222" stroke="rgba(240,106,106,0.25)" stroke-width="0.5" stroke-dasharray="4 4"/>
+          <circle cx="289" cy="89" r="6" fill="#f06a6a"/>
+          <text x="130" y="142" text-anchor="middle" font-size="11" fill="#f06a6a" font-weight="500" font-family="DM Mono,monospace">BABOR</text>
+          <text x="130" y="155" text-anchor="middle" font-size="9" fill="#f06a6a" font-family="DM Mono,monospace">rojo · 112.5°</text>
+          <path d="M310 140 L448 58 A152 152 0 0 1 462 222 Z" fill="rgba(62,207,142,0.06)" stroke="none"/>
+          <path d="M310 140 L448 58" stroke="rgba(62,207,142,0.2)" stroke-width="0.5" stroke-dasharray="4 4"/>
+          <path d="M310 140 L462 222" stroke="rgba(62,207,142,0.2)" stroke-width="0.5" stroke-dasharray="4 4"/>
+          <circle cx="331" cy="89" r="6" fill="#3ecf8e"/>
+          <text x="490" y="142" text-anchor="middle" font-size="11" fill="#3ecf8e" font-weight="500" font-family="DM Mono,monospace">ESTRIBOR</text>
+          <text x="490" y="155" text-anchor="middle" font-size="9" fill="#3ecf8e" font-family="DM Mono,monospace">verde · 112.5°</text>
+          <circle cx="310" cy="192" r="6" fill="#e8eaf2" stroke="#5a6278" stroke-width="0.5"/>
+          <text x="310" y="242" text-anchor="middle" font-size="9" fill="#5a6278" font-family="DM Mono,monospace">blanca popa · 135°</text>
+          <circle cx="310" cy="82" r="5" fill="#e8eaf2" stroke="#5a6278" stroke-width="0.5"/>
+          <text x="310" y="70" text-anchor="middle" font-size="9" fill="#5a6278" font-family="DM Mono,monospace">tope · 225°</text>
+          <text x="310" y="143" text-anchor="middle" font-size="8" fill="#3a4558" font-family="DM Mono,monospace">↑ proa</text>
+        </svg>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><i class="ti ti-eye"></i> Qué ves → qué significa</div>
+        <div class="light-row">
+          <div class="light-dot" style="background:#f06a6a"></div><div class="light-dot" style="background:#e8eaf2;border:1px solid #555"></div>
+          <div><h4>Rojo + blanco tope</h4><p>Barco de frente o ligeramente a su estribor. Cedes el paso si ves su verde.</p></div>
+        </div>
+        <div class="light-row">
+          <div class="light-dot" style="background:#3ecf8e"></div><div class="light-dot" style="background:#e8eaf2;border:1px solid #555"></div>
+          <div><h4>Verde + blanco tope</h4><p>Barco de frente, ligeramente a su babor. Tienes preferencia — pero vigila siempre.</p></div>
+        </div>
+        <div class="light-row">
+          <div class="light-dot" style="background:#f06a6a"></div><div class="light-dot" style="background:#3ecf8e"></div><div class="light-dot" style="background:#e8eaf2;border:1px solid #555"></div>
+          <div><h4>Rojo + verde + blanco tope</h4><p>Barco de frente directo. Vira a estribor para cruzar a su popa.</p></div>
+        </div>
+        <div class="light-row">
+          <div class="light-dot" style="background:#e8eaf2;border:1px solid #555"></div>
+          <div><h4>Solo blanco (luz popa)</h4><p>Barco alejándose. Sin peligro inmediato, vigila que no vire.</p></div>
+        </div>
+        <div class="light-row">
+          <div class="light-dot" style="background:#e8eaf2;border:1px solid #555"></div><div class="light-dot" style="background:#e8eaf2;border:1px solid #555"></div>
+          <div><h4>Dos blancos</h4><p>Barco fondeado o con redes. Mantén distancia generosa.</p></div>
+        </div>
+      </div>
+
+      <div class="card warning">
+        <div class="card-title"><i class="ti ti-moon"></i> Guardias nocturnas</div>
+        <ul class="bullet-list">
+          <li>Acostumbrar la vista a la oscuridad: 20 min mínimo sin luz blanca</li>
+          <li>Nunca usar luz blanca en cubierta — arruina la visión nocturna</li>
+          <li>Vigilancia del horizonte cada 5–10 min</li>
+          <li>Velocidad reducida con tráfico o visibilidad limitada</li>
+          <li>Arnés y línea de seguridad en cubierta siempre</li>
+          <li>Al menos dos personas despiertas en guardias largas</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ─── RADIO ─── -->
+    <div id="panel-radio" class="panel">
+      <div class="panel-title">Radio VHF</div>
+      <div class="panel-subtitle">canales, emergencias y contactos Sicilia / Egadi</div>
+
+      <div class="card danger">
+        <div class="card-title"><i class="ti ti-alert-triangle"></i> MAYDAY — vida en peligro</div>
+        <div class="mono-block">
+          <span class="hi">MAYDAY MAYDAY MAYDAY</span><br>
+          Aquí [nombre del barco] [nombre] [nombre]<br>
+          MAYDAY [nombre del barco]<br>
+          Posición: <span class="hi">[lat/lon o referencia]</span><br>
+          Naturaleza: <span class="hi">[fuego / hundimiento / MOB…]</span><br>
+          Personas a bordo: <span class="hi">[N]</span><br>
+          Cambio
+        </div>
+        <p style="font-size:11px;color:var(--red);margin-top:8px;font-family:var(--mono)">Canal 16 · 156.8 MHz · repite cada 2 min hasta respuesta</p>
+      </div>
+
+      <div class="card warning">
+        <div class="card-title"><i class="ti ti-alert-circle"></i> PAN PAN — urgencia (sin peligro inmediato de vida)</div>
+        <div class="mono-block">
+          <span class="hi-amber">PAN PAN PAN PAN PAN PAN</span><br>
+          Aquí [nombre del barco]<br>
+          Posición: [posición]<br>
+          [descripción del problema — avería, persona enferma…]<br>
+          Solicito asistencia · Cambio
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><i class="ti ti-radio"></i> Canales clave</div>
+        <div class="rule-item">
+          <div class="freq">16</div>
+          <div class="rule-text"><h4>Emergencias y llamada</h4><p>Guardia permanente obligatoria. Guardia Costiera italiana.</p></div>
+        </div>
+        <div class="rule-item">
+          <div class="freq">70</div>
+          <div class="rule-text"><h4>DSC — llamada digital</h4><p>Distress automático si el radio VHF tiene DSC activado con MMSI.</p></div>
+        </div>
+        <div class="rule-item">
+          <div class="freq">09</div>
+          <div class="rule-text"><h4>Marina / puerto</h4><p>Comunicación con puertos y marinas en Italia y Sicilia.</p></div>
+        </div>
+        <div class="rule-item">
+          <div class="freq">67</div>
+          <div class="rule-text"><h4>SAR Guardia Costiera</h4><p>Coordinación SAR Italia.</p></div>
+        </div>
+      </div>
+
+      <div class="card info">
+        <div class="card-title"><i class="ti ti-phone"></i> Contactos Sicilia / Isole Egadi</div>
+        <div class="rule-item">
+          <div class="rule-icon info"><i class="ti ti-phone"></i></div>
+          <div class="rule-text"><h4>Guardia Costiera Trapani</h4><p>+39 0923 545111 · Zona Egadi (Favignana, Levanzo, Marettimo)</p></div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon info"><i class="ti ti-phone"></i></div>
+          <div class="rule-text"><h4>MRCC Roma — SAR nacional</h4><p>+39 06 59084400 · Coordinación SAR todo el Mediterráneo italiano</p></div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon info"><i class="ti ti-phone"></i></div>
+          <div class="rule-text"><h4>Emergencias generales Italia</h4><p>112 · funciona desde móvil si hay cobertura</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── SEGURIDAD ─── -->
+    <div id="panel-seguridad" class="panel">
+      <div class="panel-title">Seguridad</div>
+      <div class="panel-subtitle">emergencias, procedimientos y lista previa a salida</div>
+
+      <div class="card danger">
+        <div class="card-title"><i class="ti ti-user-off"></i> Hombre al agua (MOB)</div>
+        <ul class="bullet-list">
+          <li><strong style="color:var(--text)">Inmediato:</strong> gritar "¡Hombre al agua!" + pulsar MOB en GPS</li>
+          <li>Lanzar aro salvavidas con luz y cabo inmediatamente</li>
+          <li>Designar vigía que NO quite ojo de la persona</li>
+          <li>Método Boutakov (vela): virar, ceñir 60°, arribar sobre la persona</li>
+          <li>Motor: virar hacia el lado de caída, acercarse desde sotavento</li>
+          <li>Canal 16 si no recuperas en pocos minutos</li>
+        </ul>
+      </div>
+
+      <div class="card danger">
+        <div class="card-title"><i class="ti ti-flame"></i> Fuego a bordo</div>
+        <ul class="bullet-list">
+          <li>Gritar "¡Fuego!" — tripulación en cubierta</li>
+          <li>Cerrar válvulas de gas y combustible</li>
+          <li>Orientar el barco: viento aleja llamas de la eslora</li>
+          <li>Extintor CO₂ para fuego eléctrico/motor — nunca agua</li>
+          <li>Si no se controla en 60 segundos: preparar abandono, Canal 16</li>
+        </ul>
+      </div>
+
+      <div class="card warning">
+        <div class="card-title"><i class="ti ti-waves"></i> Vía de agua</div>
+        <ul class="bullet-list">
+          <li>Localizar origen — manga, quilla, bocas de mar</li>
+          <li>Tapar con cuña de madera, trapo o epoxy marino</li>
+          <li>Bomba de achique eléctrica + manual al máximo</li>
+          <li>Si supera capacidad: Canal 16 + preparar abandono</li>
+        </ul>
+      </div>
+
+      <div class="card info">
+        <div class="card-title"><i class="ti ti-checklist"></i> Lista previa a salida</div>
+        <ul class="bullet-list">
+          <li>Parte meteorológico consultado (Meteomar, Windy, Navionics)</li>
+          <li>Plan de navegación dejado en tierra</li>
+          <li>Chalecos salvavidas accesibles y en buen estado</li>
+          <li>Arneses y líneas de seguridad preparados</li>
+          <li>Bengalas en fecha y balsa salvavidas revisada</li>
+          <li>Radio VHF cargado, canal 16 en guardia</li>
+          <li>Cartas actualizadas para la zona</li>
+          <li>Combustible suficiente + reserva para volver a motor</li>
+        </ul>
+      </div>
+
+      <div class="card warning">
+        <div class="card-title"><i class="ti ti-cloud-storm"></i> Temporal improvisto</div>
+        <ul class="bullet-list">
+          <li>Tomar rizos antes de que parezca necesario</li>
+          <li>Bajar o enrollar parcialmente el génova</li>
+          <li>Todos con arnés y enganchados al pasamano</li>
+          <li>Buscar abrigo o fondear si la situación empeora</li>
+          <li>Canal 16 en escucha permanente</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ─── PAREJA ─── -->
+    <div id="panel-pareja" class="panel">
+      <div class="panel-title">Código de conducta</div>
+      <div class="panel-subtitle">pareja navegando junta por primera vez</div>
+
+      <div class="highlight yellow">
+        <h3>A bordo hay un capitán. Fuera del barco, sois pareja.</h3>
+        <p>Esta distinción lo resuelve casi todo. Cuando estás en maniobra, en emergencia o con viento, el que tiene más experiencia manda sin debate. No es jerarquía emocional — es protocolo de seguridad. En tierra, en el ancladero, tomando vino: volvéis a ser iguales.</p>
+      </div>
+
+      <div class="sdiv"><i class="ti ti-message-circle"></i> comunicación a bordo</div>
+
+      <div class="card">
+        <div class="rule-item">
+          <div class="rule-icon info"><i class="ti ti-volume"></i></div>
+          <div class="rule-text">
+            <h4>Hablar claro y alto, sin ironía <span class="badge info">obligatorio</span></h4>
+            <p>El viento distorsiona. Las instrucciones son cortas, directas, sin doble sentido. "Caza la escota" — no "¿no crees que deberías cazar un poco?". Fuera del barco podéis hablar como os dé la gana.</p>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon info"><i class="ti ti-repeat"></i></div>
+          <div class="rule-text">
+            <h4>Confirmar siempre la orden recibida <span class="badge info">obligatorio</span></h4>
+            <p>"¿Cazas la escota?" → "Cazando." Este eco evita el 80% de los malentendidos. Si no has entendido, preguntas. Nunca finjas que has oído.</p>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon warning"><i class="ti ti-mood-sad"></i></div>
+          <div class="rule-text">
+            <h4>Decir cuándo estás asustado/a — sin vergüenza <span class="badge warning">crítico</span></h4>
+            <p>El miedo no expresado se convierte en tensión y luego en pelea. "Esto me supera" es información útil para el capitán, no es queja. Es parte de la seguridad.</p>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon danger"><i class="ti ti-ban"></i></div>
+          <div class="rule-text">
+            <h4>Nada de reproches en plena maniobra <span class="badge danger">prohibido</span></h4>
+            <p>"Siempre haces lo mismo" durante una virada puede provocar una emergencia real. Las críticas se guardan para cuando el barco está quieto y fondado. En maniobra: solo lo que sirva para resolver el problema ahora.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="sdiv"><i class="ti ti-users"></i> roles y reparto</div>
+
+      <div class="card">
+        <div class="rule-item">
+          <div class="rule-icon neutral"><i class="ti ti-list-check"></i></div>
+          <div class="rule-text">
+            <h4>Acordar roles antes de salir, no durante</h4>
+            <p>¿Quién va al timón en la salida del puerto? ¿Quién maneja las escotas? ¿Quién vigila las cartas? Repartidlo en tierra. Cambiarlo en maniobra crea confusión.</p>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon neutral"><i class="ti ti-school"></i></div>
+          <div class="rule-text">
+            <h4>El que aprende pregunta antes, no durante</h4>
+            <p>"¿Qué haré yo cuando viréis?" es una pregunta excelente en el ancladero. En maniobra es demasiado tarde.</p>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon neutral"><i class="ti ti-chef-hat"></i></div>
+          <div class="rule-text">
+            <h4>Las tareas del barco no son "de uno"</h4>
+            <p>Cocina, achique, velar, limpiar: todo se reparte. Acordadlo antes de zarpar — el resentimiento silencioso destroza las travesías largas.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="sdiv"><i class="ti ti-heart"></i> convivencia</div>
+
+      <div class="card">
+        <div class="rule-item">
+          <div class="rule-icon neutral"><i class="ti ti-clock"></i></div>
+          <div class="rule-text">
+            <h4>Respetar el espacio de agotamiento</h4>
+            <p>Después de una guardia nocturna o maniobra difícil, la persona puede estar irritable. No es el momento de resolver conflictos de pareja. "Estoy cansado/a" es una señal, no un ataque.</p>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon neutral"><i class="ti ti-sun"></i></div>
+          <div class="rule-text">
+            <h4>Celebrar lo bueno en voz alta</h4>
+            <p>"Eso ha salido bien" después de una virada limpia hace más por la convivencia a bordo que cualquier protocolo.</p>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon neutral"><i class="ti ti-flag"></i></div>
+          <div class="rule-text">
+            <h4>Derecho a veto sin explicación</h4>
+            <p>Cualquiera puede decir "hoy no me siento bien para esto" — mal tiempo, cansancio, sensación de riesgo — y el plan cambia sin drama.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="sdiv"><i class="ti ti-alert-triangle"></i> cuando la tensión sube</div>
+
+      <div class="highlight green">
+        <h3>Protocolo de desescalada</h3>
+        <ul class="bullet-list">
+          <li>Nombrar el estado: "Estoy tensionado/a, no contigo, con la situación"</li>
+          <li>Resolver primero lo náutico, hablar lo personal después</li>
+          <li>Si hay bronca en marcha: fondear o atracar antes de continuar</li>
+          <li>Regla de las 24h: conflictos de pareja se hablan en tierra</li>
+          <li>Nunca abandonar el barco de la discusión cuando hay viento</li>
+        </ul>
+      </div>
+
+      <button class="panic-btn" onclick="togglePanic()" id="panic-btn">
+        <i class="ti ti-first-aid-kit"></i>
+        Nos estamos peleando a bordo — ¿qué hacemos ahora?
+      </button>
+      <div class="panic-response" id="panic-resp">
+        <div class="panic-step">
+          <span class="panic-num">01</span>
+          <p><strong>Parar la discusión ahora mismo.</strong> Una sola frase: "Paramos. Resolvemos primero el barco."</p>
+        </div>
+        <div class="panic-step">
+          <span class="panic-num">02</span>
+          <p><strong>Estabilizar la navegación.</strong> Si estáis en maniobra o con viento, la pelea espera. El barco no.</p>
+        </div>
+        <div class="panic-step">
+          <span class="panic-num">03</span>
+          <p><strong>Fondear o atracar si es posible.</strong> La discusión no se resuelve bien con olas y viento.</p>
+        </div>
+        <div class="panic-step">
+          <span class="panic-num">04</span>
+          <p><strong>Silencio activo: 20 minutos.</strong> Sin hablar del conflicto. Haced algo físico: preparar el ancla, hacer café.</p>
+        </div>
+        <div class="panic-step">
+          <span class="panic-num">05</span>
+          <p><strong>Hablar desde el "yo".</strong> "Yo me he sentido..." — no "tú siempre...". Estáis en el mismo barco, literalmente.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;padding:14px 16px;border-radius:var(--radius);background:var(--bg2);border:1px solid var(--line);text-align:center">
+        <p style="font-size:12px;color:var(--text2);line-height:1.7">
+          La mayoría de parejas que navegan juntas dicen que el barco les enseñó a comunicarse mejor que cualquier otra cosa que hayan hecho juntas.
+        </p>
+        <p style="font-size:11px;color:var(--text3);margin-top:4px;font-family:var(--mono)">clave: separar bien cuándo sois tripulación y cuándo sois pareja</p>
+      </div>
+    </div>
+
+  </main>
 </div>
-
-<main>
-
-<!-- MORFOLOGÍA -->
-<div id="morfologia" class="section visible">
-  <p class="section-intro">La morfología estudia las clases de palabras y cómo se forman. En 4º ESO debes saber identificar cada categoría y sus características.</p>
-  <div class="grid purple">
-    <div class="card">
-      <span class="card-tag">Sustantivo</span>
-      <h3>Nombra la realidad</h3>
-      <p>Personas, animales, lugares o ideas. Tiene género y número. Puede ser común/propio, concreto/abstracto, individual/colectivo.</p>
-      <div class="example"><span class="example-label">Ejemplos</span>el <strong>perro</strong> · la <strong>ciudad</strong> · la <strong>libertad</strong> · la <strong>bandada</strong></div>
-    </div>
-    <div class="card">
-      <span class="card-tag">Adjetivo</span>
-      <h3>Describe o especifica</h3>
-      <p>Acompaña al sustantivo. Concuerda en género y número. Puede ser calificativo (describe) o determinativo (especifica).</p>
-      <div class="example"><span class="example-label">Ejemplos</span>perro <strong>grande</strong> · la <strong>tercera</strong> vez · libro <strong>azul</strong></div>
-    </div>
-    <div class="card">
-      <span class="card-tag">Verbo</span>
-      <h3>Expresa acción o estado</h3>
-      <p>Tiene persona, número, tiempo, modo y aspecto. Tipos: copulativos (ser, estar, parecer) y predicativos (el resto).</p>
-      <div class="example"><span class="example-label">Ejemplos</span>Ella <strong>corre</strong> · Estoy <strong>cansado</strong> · Quiero que <strong>vengas</strong></div>
-    </div>
-    <div class="card">
-      <span class="card-tag">Pronombre</span>
-      <h3>Sustituye al sustantivo</h3>
-      <p>Evita repeticiones. Tipos: personal (yo, tú, él), relativo (que, quien), demostrativo (este, ese), indefinido (alguien).</p>
-      <div class="example"><span class="example-label">Ejemplos</span><strong>Ella</strong> llegó · El libro <strong>que</strong> leí · <strong>Alguien</strong> llamó</div>
-    </div>
-    <div class="card">
-      <span class="card-tag">Determinante</span>
-      <h3>Presenta al sustantivo</h3>
-      <p>Introduce el nombre e indica si es conocido (artículo), a quién pertenece (posesivo), o a cuál nos referimos (demostrativo).</p>
-      <div class="example"><span class="example-label">Ejemplos</span><strong>El</strong> gato · <strong>mi</strong> libro · <strong>este</strong> chico · <strong>tres</strong> días</div>
-    </div>
-    <div class="card">
-      <span class="card-tag">Adverbio</span>
-      <h3>Invariable y modificador</h3>
-      <p>Modifica al verbo, adjetivo u otro adverbio. No cambia ni en género ni en número. Indica lugar, tiempo, modo, cantidad, afirmación o negación.</p>
-      <div class="example"><span class="example-label">Ejemplos</span>Vive <strong>cerca</strong> · Llega <strong>tarde</strong> · Habla <strong>muy</strong> bien</div>
-    </div>
-    <div class="card">
-      <span class="card-tag">Preposición</span>
-      <h3>Une palabras</h3>
-      <p>Palabra invariable que conecta dos elementos dentro de la oración. Las más comunes: a, ante, bajo, con, contra, de, desde, en, entre, hacia, hasta, para, por, según, sin, sobre, tras.</p>
-      <div class="example"><span class="example-label">Ejemplos</span>Voy <strong>a</strong> Madrid · Salgo <strong>de</strong> casa · Hablo <strong>con</strong> ella</div>
-    </div>
-    <div class="card">
-      <span class="card-tag">Conjunción</span>
-      <h3>Une oraciones</h3>
-      <p>Coordinadas: y, pero, o, sino, pues. Subordinadas: que, porque, cuando, si, aunque, para que...</p>
-      <div class="example"><span class="example-label">Ejemplos</span>Llueve <strong>pero</strong> salgo · Estudia <strong>para que</strong> apruebes</div>
-    </div>
-    <div class="card full">
-      <span class="card-tag">Formación de palabras</span>
-      <h3>Prefijos, lexemas y sufijos</h3>
-      <p>Toda palabra se puede analizar morfológicamente: <strong>prefijo</strong> (delante, cambia el significado) + <strong>lexema</strong> (raíz, da el significado base) + <strong>sufijo</strong> (detrás, modifica o crea nuevas palabras).</p>
-      <div class="example"><span class="example-label">Ejemplos</span>
-        <strong>des</strong>·<strong>agrad</strong>·<strong>able</strong> → desagradable &nbsp;|&nbsp;
-        <strong>re</strong>·<strong>escrib</strong>·<strong>ir</strong> → reescribir &nbsp;|&nbsp;
-        <strong>panad</strong>·<strong>ero</strong> → panadero
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SINTAXIS -->
-<div id="sintaxis" class="section">
-  <p class="section-intro">La sintaxis analiza la función de cada palabra dentro de la oración. Necesitas identificar el sujeto, el predicado y todos los complementos del verbo.</p>
-  <div class="grid coral">
-    <div class="card full">
-      <span class="card-tag">Estructura básica</span>
-      <h3>Sujeto y Predicado</h3>
-      <p>Toda oración tiene dos partes. El <strong>sujeto</strong> (SN) es quien realiza la acción. El <strong>predicado</strong> (SV) es lo que se dice del sujeto, y su núcleo es siempre el verbo.</p>
-      <div class="example">
-        <span class="example-label">Ejemplo</span>
-        <span style="background:#E6EEF9; color:#1D3E8C; padding:1px 6px; border-radius:4px;">[La profesora]</span><small style="color:#2F5FC8; font-size:11px; margin-right:6px;"> Sujeto</small>
-        <span style="background:#FAEAE6; color:#A33420; padding:1px 6px; border-radius:4px;">[explica la lección en clase]</span><small style="color:#C84B2F; font-size:11px;"> Predicado</small>
-      </div>
-      <div class="tip"><strong>Truco del sujeto:</strong> Haz concordar el verbo en plural. Si cambia → eso era el sujeto. "La profesora explica" → "Las profesoras explican" ✓</div>
-    </div>
-    <div class="card">
-      <span class="card-tag">CD</span>
-      <h3>Complemento Directo</h3>
-      <p>Recibe la acción directamente del verbo. Pregunta: ¿<em>qué</em>? ¿<em>a quién</em>?</p>
-      <div class="example"><span class="example-label">Cómo identificarlo</span>Se sustituye por <strong>lo / la / los / las</strong><br>"Compré <u>pan</u>" → "Lo compré" ✓</div>
-    </div>
-    <div class="card">
-      <span class="card-tag">CI</span>
-      <h3>Complemento Indirecto</h3>
-      <p>Indica a quién beneficia o perjudica la acción. Pregunta: ¿<em>a quién</em>? ¿<em>para quién</em>?</p>
-      <div class="example"><span class="example-label">Cómo identificarlo</span>Se sustituye por <strong>le / les</strong><br>"Di flores <u>a mi madre</u>" → "Le di flores" ✓</div>
-    </div>
-    <div class="card">
-      <span class="card-tag">CC</span>
-      <h3>Complemento Circunstancial</h3>
-      <p>Indica las circunstancias de la acción. Tipos: lugar, tiempo, modo, cantidad, causa, finalidad, compañía...</p>
-      <div class="example"><span class="example-label">Ejemplos</span>Vive <u>en Madrid</u> (lugar) · Llegó <u>tarde</u> (tiempo) · Habló <u>con calma</u> (modo)</div>
-    </div>
-    <div class="card">
-      <span class="card-tag">CR</span>
-      <h3>Complemento de Régimen</h3>
-      <p>Va con una preposición que exige el propio verbo. No se puede eliminar sin que la oración pierda sentido.</p>
-      <div class="example"><span class="example-label">Ejemplos</span>Confío <u>en ti</u> · Me alegro <u>de verte</u> · Pienso <u>en ella</u></div>
-    </div>
-    <div class="card">
-      <span class="card-tag">Atributo</span>
-      <h3>Atributo</h3>
-      <p>Solo con verbos copulativos (ser, estar, parecer). Describe al sujeto y se puede sustituir por <strong>lo</strong>.</p>
-      <div class="example"><span class="example-label">Ejemplos</span>Mi madre <u>es médica</u> → "Lo es" ✓ · Pareces <u>cansada</u> → "Lo pareces" ✓</div>
-    </div>
-    <div class="card">
-      <span class="card-tag">CPred</span>
-      <h3>Complemento Predicativo</h3>
-      <p>Describe al sujeto o al CD, pero con verbos no copulativos. Concuerda en género y número.</p>
-      <div class="example"><span class="example-label">Ejemplos</span>Ella llegó <u>cansada</u> (predic. de sujeto) · Lo encontré <u>dormido</u> (predic. de CD)</div>
-    </div>
-    <div class="card full">
-      <span class="card-tag">Resumen visual</span>
-      <h3>Mi madre regaló un libro a mi hermana con mucho cariño ayer</h3>
-      <div style="margin-top:0.75rem; line-height:2.2; font-size:15px;">
-        <span style="background:#E6EEF9;color:#1D3E8C;padding:2px 8px;border-radius:6px;margin:2px;">Mi madre</span><small style="color:#2F5FC8;font-size:11px;"> Sujeto</small>
-        <span style="background:#FAEAE6;color:#A33420;padding:2px 8px;border-radius:6px;margin:2px;">regaló</span><small style="color:#C84B2F;font-size:11px;"> Verbo</small>
-        <span style="background:#E4F3EB;color:#1C5E3A;padding:2px 8px;border-radius:6px;margin:2px;">un libro</span><small style="color:#2E8B57;font-size:11px;"> CD</small>
-        <span style="background:#FBF0E0;color:#8A5B14;padding:2px 8px;border-radius:6px;margin:2px;">a mi hermana</span><small style="color:#C8862F;font-size:11px;"> CI</small>
-        <span style="background:#EDE8F9;color:#4A32A0;padding:2px 8px;border-radius:6px;margin:2px;">con mucho cariño</span><small style="color:#6B4EBB;font-size:11px;"> CC modo</small>
-        <span style="background:#EDE8F9;color:#4A32A0;padding:2px 8px;border-radius:6px;margin:2px;">ayer</span><small style="color:#6B4EBB;font-size:11px;"> CC tiempo</small>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SUBORDINADAS -->
-<div id="subordinadas" class="section">
-  <p class="section-intro">Las oraciones subordinadas dependen de una oración principal y funcionan dentro de ella como si fueran una parte de la misma. Hay tres tipos fundamentales.</p>
-  <div class="grid blue">
-    <div class="card full" style="border-left:4px solid #2F5FC8; border-radius:0 16px 16px 0;">
-      <span class="card-tag">Tipo 1</span>
-      <h3>Subordinadas sustantivas</h3>
-      <p>Funcionan como un sustantivo dentro de la oración principal: pueden ser sujeto, CD, CI, atributo... Se introducen con <em>que, si, quién</em> o infinitivos.</p>
-      <div class="example">
-        <span class="example-label">Ejemplos</span>
-        Quiero <strong>[que vengas]</strong> → "que vengas" = CD<br>
-        <strong>[Que estudies]</strong> es importante → "que estudies" = Sujeto<br>
-        No sé <strong>[si vendrá]</strong> → "si vendrá" = CD
-      </div>
-      <div class="tip"><strong>Truco:</strong> Sustitúyela por "eso" o "algo". Si funciona → es sustantiva. "Quiero <em>eso</em>" ✓</div>
-    </div>
-    <div class="card full" style="border-left:4px solid #2E8B57; border-radius:0 16px 16px 0;">
-      <span class="card-tag">Tipo 2</span>
-      <h3>Subordinadas adjetivas (de relativo)</h3>
-      <p>Funcionan como un adjetivo: modifican a un sustantivo llamado <strong>antecedente</strong>. Se introducen con pronombres relativos: <em>que, quien, cuyo, donde, cuando, como</em>.</p>
-      <div class="example">
-        <span class="example-label">Ejemplos</span>
-        El chico <strong>[que me prestó el libro]</strong> es de mi clase → antecedente: "el chico"<br>
-        La ciudad <strong>[donde nació]</strong> es preciosa → antecedente: "la ciudad"<br>
-        El profesor <strong>[cuyo libro leí]</strong> es brillante → antecedente: "el profesor"
-      </div>
-      <div class="tip"><strong>Truco:</strong> Busca a qué sustantivo describe. Ese es el antecedente. El pronombre relativo siempre lo sustituye dentro de la subordinada.</div>
-    </div>
-    <div class="card full" style="border-left:4px solid #C84B2F; border-radius:0 16px 16px 0;">
-      <span class="card-tag">Tipo 3</span>
-      <h3>Subordinadas adverbiales</h3>
-      <p>Funcionan como un adverbio: expresan circunstancias. Hay muchos subtipos:</p>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin-top:0.75rem;">
-        <div class="example"><span class="example-label">Tiempo</span>Llámame <strong>cuando llegues</strong> · (cuando, antes de que, después de que)</div>
-        <div class="example"><span class="example-label">Causa</span>No voy <strong>porque estoy cansado</strong> · (porque, ya que, puesto que)</div>
-        <div class="example"><span class="example-label">Condición</span><strong>Si estudias</strong>, aprobarás · (si, a menos que, con tal de que)</div>
-        <div class="example"><span class="example-label">Concesión</span><strong>Aunque llueva</strong>, saldré · (aunque, a pesar de que)</div>
-        <div class="example"><span class="example-label">Finalidad</span>Estudio <strong>para aprobar</strong> · (para que, a fin de que)</div>
-        <div class="example"><span class="example-label">Consecuencia</span>Habló tanto <strong>que enmudeció</strong> · (tan...que, tanto...que)</div>
-        <div class="example"><span class="example-label">Comparativa</span>Es más alto <strong>que yo</strong> · (más que, menos que, igual que)</div>
-        <div class="example"><span class="example-label">Lugar</span>Vive <strong>donde nació</strong> · (donde)</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PERÍFRASIS -->
-<div id="perifrastica" class="section">
-  <p class="section-intro">Una perífrasis verbal es la unión de un verbo auxiliar conjugado más un infinitivo, gerundio o participio. Juntos forman una unidad de significado.</p>
-  <div class="grid green">
-    <div class="card full">
-      <span class="card-tag">Estructura</span>
-      <h3>Auxiliar + (nexo) + Infinitivo / Gerundio / Participio</h3>
-      <div class="example">
-        <span class="example-label">Los tres tipos</span>
-        Voy <strong>a estudiar</strong> esta tarde → de <strong>infinitivo</strong><br>
-        Llevo una hora <strong>esperando</strong> → de <strong>gerundio</strong><br>
-        Tengo los deberes <strong>hechos</strong> → de <strong>participio</strong>
-      </div>
-      <div class="tip"><strong>¿Cómo saber si es perífrasis?</strong> Los dos verbos forman una sola unidad de significado. Si puedes separar los sujetos (El niño quiere [ir al parque]) → NO es perífrasis. Si no puedes (Voy a estudiar = tengo intención) → SÍ es perífrasis.</div>
-    </div>
-    <div class="card">
-      <span class="card-tag">Modales</span>
-      <h3>Expresan actitud</h3>
-      <p style="font-size:13px; line-height:2;">
-        <strong>Obligación:</strong> tener que, haber de, deber + inf.<br>
-        → <em>Tienes que estudiar · Debes respetar</em><br><br>
-        <strong>Posibilidad:</strong> poder, deber de + inf.<br>
-        → <em>Puede llegar tarde · Debe de estar enfermo</em>
-      </p>
-      <div class="tip"><strong>Ojo:</strong> <em>deber</em> + inf. = obligación &nbsp;|&nbsp; <em>deber de</em> + inf. = suposición</div>
-    </div>
-    <div class="card">
-      <span class="card-tag">Aspectuales</span>
-      <h3>Expresan la fase de la acción</h3>
-      <p style="font-size:13px; line-height:2;">
-        <strong>Inicio:</strong> ir a, empezar a, ponerse a + inf.<br>
-        → <em>Voy a salir · Se puso a llover</em><br><br>
-        <strong>Desarrollo:</strong> estar, seguir, llevar + ger.<br>
-        → <em>Está comiendo · Sigue estudiando</em><br><br>
-        <strong>Final/resultado:</strong> acabar de, dejar de + inf.<br>
-        → <em>Acabo de llegar · Dejó de fumar</em>
-      </p>
-    </div>
-  </div>
-</div>
-
-<!-- SEMÁNTICA -->
-<div id="semantica" class="section">
-  <p class="section-intro">La semántica estudia el significado de las palabras y sus relaciones. Fundamental también para el comentario de texto.</p>
-  <div class="grid amber">
-    <div class="card">
-      <span class="card-tag">Sinónimos y antónimos</span>
-      <h3>Palabras relacionadas</h3>
-      <p><strong>Sinónimo:</strong> mismo significado → <em>casa / hogar</em><br><br><strong>Antónimo:</strong> significado contrario → <em>frío / caliente</em></p>
-    </div>
-    <div class="card">
-      <span class="card-tag">Polisemia vs Homonimia</span>
-      <h3>Una forma, varios significados</h3>
-      <p><strong>Polisemia:</strong> significados relacionados → <em>banco</em> (asiento / entidad financiera / de peces)<br><br><strong>Homonimia:</strong> significados sin relación → <em>vela</em> (de barco) ≠ <em>vela</em> (de cera)</p>
-    </div>
-    <div class="card">
-      <span class="card-tag">Denotación y Connotación</span>
-      <h3>Objetivo vs subjetivo</h3>
-      <p><strong>Denotación:</strong> significado del diccionario → <em>serpiente</em> = reptil sin patas<br><br><strong>Connotación:</strong> significado emotivo → <em>serpiente</em> = traicionero</p>
-    </div>
-    <div class="card">
-      <span class="card-tag">Campo semántico</span>
-      <h3>Palabras del mismo ámbito</h3>
-      <p>Grupo de palabras con significado relacionado por compartir un tema común.</p>
-      <div class="example"><span class="example-label">Ejemplo</span>Campo del deporte: <em>balón, árbitro, cancha, partido, gol, portero</em></div>
-    </div>
-    <div class="card full">
-      <span class="card-tag">Figuras retóricas</span>
-      <h3>Para el comentario de texto</h3>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin-top:0.75rem;">
-        <div class="example"><span class="example-label">Metáfora</span>Identificación sin "como": <em>"Tus ojos son estrellas"</em></div>
-        <div class="example"><span class="example-label">Símil / Comparación</span>Con "como": <em>"Corre como el viento"</em></div>
-        <div class="example"><span class="example-label">Hipérbole</span>Exageración: <em>"Te lo he dicho mil veces"</em></div>
-        <div class="example"><span class="example-label">Personificación</span>Humano a lo inanimado: <em>"El viento susurra"</em></div>
-        <div class="example"><span class="example-label">Antítesis</span>Ideas contrarias: <em>"Era tan corto el amor y tan largo el olvido"</em></div>
-        <div class="example"><span class="example-label">Anáfora</span>Repetición inicial: <em>"No dormí, no comí, no hablé"</em></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- FIGURAS RETÓRICAS -->
-<div id="figuras" class="section">
-  <p class="section-intro">Las figuras retóricas son recursos del lenguaje que dan expresividad y belleza al texto. Son imprescindibles para el comentario de texto de 4º ESO.</p>
-
-  <div class="grid" style="--col:1fr 1fr;">
-
-    <!-- SEMÁNTICAS -->
-    <div class="card full" style="background:#EDE8F9; border-color:#AFA9EC;">
-      <span class="card-tag" style="background:#D5CFFE; color:#3C3489;">Figuras semánticas</span>
-      <h3 style="color:#3C3489;">Basadas en el significado</h3>
-      <p style="color:#534AB7; font-size:13px;">Modifican o comparan el significado de las palabras.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-tag" style="background:#EDE8F9; color:#3C3489;">Metáfora</span>
-      <h3>Identificación directa</h3>
-      <p>Se identifica una cosa con otra sin usar "como". Es la figura más importante. Puede ser <strong>pura</strong> (solo aparece el término imaginario) o <strong>impura</strong> (aparecen los dos términos).</p>
-      <div class="example" style="background:#EDE8F9; color:#3C3489;"><span class="example-label" style="color:#534AB7;">Ejemplos</span>
-        "Tus ojos son <strong>estrellas</strong>" (impura: ojos = estrellas)<br>
-        "Las <strong>perlas</strong> de tu boca" (pura: perlas = dientes)<br>
-        "El <strong>oro</strong> de su cabello" (pura: oro = cabello rubio)
-      </div>
-      <div class="tip">Diferencia clave con el símil: la metáfora <strong>iguala</strong> ("es"), el símil <strong>compara</strong> ("como").</div>
-    </div>
-
-    <div class="card">
-      <span class="card-tag" style="background:#EDE8F9; color:#3C3489;">Símil o comparación</span>
-      <h3>Comparación explícita</h3>
-      <p>Compara dos realidades usando un nexo comparativo: <em>como, igual que, parece, semejante a, tal como...</em></p>
-      <div class="example" style="background:#EDE8F9; color:#3C3489;"><span class="example-label" style="color:#534AB7;">Ejemplos</span>
-        "Corre <strong>como</strong> el viento"<br>
-        "Sus dientes, <strong>semejantes a</strong> perlas"<br>
-        "La luna <strong>parece</strong> un espejo roto"
-      </div>
-    </div>
-
-    <div class="card">
-      <span class="card-tag" style="background:#EDE8F9; color:#3C3489;">Metonimia</span>
-      <h3>Sustitución por relación real</h3>
-      <p>Se sustituye una palabra por otra con la que tiene una relación real (causa-efecto, contenedor-contenido, autor-obra...).</p>
-      <div class="example" style="background:#EDE8F9; color:#3C3489;"><span class="example-label" style="color:#534AB7;">Ejemplos</span>
-        "Me tomé una <strong>copa</strong>" (copa → vino que contiene)<br>
-        "Leí a <strong>Lorca</strong>" (autor → obra)<br>
-        "Vive de su <strong>pluma</strong>" (pluma → escritura)
-      </div>
-    </div>
-
-    <div class="card">
-      <span class="card-tag" style="background:#EDE8F9; color:#3C3489;">Hipérbole</span>
-      <h3>Exageración expresiva</h3>
-      <p>Se exagera una realidad para enfatizarla. Muy común en el lenguaje coloquial.</p>
-      <div class="example" style="background:#EDE8F9; color:#3C3489;"><span class="example-label" style="color:#534AB7;">Ejemplos</span>
-        "Te lo he dicho <strong>mil veces</strong>"<br>
-        "Tengo un hambre que me <strong>muero</strong>"<br>
-        "Lloró un <strong>río</strong> de lágrimas"
-      </div>
-    </div>
-
-    <div class="card">
-      <span class="card-tag" style="background:#EDE8F9; color:#3C3489;">Personificación (prosopopeya)</span>
-      <h3>Lo inanimado habla o siente</h3>
-      <p>Se atribuyen cualidades o acciones humanas a animales, objetos o ideas abstractas.</p>
-      <div class="example" style="background:#EDE8F9; color:#3C3489;"><span class="example-label" style="color:#534AB7;">Ejemplos</span>
-        "El viento <strong>susurra</strong> entre los árboles"<br>
-        "La muerte <strong>llegó</strong> sin llamar"<br>
-        "Las flores <strong>lloran</strong> rocío"
-      </div>
-    </div>
-
-    <div class="card">
-      <span class="card-tag" style="background:#EDE8F9; color:#3C3489;">Antítesis y oxímoron</span>
-      <h3>Ideas contrarias juntas</h3>
-      <p><strong>Antítesis:</strong> contraposición de dos ideas opuestas.<br><strong>Oxímoron:</strong> unión de dos palabras de significado contradictorio.</p>
-      <div class="example" style="background:#EDE8F9; color:#3C3489;"><span class="example-label" style="color:#534AB7;">Ejemplos</span>
-        "Era tan <strong>corto</strong> el amor y tan <strong>largo</strong> el olvido" (antítesis)<br>
-        "Hielo <strong>abrasador</strong>, fuego <strong>helado</strong>" (oxímoron)<br>
-        "Es un <strong>silencio atronador</strong>" (oxímoron)
-      </div>
-    </div>
-
-    <div class="card">
-      <span class="card-tag" style="background:#EDE8F9; color:#3C3489;">Ironía y paradoja</span>
-      <h3>Lo contrario de lo que se dice</h3>
-      <p><strong>Ironía:</strong> se dice lo contrario de lo que se piensa con intención crítica o humorística.<br><strong>Paradoja:</strong> afirmación aparentemente absurda que encierra una verdad.</p>
-      <div class="example" style="background:#EDE8F9; color:#3C3489;"><span class="example-label" style="color:#534AB7;">Ejemplos</span>
-        "¡Qué <strong>listo</strong> eres!" (dicho a alguien torpe) (ironía)<br>
-        "Muero porque <strong>no muero</strong>" — Santa Teresa (paradoja)<br>
-        "Vivo sin <strong>vivir</strong> en mí" (paradoja)
-      </div>
-    </div>
-
-    <!-- FÓNICAS -->
-    <div class="card full" style="background:#FAEAE6; border-color:#F0997B;">
-      <span class="card-tag" style="background:#F5C4B3; color:#712B13;">Figuras fónicas</span>
-      <h3 style="color:#712B13;">Basadas en el sonido</h3>
-      <p style="color:#993C1D; font-size:13px;">Crean efectos musicales o rítmicos mediante la repetición de sonidos.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-tag" style="background:#FAEAE6; color:#712B13;">Aliteración</span>
-      <h3>Repetición de sonidos</h3>
-      <p>Se repite un mismo sonido o grupo de sonidos para crear un efecto musical o imitar un sonido real.</p>
-      <div class="example" style="background:#FAEAE6; color:#712B13;"><span class="example-label" style="color:#993C1D;">Ejemplos</span>
-        "En el <strong>s</strong>ilencio <strong>s</strong>olo <strong>s</strong>e e<strong>sc</strong>uchaba un <strong>s</strong>usurro" (imita el sonido del agua)<br>
-        "El <strong>r</strong>uido con que <strong>r</strong>ueda la <strong>r</strong>onda" — Rubén Darío
-      </div>
-    </div>
-
-    <div class="card">
-      <span class="card-tag" style="background:#FAEAE6; color:#712B13;">Onomatopeya</span>
-      <h3>Imita sonidos reales</h3>
-      <p>Las palabras imitan fonéticamente el sonido de lo que describen.</p>
-      <div class="example" style="background:#FAEAE6; color:#712B13;"><span class="example-label" style="color:#993C1D;">Ejemplos</span>
-        "El <strong>murmullo</strong> del río"<br>
-        "El <strong>zumbido</strong> de las abejas"<br>
-        "Las campanas <strong>tintineaban</strong>"
-      </div>
-    </div>
-
-    <!-- SINTÁCTICAS -->
-    <div class="card full" style="background:#E4F3EB; border-color:#5DCAA5;">
-      <span class="card-tag" style="background:#9FE1CB; color:#04342C;">Figuras sintácticas</span>
-      <h3 style="color:#085041;">Basadas en la estructura</h3>
-      <p style="color:#0F6E56; font-size:13px;">Alteran el orden o la estructura habitual de las palabras en la oración.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-tag" style="background:#E4F3EB; color:#085041;">Anáfora</span>
-      <h3>Repetición al inicio</h3>
-      <p>Se repite una misma palabra o grupo de palabras al principio de varios versos o frases consecutivas.</p>
-      <div class="example" style="background:#E4F3EB; color:#085041;"><span class="example-label" style="color:#0F6E56;">Ejemplos</span>
-        "<strong>No</strong> dormí, <strong>no</strong> comí, <strong>no</strong> hablé"<br>
-        "<strong>Aquí</strong> fue Troya, <strong>aquí</strong> la gran ruina"<br>
-        "<strong>Tú</strong> eres mi sol, <strong>tú</strong> eres mi luz, <strong>tú</strong> eres mi vida"
-      </div>
-    </div>
-
-    <div class="card">
-      <span class="card-tag" style="background:#E4F3EB; color:#085041;">Hipérbaton</span>
-      <h3>Alteración del orden</h3>
-      <p>Se altera el orden normal de las palabras en la oración para dar énfasis o ritmo poético.</p>
-      <div class="example" style="background:#E4F3EB; color:#085041;"><span class="example-label" style="color:#0F6E56;">Ejemplos</span>
-        "Del monte en la ladera" (= En la ladera del monte)<br>
-        "Temprano levantó la muerte el vuelo" — Miguel Hernández<br>
-        "Verde que te quiero verde" — Lorca
-      </div>
-    </div>
-
-    <div class="card">
-      <span class="card-tag" style="background:#E4F3EB; color:#085041;">Paralelismo</span>
-      <h3>Estructura repetida</h3>
-      <p>Se repite la misma estructura sintáctica en varias frases o versos consecutivos.</p>
-      <div class="example" style="background:#E4F3EB; color:#085041;"><span class="example-label" style="color:#0F6E56;">Ejemplos</span>
-        "Vine, vi, vencí"<br>
-        "Reír llorando, llorar riendo"<br>
-        "Con diez cañones por banda, / viento en popa a toda vela"
-      </div>
-    </div>
-
-    <div class="card">
-      <span class="card-tag" style="background:#E4F3EB; color:#085041;">Elipsis</span>
-      <h3>Omisión de elementos</h3>
-      <p>Se omiten palabras que se sobreentienden por el contexto, dando mayor agilidad al texto.</p>
-      <div class="example" style="background:#E4F3EB; color:#085041;"><span class="example-label" style="color:#0F6E56;">Ejemplos</span>
-        "Yo pedí un café y ella, [pidió] una tila"<br>
-        "Unos nacen con estrella y otros [nacen] estrellados"
-      </div>
-    </div>
-
-    <div class="card">
-      <span class="card-tag" style="background:#E4F3EB; color:#085041;">Enumeración y asíndeton / polisíndeton</span>
-      <h3>Listas con o sin nexos</h3>
-      <p><strong>Asíndeton:</strong> enumeración sin conjunciones (ritmo rápido).<br><strong>Polisíndeton:</strong> enumeración con muchas conjunciones (ritmo lento, enfático).</p>
-      <div class="example" style="background:#E4F3EB; color:#085041;"><span class="example-label" style="color:#0F6E56;">Ejemplos</span>
-        "Vine, vi, vencí" (asíndeton)<br>
-        "Y reía y lloraba y cantaba y corría" (polisíndeton)
-      </div>
-    </div>
-
-    <!-- TABLA RESUMEN -->
-    <div class="card full">
-      <span class="card-tag">Tabla resumen</span>
-      <h3>Todas las figuras de un vistazo</h3>
-      <div class="table-wrap" style="margin-top:0.75rem;">
-        <table>
-          <thead><tr><th>Figura</th><th>Tipo</th><th>Definición breve</th><th>Nexo clave</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Metáfora</strong></td><td>Semántica</td><td>A es B (sin "como")</td><td>es, son</td></tr>
-            <tr><td><strong>Símil</strong></td><td>Semántica</td><td>A es como B</td><td>como, igual que</td></tr>
-            <tr><td><strong>Metonimia</strong></td><td>Semántica</td><td>A sustituye a B (relación real)</td><td>—</td></tr>
-            <tr><td><strong>Hipérbole</strong></td><td>Semántica</td><td>Exageración</td><td>—</td></tr>
-            <tr><td><strong>Personificación</strong></td><td>Semántica</td><td>Lo inanimado actúa como humano</td><td>—</td></tr>
-            <tr><td><strong>Antítesis</strong></td><td>Semántica</td><td>Ideas contrarias enfrentadas</td><td>y, pero</td></tr>
-            <tr><td><strong>Oxímoron</strong></td><td>Semántica</td><td>Dos palabras contradictorias unidas</td><td>—</td></tr>
-            <tr><td><strong>Ironía</strong></td><td>Semántica</td><td>Se dice lo contrario de lo que se piensa</td><td>—</td></tr>
-            <tr><td><strong>Paradoja</strong></td><td>Semántica</td><td>Verdad en apariencia absurda</td><td>—</td></tr>
-            <tr><td><strong>Aliteración</strong></td><td>Fónica</td><td>Repetición de sonidos</td><td>—</td></tr>
-            <tr><td><strong>Onomatopeya</strong></td><td>Fónica</td><td>Imita sonidos reales</td><td>—</td></tr>
-            <tr><td><strong>Anáfora</strong></td><td>Sintáctica</td><td>Repetición al inicio de frases</td><td>—</td></tr>
-            <tr><td><strong>Hipérbaton</strong></td><td>Sintáctica</td><td>Orden alterado de palabras</td><td>—</td></tr>
-            <tr><td><strong>Paralelismo</strong></td><td>Sintáctica</td><td>Misma estructura repetida</td><td>—</td></tr>
-            <tr><td><strong>Elipsis</strong></td><td>Sintáctica</td><td>Omisión de palabras sobreentendidas</td><td>—</td></tr>
-            <tr><td><strong>Asíndeton</strong></td><td>Sintáctica</td><td>Enumeración sin conjunciones</td><td>—</td></tr>
-            <tr><td><strong>Polisíndeton</strong></td><td>Sintáctica</td><td>Enumeración con muchas conjunciones</td><td>y, ni, o</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ANALIZADOR -->
-<div id="analisis" class="section">
-  <p class="section-intro">Selecciona una oración y verás su análisis sintáctico completo con cada función destacada en color.</p>
-  <div class="analizador">
-    <label>Elige una oración para analizar:</label>
-    <select class="oracion-select" id="oracionSelect">
-      <option value="0">Mi madre regaló un libro a mi hermana con mucho cariño ayer.</option>
-      <option value="1">El médico recetó pastillas al enfermo en el hospital.</option>
-      <option value="2">María parece cansada después del examen.</option>
-      <option value="3">Juan confía en sus amigos desde siempre.</option>
-      <option value="4">Los niños juegan contentos en el parque.</option>
-      <option value="5">La profesora explicó el tema a los alumnos con paciencia.</option>
-    </select>
-    <button class="btn-analizar" onclick="analizar()">Analizar oración →</button>
-
-    <div class="analysis-result" id="analysisResult">
-      <div class="leyenda" id="leyenda"></div>
-      <div class="oracion-display" id="oracionDisplay"></div>
-      <div class="funcion-list" id="funcionList"></div>
-    </div>
-  </div>
-</div>
-
-<!-- QUIZ -->
-<div id="quiz" class="section">
-  <p class="section-intro">Pon a prueba lo que has aprendido. 10 preguntas sobre morfología, sintaxis y subordinadas. ¡Cada respuesta correcta suma puntos!</p>
-  <div class="quiz-card" id="quizCard">
-    <div class="quiz-progress" id="quizProgress"></div>
-    <div class="quiz-q" id="quizQ"></div>
-    <div class="quiz-context" id="quizCtx"></div>
-    <div class="options" id="quizOptions"></div>
-    <div class="feedback" id="quizFeedback"></div>
-    <div class="quiz-nav">
-      <span class="quiz-counter" id="quizCounter"></span>
-      <button class="btn-next" id="btnNext" onclick="nextQuestion()">Siguiente →</button>
-    </div>
-  </div>
-  <div class="result-box" id="resultBox">
-    <div class="big" id="resultNum"></div>
-    <p id="resultMsg"></p>
-    <button class="btn-retry" onclick="resetQuiz()">Repetir quiz</button>
-  </div>
-</div>
-
-</main>
-
-<footer>Gramática 4º ESO · Recurso de estudio interactivo · Hecho con HTML, CSS y JavaScript</footer>
 
 <script>
-// NAVEGACIÓN
-function showSection(id, btn) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
-  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
-  document.getElementById(id).classList.add('visible');
-  btn.classList.add('active');
-}
-
-// ANALIZADOR
-const oraciones = [
-  {
-    texto: [
-      {word:'Mi madre', clase:'chunk-sujeto', fn:'Sujeto (SN)', det:'Sintagma nominal. Núcleo: madre. Det.: mi.'},
-      {word:'regaló', clase:'chunk-verbo', fn:'Núcleo del predicado (V)', det:'Verbo en pretérito perfecto simple, 3ª persona singular.'},
-      {word:'un libro', clase:'chunk-cd', fn:'Complemento Directo (CD)', det:'Sintagma nominal. Se sustituye por "lo". ¿Qué regaló? Un libro.'},
-      {word:'a mi hermana', clase:'chunk-ci', fn:'Complemento Indirecto (CI)', det:'Sintagma preposicional. Se sustituye por "le". ¿A quién regaló?'},
-      {word:'con mucho cariño', clase:'chunk-cc', fn:'CC de Modo', det:'Sintagma preposicional. Indica cómo se realizó la acción.'},
-      {word:'ayer', clase:'chunk-cc', fn:'CC de Tiempo', det:'Adverbio. Indica cuándo ocurrió la acción.'},
-    ]
-  },
-  {
-    texto: [
-      {word:'El médico', clase:'chunk-sujeto', fn:'Sujeto (SN)', det:'Núcleo: médico. Det.: el.'},
-      {word:'recetó', clase:'chunk-verbo', fn:'Núcleo del predicado (V)', det:'Verbo en pretérito perfecto simple.'},
-      {word:'pastillas', clase:'chunk-cd', fn:'Complemento Directo (CD)', det:'¿Qué recetó? Pastillas. Se sustituye por "las".'},
-      {word:'al enfermo', clase:'chunk-ci', fn:'Complemento Indirecto (CI)', det:'¿A quién recetó? Al enfermo. Se sustituye por "le".'},
-      {word:'en el hospital', clase:'chunk-cc', fn:'CC de Lugar', det:'¿Dónde recetó? En el hospital.'},
-    ]
-  },
-  {
-    texto: [
-      {word:'María', clase:'chunk-sujeto', fn:'Sujeto (SN)', det:'Núcleo: María (nombre propio).'},
-      {word:'parece', clase:'chunk-verbo', fn:'Verbo copulativo (V)', det:'Verbo copulativo. Exige atributo.'},
-      {word:'cansada', clase:'chunk-atributo', fn:'Atributo (Atr)', det:'Adjetivo que describe al sujeto (María). Con verbo copulativo "parecer". Se sustituye por "lo": "Lo parece".'},
-      {word:'después del examen', clase:'chunk-cc', fn:'CC de Tiempo', det:'Sintagma preposicional. Indica cuándo.'},
-    ]
-  },
-  {
-    texto: [
-      {word:'Juan', clase:'chunk-sujeto', fn:'Sujeto (SN)', det:'Núcleo: Juan (nombre propio).'},
-      {word:'confía', clase:'chunk-verbo', fn:'Núcleo del predicado (V)', det:'Verbo "confiar", 3ª pers. sing., pres. ind.'},
-      {word:'en sus amigos', clase:'chunk-cr', fn:'Complemento de Régimen (CR)', det:'"Confiar en" exige la preposición "en". No se puede eliminar. ¿En quién confía?'},
-      {word:'desde siempre', clase:'chunk-cc', fn:'CC de Tiempo', det:'Indica desde cuándo.'},
-    ]
-  },
-  {
-    texto: [
-      {word:'Los niños', clase:'chunk-sujeto', fn:'Sujeto (SN)', det:'Núcleo: niños. Det.: los.'},
-      {word:'juegan', clase:'chunk-verbo', fn:'Núcleo del predicado (V)', det:'Verbo en presente de indicativo, 3ª pers. plural.'},
-      {word:'contentos', clase:'chunk-pred', fn:'Complemento Predicativo (CPred)', det:'Adjetivo que describe al sujeto (los niños) con un verbo no copulativo. Concuerda en género y número.'},
-      {word:'en el parque', clase:'chunk-cc', fn:'CC de Lugar', det:'¿Dónde juegan?'},
-    ]
-  },
-  {
-    texto: [
-      {word:'La profesora', clase:'chunk-sujeto', fn:'Sujeto (SN)', det:'Núcleo: profesora. Det.: la.'},
-      {word:'explicó', clase:'chunk-verbo', fn:'Núcleo del predicado (V)', det:'Verbo en pretérito perfecto simple.'},
-      {word:'el tema', clase:'chunk-cd', fn:'Complemento Directo (CD)', det:'¿Qué explicó? El tema. "Lo explicó".'},
-      {word:'a los alumnos', clase:'chunk-ci', fn:'Complemento Indirecto (CI)', det:'¿A quiénes? A los alumnos. "Les explicó".'},
-      {word:'con paciencia', clase:'chunk-cc', fn:'CC de Modo', det:'¿Cómo lo explicó? Con paciencia.'},
-    ]
-  }
-];
-
-const colorMap = {
-  'chunk-sujeto':  {bg:'#E6EEF9', text:'#1D3E8C', label:'Sujeto', dot:'#2F5FC8'},
-  'chunk-verbo':   {bg:'#FAEAE6', text:'#A33420', label:'Verbo', dot:'#C84B2F'},
-  'chunk-cd':      {bg:'#E4F3EB', text:'#1C5E3A', label:'CD', dot:'#2E8B57'},
-  'chunk-ci':      {bg:'#FBF0E0', text:'#8A5B14', label:'CI', dot:'#C8862F'},
-  'chunk-cc':      {bg:'#EDE8F9', text:'#4A32A0', label:'CC', dot:'#6B4EBB'},
-  'chunk-atributo':{bg:'#FAEAE6', text:'#A33420', label:'Atributo', dot:'#C84B2F'},
-  'chunk-pred':    {bg:'#FBF0E0', text:'#8A5B14', label:'CPred', dot:'#C8862F'},
-  'chunk-cr':      {bg:'#EDE8F9', text:'#4A32A0', label:'CR', dot:'#6B4EBB'},
+const velas = {
+  cenida: { titulo:"Ceñida", angulo:"30°–45° del viento aparente", desc:"Punto más cerca del viento. Velas cazadas. El más lento pero controlado. Imposible navegar más de ~45° hacia el viento (zona muerta)." },
+  traves: { titulo:"Través", angulo:"90° del viento aparente", desc:"Barco perpendicular al viento. Generalmente el punto más rápido en un velero de quilla. Velas a media escota." },
+  largo:  { titulo:"Largo", angulo:"120°–150° del viento aparente", desc:"Viento por la aleta. Gran velocidad. Ojo con la trasluchada accidental al pasar de largo a popa." },
+  popa:   { titulo:"Popa", angulo:"180° — viento directo por popa", desc:"Mayor y génova pueden ir abiertos en mariposa a bandas contrarias. Riesgo de trasluchada accidental. Movimiento más lento y menos estable." }
 };
 
-function analizar() {
-  const idx = parseInt(document.getElementById('oracionSelect').value);
-  const o = oraciones[idx];
-  const result = document.getElementById('analysisResult');
-  const display = document.getElementById('oracionDisplay');
-  const funcs = document.getElementById('funcionList');
-  const leyenda = document.getElementById('leyenda');
-
-  result.classList.remove('show');
-  setTimeout(() => {
-    display.innerHTML = o.texto.map(t =>
-      `<span class="chunk ${t.clase}" title="${t.fn}">${t.word}</span>`
-    ).join(' ');
-
-    const seen = new Set();
-    leyenda.innerHTML = o.texto.filter(t => {
-      if (seen.has(t.clase)) return false; seen.add(t.clase); return true;
-    }).map(t => {
-      const c = colorMap[t.clase];
-      return `<span class="leyenda-item" style="background:${c.bg};color:${c.text}"><span class="dot" style="background:${c.dot}"></span>${c.label}</span>`;
-    }).join('');
-
-    funcs.innerHTML = o.texto.map(t => {
-      const c = colorMap[t.clase];
-      return `<div class="funcion-row">
-        <span class="funcion-label" style="color:${c.text}">${t.fn}</span>
-        <span class="funcion-text"><em style="color:${c.text}">${t.word}</em> — ${t.det}</span>
-      </div>`;
-    }).join('');
-
-    result.classList.add('show');
-  }, 50);
+function showVela(key) {
+  const v = velas[key];
+  document.getElementById('vd-titulo').textContent = v.titulo;
+  document.getElementById('vd-angulo').textContent = v.angulo;
+  document.getElementById('vd-desc').textContent = v.desc;
+  document.getElementById('vela-detail').style.display = 'block';
 }
 
-// QUIZ
-let questions = [
-  {q:'¿Qué función sintáctica tiene la parte subrayada?', ctx:'"El profesor <u>explicó la lección</u> a los alumnos."', opts:['Sujeto','Complemento Directo','Complemento Indirecto','Atributo'], ans:1, exp:'"la lección" responde a ¿qué explicó? y se sustituye por "la" → es CD.'},
-  {q:'¿A qué categoría gramatical pertenece "rápidamente"?', ctx:'Corrió rápidamente por el pasillo.', opts:['Adjetivo','Sustantivo','Adverbio','Verbo'], ans:2, exp:'"rápidamente" modifica al verbo "corrió", no varía → es adverbio de modo.'},
-  {q:'¿Qué tipo de oración subordinada es la subrayada?', ctx:'"El libro <u>que me prestaste</u> era muy interesante."', opts:['Sustantiva','Adverbial de tiempo','Adjetiva o de relativo','Adverbial causal'], ans:2, exp:'Introduce el pronombre relativo "que" y modifica al sustantivo "libro" (antecedente) → subordinada adjetiva.'},
-  {q:'¿Cuál de estas es una perífrasis verbal?', ctx:'', opts:['Quiero comer pizza','Voy a estudiar mañana','El niño come deprisa','Llegó y se sentó'], ans:1, exp:'"Voy a estudiar" = auxiliar + nexo + infinitivo. Forman una unidad de significado (intención futura). Las demás son verbos independientes.'},
-  {q:'¿Qué función tiene "a su madre" en esta oración?', ctx:'"Envió flores <u>a su madre</u> por su cumpleaños."', opts:['Complemento Directo','Complemento Circunstancial','Complemento de Régimen','Complemento Indirecto'], ans:3, exp:'"a su madre" responde a ¿a quién? y se sustituye por "le" → Complemento Indirecto.'},
-  {q:'¿Cuál es el sujeto de esta oración?', ctx:'"Ayer llegaron tarde los alumnos de 4ºB."', opts:['Ayer','llegaron tarde','los alumnos de 4ºB','de 4ºB'], ans:2, exp:'El verbo es "llegaron". ¿Quiénes llegaron? "Los alumnos de 4ºB". Concuerda: "llegaron" → plural ✓'},
-  {q:'¿Qué figura retórica es esta?', ctx:'"Sus ojos eran dos luceros brillantes."', opts:['Hipérbole','Anáfora','Metáfora','Símil'], ans:2, exp:'Se identifica directamente "ojos" con "luceros" sin usar "como" → metáfora.'},
-  {q:'¿Qué tipo de subordinada adverbial es esta?', ctx:'"No saldrás <u>a menos que termines los deberes</u>."', opts:['Causal','Concesiva','Condicional','Final'], ans:2, exp:'"a menos que" es una conjunción condicional. Expresa la condición necesaria para que ocurra algo → adverbial condicional.'},
-  {q:'¿Qué función tiene "cansada" en esta oración?', ctx:'"María llegó <u>cansada</u> del trabajo."', opts:['Atributo','Complemento Predicativo del sujeto','Complemento Directo','Adverbio'], ans:1, exp:'"llegó" no es copulativo, pero "cansada" describe al sujeto (María) y concuerda con él → Complemento Predicativo del sujeto.'},
-  {q:'¿Cuál de estas palabras tiene un prefijo?', ctx:'', opts:['Panadero','Deshacer','Corredor','Amable'], ans:1, exp:'"Deshacer" = prefijo "des-" + lexema "hac-" + sufijo "-er". El prefijo "des-" indica acción contraria.'},
-];
-
-let current = 0, score = 0, totalScore = 0, answered = false;
-
-function initQuiz() {
-  current = 0; score = 0; answered = false;
-  document.getElementById('quizCard').style.display = 'block';
-  document.getElementById('resultBox').classList.remove('show');
-  renderQuestion();
+function show(id, el) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  el.classList.add('active');
 }
 
-function renderQuestion() {
-  const q = questions[current];
-  answered = false;
-
-  // progress
-  const prog = document.getElementById('quizProgress');
-  prog.innerHTML = questions.map((_, i) =>
-    `<div class="quiz-dot ${i < current ? 'done' : i === current ? 'active' : ''}"></div>`
-  ).join('');
-
-  document.getElementById('quizQ').textContent = q.q;
-  document.getElementById('quizCtx').textContent = q.ctx;
-  document.getElementById('quizCtx').style.display = q.ctx ? 'block' : 'none';
-  document.getElementById('quizFeedback').className = 'feedback';
-  document.getElementById('quizFeedback').textContent = '';
-  document.getElementById('btnNext').classList.remove('show');
-  document.getElementById('quizCounter').textContent = `Pregunta ${current+1} de ${questions.length}`;
-
-  const opts = document.getElementById('quizOptions');
-  opts.innerHTML = q.opts.map((o, i) =>
-    `<button class="option" onclick="answer(${i})">${o}</button>`
-  ).join('');
+function togglePanic() {
+  const r = document.getElementById('panic-resp');
+  const b = document.getElementById('panic-btn');
+  const open = r.classList.contains('visible');
+  r.classList.toggle('visible', !open);
+  b.innerHTML = open
+    ? '<i class="ti ti-first-aid-kit"></i> Nos estamos peleando a bordo — ¿qué hacemos ahora?'
+    : '<i class="ti ti-x"></i> Cerrar protocolo de emergencia';
 }
-
-function answer(i) {
-  if (answered) return;
-  answered = true;
-  const q = questions[current];
-  const btns = document.querySelectorAll('.option');
-  btns.forEach((b, idx) => {
-    b.classList.add(idx === q.ans ? 'correct' : idx === i ? 'wrong' : 'disabled');
-  });
-
-  const fb = document.getElementById('quizFeedback');
-  if (i === q.ans) {
-    score++;
-    totalScore += 10;
-    document.getElementById('scoreBadge').childNodes[0].textContent = totalScore;
-    fb.className = 'feedback ok show';
-    fb.textContent = '✓ ¡Correcto! ' + q.exp;
-  } else {
-    fb.className = 'feedback ko show';
-    fb.textContent = '✗ Incorrecto. ' + q.exp;
-  }
-  document.getElementById('btnNext').classList.add('show');
-  document.getElementById('btnNext').textContent = current < questions.length - 1 ? 'Siguiente →' : 'Ver resultado →';
-}
-
-function nextQuestion() {
-  current++;
-  if (current >= questions.length) showResult();
-  else renderQuestion();
-}
-
-function showResult() {
-  document.getElementById('quizCard').style.display = 'none';
-  const rb = document.getElementById('resultBox');
-  rb.classList.add('show');
-  document.getElementById('resultNum').textContent = score + '/' + questions.length;
-  const msgs = [
-    [0,3,'Sigue practicando. Repasa las secciones y vuelve a intentarlo. ¡Tú puedes!'],
-    [4,6,'Vas por buen camino. Repasa los temas en los que fallaste y lo conseguirás.'],
-    [7,8,'¡Muy bien! Tienes los conceptos claros. Repasa los detalles y estarás listo.'],
-    [9,10,'¡Sobresaliente! Dominas la gramática de 4º ESO. ¡Enhorabuena!']
-  ];
-  const m = msgs.find(([a,b]) => score >= a && score <= b);
-  document.getElementById('resultMsg').textContent = m[2];
-}
-
-function resetQuiz() {
-  questions = questions.sort(() => Math.random() - 0.5);
-  initQuiz();
-}
-
-initQuiz();
 </script>
 </body>
 </html>
