@@ -17,10 +17,9 @@
   --line: rgba(255,255,255,0.07);
   --line2: rgba(255,255,255,0.13);
   --text: #e8eaf2;
-  --text2: #8b93a8;
+  --text2: #a0a8bc;
   --text3: #5a6278;
   --accent: #4a9eff;
-  --accent2: #2d7dd2;
   --green: #3ecf8e;
   --amber: #f5a623;
   --red: #f06a6a;
@@ -32,39 +31,40 @@
   --amber-border: rgba(245,166,35,0.2);
   --accent-bg: rgba(74,158,255,0.08);
   --accent-border: rgba(74,158,255,0.2);
-  --radius: 10px;
-  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-sm: 8px;
   --mono: 'DM Mono', monospace;
   --sans: 'DM Sans', sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { font-size: 15px; }
+html { font-size: 16px; }
 
 body {
   font-family: var(--sans);
   background: var(--bg);
   color: var(--text);
-  min-height: 100vh;
+  min-height: 100dvh;
   line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
 }
 
-/* ── LAYOUT ── */
+/* ── MOBILE LAYOUT (base) ── */
 .app-shell {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  grid-template-rows: 56px 1fr;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
   overflow: hidden;
 }
 
 /* ── TOPBAR ── */
 .topbar {
-  grid-column: 1 / -1;
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 16px;
+  height: 50px;
+  flex-shrink: 0;
   border-bottom: 1px solid var(--line);
   background: var(--bg);
   gap: 10px;
@@ -72,10 +72,9 @@ body {
 }
 .topbar-logo {
   display: flex; align-items: center; gap: 8px;
-  font-family: var(--mono); font-size: 14px; font-weight: 500; color: var(--text);
-  letter-spacing: -0.01em;
+  font-family: var(--mono); font-size: 15px; font-weight: 500; color: var(--text);
 }
-.topbar-logo i { font-size: 18px; color: var(--accent); }
+.topbar-logo i { font-size: 20px; color: var(--accent); }
 .topbar-badge {
   font-family: var(--mono); font-size: 10px; color: var(--text3);
   border: 1px solid var(--line2); border-radius: 4px; padding: 2px 6px;
@@ -85,47 +84,58 @@ body {
 .topbar-chip {
   font-size: 11px; color: var(--text3); font-family: var(--mono);
   border: 1px solid var(--line); border-radius: 4px; padding: 3px 8px;
+  display: none;
 }
 
-/* ── SIDEBAR ── */
+/* ── NAV TABS (mobile: horizontal scroll) ── */
 .sidebar {
-  background: var(--bg);
-  border-right: 1px solid var(--line);
-  overflow-y: auto;
-  padding: 12px 8px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--bg3) transparent;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg2);
+  padding: 0 6px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
-
-.sidebar-section-label {
-  font-size: 10px; font-weight: 500; color: var(--text3);
-  font-family: var(--mono); letter-spacing: .08em;
-  padding: 8px 10px 4px; text-transform: uppercase;
-}
+.sidebar::-webkit-scrollbar { display: none; }
+.sidebar-section-label { display: none; }
 
 .nav-item {
-  display: flex; align-items: center; gap: 9px;
-  padding: 7px 10px; border-radius: var(--radius-sm);
-  cursor: pointer; font-size: 13px; color: var(--text2);
-  transition: all .15s; border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 10px 13px;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text3);
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s;
   user-select: none;
+  min-width: fit-content;
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  background: transparent;
 }
-.nav-item:hover { background: var(--bg3); color: var(--text); }
+.nav-item i { font-size: 22px; }
+.nav-item .nav-dot { display: none; }
 .nav-item.active {
-  background: var(--bg3); color: var(--text);
-  border-color: var(--line2);
-}
-.nav-item i { font-size: 15px; flex-shrink: 0; }
-.nav-item .nav-dot {
-  width: 5px; height: 5px; border-radius: 50%; margin-left: auto; flex-shrink: 0;
+  color: var(--text);
+  border-bottom-color: var(--accent);
 }
 
 /* ── MAIN CONTENT ── */
 .main {
+  flex: 1;
   overflow-y: auto;
-  padding: 28px 32px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--bg3) transparent;
+  padding: 18px 16px 48px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .panel { display: none; animation: fadeIn .15s ease; }
@@ -133,9 +143,11 @@ body {
 @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
 .panel-title {
-  font-size: 20px; font-weight: 500; margin-bottom: 4px; letter-spacing: -0.02em;
+  font-size: 22px; font-weight: 500; margin-bottom: 4px; letter-spacing: -0.02em;
 }
-.panel-subtitle { font-size: 13px; color: var(--text3); margin-bottom: 24px; font-family: var(--mono); }
+.panel-subtitle {
+  font-size: 13px; color: var(--text3); margin-bottom: 20px; font-family: var(--mono);
+}
 
 /* ── CARDS ── */
 .card {
@@ -143,10 +155,10 @@ body {
   border-radius: var(--radius); padding: 16px; margin-bottom: 12px;
 }
 .card-title {
-  font-size: 13px; font-weight: 500; margin-bottom: 8px;
-  display: flex; align-items: center; gap: 7px;
+  font-size: 15px; font-weight: 500; margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
 }
-.card-title i { font-size: 15px; }
+.card-title i { font-size: 17px; }
 
 .card.danger { background: var(--red-bg); border-color: var(--red-border); }
 .card.warning { background: var(--amber-bg); border-color: var(--amber-border); }
@@ -160,8 +172,8 @@ body {
 
 /* ── BADGES / TAGS ── */
 .badge {
-  display: inline-block; font-size: 10px; font-weight: 500;
-  padding: 2px 7px; border-radius: 4px; font-family: var(--mono);
+  display: inline-block; font-size: 11px; font-weight: 500;
+  padding: 2px 8px; border-radius: 4px; font-family: var(--mono);
   vertical-align: middle;
 }
 .badge.info { background: var(--accent-bg); color: var(--accent); border: 1px solid var(--accent-border); }
@@ -172,51 +184,52 @@ body {
 /* ── RULE ITEMS ── */
 .rule-item {
   display: flex; gap: 12px; align-items: flex-start;
-  padding: 12px 0; border-bottom: 1px solid var(--line);
+  padding: 14px 0; border-bottom: 1px solid var(--line);
 }
 .rule-item:last-child { border-bottom: none; }
 .rule-icon {
-  width: 32px; height: 32px; border-radius: 8px;
+  width: 36px; height: 36px; border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 15px; flex-shrink: 0; margin-top: 1px;
+  font-size: 17px; flex-shrink: 0; margin-top: 1px;
   border: 1px solid;
 }
 .rule-icon.info { background: var(--accent-bg); color: var(--accent); border-color: var(--accent-border); }
 .rule-icon.danger { background: var(--red-bg); color: var(--red); border-color: var(--red-border); }
 .rule-icon.warning { background: var(--amber-bg); color: var(--amber); border-color: var(--amber-border); }
 .rule-icon.neutral { background: var(--bg3); color: var(--text2); border-color: var(--line2); }
-.rule-text h4 { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
-.rule-text p { font-size: 12px; color: var(--text2); line-height: 1.55; }
+.rule-text h4 { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+.rule-text p { font-size: 14px; color: var(--text2); line-height: 1.55; }
 
 /* ── STEP LIST ── */
 .step-list { list-style: none; counter-reset: s; }
 .step-list li {
-  counter-increment: s; padding: 6px 0 6px 28px; position: relative;
-  font-size: 12px; color: var(--text2); border-bottom: 1px solid var(--line);
-  line-height: 1.5;
+  counter-increment: s; padding: 10px 0 10px 32px; position: relative;
+  font-size: 14px; color: var(--text2); border-bottom: 1px solid var(--line);
+  line-height: 1.55;
 }
 .step-list li:last-child { border-bottom: none; }
 .step-list li::before {
-  content: counter(s); position: absolute; left: 0; top: 7px;
-  width: 17px; height: 17px; border-radius: 50%;
+  content: counter(s); position: absolute; left: 0; top: 11px;
+  width: 20px; height: 20px; border-radius: 50%;
   background: var(--bg4); color: var(--accent);
-  font-size: 9px; font-family: var(--mono); font-weight: 500;
+  font-size: 10px; font-family: var(--mono); font-weight: 500;
   display: flex; align-items: center; justify-content: center;
 }
 
 /* ── BULLET LIST ── */
 .bullet-list { list-style: none; padding: 0; }
 .bullet-list li {
-  font-size: 12px; color: var(--text2); padding: 3px 0; padding-left: 14px; position: relative;
+  font-size: 14px; color: var(--text2); padding: 5px 0 5px 18px; position: relative;
   line-height: 1.55;
 }
 .bullet-list li::before { content: "→"; position: absolute; left: 0; color: var(--text3); }
 
 /* ── CODE / MONO BLOCKS ── */
 .mono-block {
-  font-family: var(--mono); font-size: 11px; background: var(--bg);
-  border-radius: var(--radius-sm); padding: 12px; margin-top: 8px;
-  border: 1px solid var(--line2); color: var(--text); line-height: 1.8;
+  font-family: var(--mono); font-size: 13px; background: var(--bg);
+  border-radius: var(--radius-sm); padding: 14px; margin-top: 10px;
+  border: 1px solid var(--line2); color: var(--text); line-height: 1.9;
+  word-break: break-word;
 }
 .mono-block .hi { color: var(--red); font-weight: 500; }
 .mono-block .hi-amber { color: var(--amber); font-weight: 500; }
@@ -224,50 +237,48 @@ body {
 /* ── FREQ BADGE ── */
 .freq {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 36px; height: 36px; border-radius: 8px; font-family: var(--mono);
-  font-size: 11px; font-weight: 500; flex-shrink: 0;
+  width: 40px; height: 40px; border-radius: 10px; font-family: var(--mono);
+  font-size: 13px; font-weight: 500; flex-shrink: 0;
   background: var(--accent-bg); color: var(--accent); border: 1px solid var(--accent-border);
 }
 
 /* ── LIGHTS ── */
 .light-row {
   display: flex; align-items: flex-start; gap: 12px;
-  padding: 10px 0; border-bottom: 1px solid var(--line);
+  padding: 12px 0; border-bottom: 1px solid var(--line);
 }
 .light-row:last-child { border-bottom: none; }
 .light-dot {
-  width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; margin-top: 4px;
+  width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; margin-top: 4px;
 }
-.light-row h4 { font-size: 12px; font-weight: 500; margin-bottom: 2px; }
-.light-row p { font-size: 11px; color: var(--text2); line-height: 1.4; }
+.light-row h4 { font-size: 14px; font-weight: 500; margin-bottom: 3px; }
+.light-row p { font-size: 13px; color: var(--text2); line-height: 1.45; }
 
 /* ── GRID ── */
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .grid-info {
-  background: var(--bg3); border-radius: var(--radius-sm); padding: 10px;
+  background: var(--bg3); border-radius: var(--radius-sm); padding: 12px;
 }
-.grid-info .label { font-size: 10px; color: var(--text3); font-family: var(--mono); margin-bottom: 3px; }
-.grid-info .val { font-size: 12px; color: var(--text); }
+.grid-info .label { font-size: 11px; color: var(--text3); font-family: var(--mono); margin-bottom: 4px; }
+.grid-info .val { font-size: 14px; color: var(--text); }
 
 /* ── SECTION DIVIDER ── */
 .sdiv {
-  font-size: 10px; font-weight: 500; color: var(--text3);
+  font-size: 11px; font-weight: 500; color: var(--text3);
   font-family: var(--mono); letter-spacing: .08em; text-transform: uppercase;
-  display: flex; align-items: center; gap: 8px; margin: 20px 0 10px;
+  display: flex; align-items: center; gap: 8px; margin: 22px 0 12px;
 }
-.sdiv i { font-size: 13px; }
-.sdiv::after {
-  content: ''; flex: 1; height: 1px; background: var(--line);
-}
+.sdiv i { font-size: 14px; }
+.sdiv::after { content: ''; flex: 1; height: 1px; background: var(--line); }
 
-/* ── PAREJA PANIC BUTTON ── */
+/* ── PANIC BUTTON ── */
 .panic-btn {
-  width: 100%; padding: 12px 16px; border-radius: var(--radius);
+  width: 100%; padding: 14px 16px; border-radius: var(--radius);
   background: var(--red-bg); border: 1px solid var(--red-border);
-  color: var(--red); font-size: 12px; font-weight: 500; cursor: pointer;
+  color: var(--red); font-size: 14px; font-weight: 500; cursor: pointer;
   display: flex; align-items: center; justify-content: center; gap: 8px;
   font-family: var(--sans); transition: background .15s;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 .panic-btn:hover { background: rgba(240,106,106,0.16); }
 
@@ -278,15 +289,15 @@ body {
 }
 .panic-response.visible { display: block; }
 .panic-step {
-  display: flex; gap: 10px; padding: 8px 0;
+  display: flex; gap: 12px; padding: 10px 0;
   border-bottom: 1px solid var(--line);
 }
 .panic-step:last-child { border-bottom: none; }
 .panic-num {
-  font-family: var(--mono); font-size: 11px; color: var(--accent);
-  flex-shrink: 0; padding-top: 1px; min-width: 16px;
+  font-family: var(--mono); font-size: 12px; color: var(--accent);
+  flex-shrink: 0; padding-top: 2px; min-width: 18px;
 }
-.panic-step p { font-size: 12px; color: var(--text2); line-height: 1.55; }
+.panic-step p { font-size: 14px; color: var(--text2); line-height: 1.55; }
 .panic-step strong { color: var(--text); font-weight: 500; }
 
 /* ── HIGHLIGHT BOX ── */
@@ -294,70 +305,118 @@ body {
   border-radius: var(--radius); padding: 14px 16px; margin-bottom: 12px;
   border: 1px solid;
 }
-.highlight.yellow {
-  background: var(--amber-bg); border-color: var(--amber-border);
-}
-.highlight.yellow h3 { color: var(--amber); font-size: 13px; font-weight: 500; margin-bottom: 6px; }
-.highlight.yellow p { font-size: 12px; color: var(--text2); line-height: 1.6; }
-.highlight.green {
-  background: var(--green-bg); border-color: var(--green-border);
-}
-.highlight.green h3 { color: var(--green); font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+.highlight.yellow { background: var(--amber-bg); border-color: var(--amber-border); }
+.highlight.yellow h3 { color: var(--amber); font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+.highlight.yellow p { font-size: 14px; color: var(--text2); line-height: 1.6; }
+.highlight.green { background: var(--green-bg); border-color: var(--green-border); }
+.highlight.green h3 { color: var(--green); font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+.highlight.green .bullet-list li { font-size: 14px; }
 
 /* ── VELA DETAIL ── */
 #vela-detail {
   display: none; background: var(--bg3); border-radius: var(--radius);
-  border: 1px solid var(--line2); padding: 14px; margin-top: 8px;
+  border: 1px solid var(--line2); padding: 14px; margin-top: 10px;
 }
+#vd-titulo { font-size: 17px; font-weight: 500; }
+#vd-angulo { font-size: 12px; color: var(--text3); font-family: var(--mono); }
+#vd-desc { font-size: 14px; color: var(--text2); line-height: 1.6; margin-top: 6px; }
 
-/* ── SVG VELAS ── */
+/* ── SVG ── */
 svg text { font-family: var(--sans); }
 
-/* ── RESPONSIVE MOBILE ── */
-@media (max-width: 640px) {
+/* ── DESKTOP OVERRIDES ── */
+@media (min-width: 768px) {
   .app-shell {
-    grid-template-columns: 1fr;
-    grid-template-rows: 48px auto 1fr;
-    height: 100dvh;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    grid-template-rows: 56px 1fr;
+    height: 100vh;
   }
-  .topbar { padding: 0 14px; height: 48px; }
-  .topbar-logo { font-size: 13px; }
-  .topbar-chip { display: none; }
-  .topbar-badge { display: none; }
+  .topbar {
+    grid-column: 1 / -1;
+    height: 56px;
+    padding: 0 20px;
+  }
+  .topbar-chip { display: block; }
+  .topbar-badge { display: inline-block; }
   .sidebar {
-    display: flex; overflow-x: auto; overflow-y: hidden;
-    border-right: none; border-bottom: 1px solid var(--line);
-    padding: 0 4px; gap: 0;
-    scrollbar-width: none; background: var(--bg2);
-    -webkit-overflow-scrolling: touch;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-bottom: none;
+    border-right: 1px solid var(--line);
+    background: var(--bg);
+    padding: 12px 8px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--bg3) transparent;
   }
-  .sidebar::-webkit-scrollbar { display: none; }
-  .sidebar-section-label { display: none; }
+  .sidebar-section-label {
+    display: block;
+    font-size: 10px; font-weight: 500; color: var(--text3);
+    font-family: var(--mono); letter-spacing: .08em;
+    padding: 8px 10px 4px; text-transform: uppercase;
+  }
   .nav-item {
-    flex-direction: column; gap: 2px; font-size: 10px;
-    padding: 8px 10px; white-space: nowrap;
-    border-radius: 0; border: none;
-    border-bottom: 2px solid transparent;
-    min-width: fit-content;
+    flex-direction: row;
+    font-size: 13px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    gap: 9px;
+    color: var(--text2);
   }
+  .nav-item i { font-size: 15px; }
+  .nav-item .nav-dot { display: block; }
+  .nav-item:hover { background: var(--bg3); color: var(--text); }
   .nav-item.active {
-    background: transparent;
-    border-color: transparent;
-    border-bottom-color: var(--accent);
-    color: var(--text);
+    background: var(--bg3); color: var(--text);
+    border-color: var(--line2);
+    border-bottom-color: var(--line2);
   }
-  .nav-item i { font-size: 19px; }
-  .nav-item .nav-dot { display: none; }
-  .main { padding: 14px 14px 40px; }
-  .panel-title { font-size: 17px; }
-  .grid-2 { grid-template-columns: 1fr; }
-  .mono-block { font-size: 11px; word-break: break-word; }
-  .rule-item { gap: 10px; }
-  .freq { width: 30px; height: 30px; font-size: 10px; }
-  .highlight { padding: 12px; }
-  .card { padding: 12px; }
-  .step-list li { font-size: 12px; }
-  .bullet-list li { font-size: 12px; }
+  .main {
+    padding: 28px 32px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--bg3) transparent;
+  }
+  .panel-title { font-size: 20px; }
+  .panel-subtitle { font-size: 13px; margin-bottom: 24px; }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── HOME GRID ── */
+.home-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.home-card {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 14px;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.home-card:active { background: var(--bg3); border-color: var(--line2); }
+.home-icon {
+  width: 42px; height: 42px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: 10px; border: 1px solid;
+}
+.home-label {
+  font-size: 15px; font-weight: 500; margin-bottom: 3px; color: var(--text);
+}
+.home-desc {
+  font-size: 12px; color: var(--text3); line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+  .home-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .home-card:hover { background: var(--bg3); border-color: var(--line2); }
 }
 </style>
 </head>
@@ -379,9 +438,11 @@ svg text { font-family: var(--sans); }
   <!-- SIDEBAR -->
   <nav class="sidebar">
     <div class="sidebar-section-label">navegación</div>
-    <div class="nav-item active" onclick="show('velas',this)">
+    <div class="nav-item active" onclick="show('home',this)">
+      <i class="ti ti-grid-dots"></i> Inicio
+    </div>
+    <div class="nav-item" onclick="show('velas',this)">
       <i class="ti ti-wind"></i> Velas
-      <span class="nav-dot" style="background:var(--accent)"></span>
     </div>
     <div class="nav-item" onclick="show('maniobras',this)">
       <i class="ti ti-rotate"></i> Maniobras
@@ -399,7 +460,21 @@ svg text { font-family: var(--sans); }
     <div class="nav-item" onclick="show('seguridad',this)">
       <i class="ti ti-lifebuoy"></i> Seguridad
     </div>
+    <div class="sidebar-section-label" style="margin-top:8px">zona</div>
+    <div class="nav-item" onclick="show('egadi',this)">
+      <i class="ti ti-map-pin"></i> Egadi
+      <span class="nav-dot" style="background:var(--green)"></span>
+    </div>
+    <div class="nav-item" onclick="show('meteo',this)">
+      <i class="ti ti-cloud-storm"></i> Meteo
+    </div>
     <div class="sidebar-section-label" style="margin-top:8px">a bordo</div>
+    <div class="nav-item" onclick="show('navegacion',this)">
+      <i class="ti ti-compass"></i> Navegación
+    </div>
+    <div class="nav-item" onclick="show('motor',this)">
+      <i class="ti ti-engine"></i> Motor
+    </div>
     <div class="nav-item" onclick="show('pareja',this)">
       <i class="ti ti-heart"></i> Conducta
       <span class="nav-dot" style="background:var(--red)"></span>
@@ -409,8 +484,93 @@ svg text { font-family: var(--sans); }
   <!-- MAIN -->
   <main class="main">
 
+    <!-- ─── HOME ─── -->
+    <div id="panel-home" class="panel active">
+      <div style="padding: 4px 0 20px">
+        <div style="font-size:13px;color:var(--text3);font-family:var(--mono);margin-bottom:6px">vela.guide</div>
+        <div style="font-size:26px;font-weight:500;letter-spacing:-0.02em;margin-bottom:4px">Guía de navegación</div>
+        <div style="font-size:14px;color:var(--text3)">Isole Egadi · Sicilia</div>
+      </div>
+
+      <div style="font-size:11px;font-weight:500;color:var(--text3);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px">NAVEGACIÓN</div>
+
+      <div class="home-grid">
+        <div class="home-card" onclick="show('velas', getNav('velas'))">
+          <div class="home-icon" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent-border)"><i class="ti ti-wind"></i></div>
+          <div class="home-label">Velas</div>
+          <div class="home-desc">Puntos de vela y ángulos</div>
+        </div>
+        <div class="home-card" onclick="show('maniobras', getNav('maniobras'))">
+          <div class="home-icon" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent-border)"><i class="ti ti-rotate"></i></div>
+          <div class="home-label">Maniobras</div>
+          <div class="home-desc">Virada y trasluchada</div>
+        </div>
+        <div class="home-card" onclick="show('atracar', getNav('atracar'))">
+          <div class="home-icon" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent-border)"><i class="ti ti-anchor"></i></div>
+          <div class="home-label">Puerto</div>
+          <div class="home-desc">Atracar y fondear</div>
+        </div>
+        <div class="home-card" onclick="show('navegacion', getNav('navegacion'))">
+          <div class="home-icon" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent-border)"><i class="ti ti-compass"></i></div>
+          <div class="home-label">Navegación</div>
+          <div class="home-desc">Carta, rumbo y RIPA</div>
+        </div>
+        <div class="home-card" onclick="show('noche', getNav('noche'))">
+          <div class="home-icon" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent-border)"><i class="ti ti-moon"></i></div>
+          <div class="home-label">Noche</div>
+          <div class="home-desc">Luces y guardias</div>
+        </div>
+        <div class="home-card" onclick="show('motor', getNav('motor'))">
+          <div class="home-icon" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent-border)"><i class="ti ti-engine"></i></div>
+          <div class="home-label">Motor</div>
+          <div class="home-desc">Arranque y averías</div>
+        </div>
+      </div>
+
+      <div style="font-size:11px;font-weight:500;color:var(--text3);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;margin:20px 0 10px">EMERGENCIAS</div>
+
+      <div class="home-grid">
+        <div class="home-card home-card-danger" onclick="show('radio', getNav('radio'))">
+          <div class="home-icon" style="background:var(--red-bg);color:var(--red);border-color:var(--red-border)"><i class="ti ti-radio"></i></div>
+          <div class="home-label">Radio VHF</div>
+          <div class="home-desc">MAYDAY · Canal 16</div>
+        </div>
+        <div class="home-card home-card-danger" onclick="show('seguridad', getNav('seguridad'))">
+          <div class="home-icon" style="background:var(--red-bg);color:var(--red);border-color:var(--red-border)"><i class="ti ti-lifebuoy"></i></div>
+          <div class="home-label">Seguridad</div>
+          <div class="home-desc">MOB · fuego · vía agua</div>
+        </div>
+      </div>
+
+      <div style="font-size:11px;font-weight:500;color:var(--text3);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;margin:20px 0 10px">ZONA Y A BORDO</div>
+
+      <div class="home-grid">
+        <div class="home-card" onclick="show('egadi', getNav('egadi'))">
+          <div class="home-icon" style="background:var(--green-bg);color:var(--green);border-color:var(--green-border)"><i class="ti ti-map-pin"></i></div>
+          <div class="home-label">Egadi</div>
+          <div class="home-desc">Islas, puertos, vientos</div>
+        </div>
+        <div class="home-card" onclick="show('meteo', getNav('meteo'))">
+          <div class="home-icon" style="background:var(--green-bg);color:var(--green);border-color:var(--green-border)"><i class="ti ti-cloud-storm"></i></div>
+          <div class="home-label">Meteo</div>
+          <div class="home-desc">Beaufort · previsión</div>
+        </div>
+        <div class="home-card" onclick="show('pareja', getNav('pareja'))">
+          <div class="home-icon" style="background:var(--red-bg);color:var(--red);border-color:var(--red-border)"><i class="ti ti-heart"></i></div>
+          <div class="home-label">Conducta</div>
+          <div class="home-desc">Pareja a bordo</div>
+        </div>
+      </div>
+
+      <div style="margin-top:28px;padding:14px 16px;border-radius:var(--radius);background:var(--bg2);border:1px solid var(--line);text-align:center">
+        <div style="font-size:13px;color:var(--text3);font-family:var(--mono)">Guardia Costiera Trapani</div>
+        <div style="font-size:20px;font-weight:500;color:var(--text);margin:4px 0;letter-spacing:-0.01em">+39 0923 545111</div>
+        <div style="font-size:12px;color:var(--text3)">Canal 16 · MRCC Roma +39 06 59084400</div>
+      </div>
+    </div>
+
     <!-- ─── VELAS ─── -->
-    <div id="panel-velas" class="panel active">
+    <div id="panel-velas" class="panel">
       <div class="panel-title">Puntos de vela</div>
       <div class="panel-subtitle">ángulos de navegación respecto al viento</div>
 
@@ -994,6 +1154,311 @@ svg text { font-family: var(--sans); }
       </div>
     </div>
 
+
+    <!-- ─── EGADI ─── -->
+    <div id="panel-egadi" class="panel">
+      <div class="panel-title">Isole Egadi</div>
+      <div class="panel-subtitle">puertos, fondeos y zona de navegación</div>
+
+      <div class="card info">
+        <div class="card-title"><i class="ti ti-map-pin"></i> Las tres islas</div>
+        <div class="rule-item">
+          <div class="rule-icon info"><i class="ti ti-anchor"></i></div>
+          <div class="rule-text">
+            <h4>Favignana</h4>
+            <p>La mayor. Puerto principal con marina y servicios. Fondeos en Cala Azzurra (SE) y Cala Rossa (N). Mucho tráfico en verano — llegar antes de las 11h para conseguir sitio.</p>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon neutral"><i class="ti ti-anchor"></i></div>
+          <div class="rule-text">
+            <h4>Levanzo</h4>
+            <p>La más pequeña. Puerto pequeño con pocos amarres para visitantes. Buen fondeo en la bahía principal con fondo de arena a 6–10 m. Tranquila, sin servicios.</p>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon neutral"><i class="ti ti-anchor"></i></div>
+          <div class="rule-text">
+            <h4>Marettimo</h4>
+            <p>La más alejada y salvaje. Puerto pequeño. Fondeos en Cala Bianca (N) y Cala Manione (S). Aguas de cristal, pocas boyas de amarre. Requiere motor en calmas.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><i class="ti ti-wind"></i> Vientos locales</div>
+        <div class="rule-item">
+          <div class="rule-icon warning"><i class="ti ti-arrow-up"></i></div>
+          <div class="rule-text">
+            <h4>Tramontana (N)</h4>
+            <p>Viento seco del norte. Puede alcanzar F6–7. Racheado entre las islas. Fondeos del sur quedan abrigados. Vigilar si está anunciado.</p>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon warning"><i class="ti ti-arrow-down-left"></i></div>
+          <div class="rule-text">
+            <h4>Libeccio (SO)</h4>
+            <p>El más peligroso en la zona. Marejada corta y tendida desde el Atlántico. Puede subir rápido a F7–8. Si se anuncia Libeccio, buscar abrigo inmediatamente.</p>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon neutral"><i class="ti ti-arrow-down"></i></div>
+          <div class="rule-text">
+            <h4>Scirocco (SE)</h4>
+            <p>Viento cálido y húmedo del Sahara. Reduce visibilidad. Mar larga y tendida. Los fondeos del norte quedan abrigados.</p>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon neutral"><i class="ti ti-sun"></i></div>
+          <div class="rule-text">
+            <h4>Brisa termal (verano)</h4>
+            <p>Maestral de tarde (NO) típico en verano. Sale hacia las 11–12h, cesa al atardecer. Navegación diurna muy agradable en F3–4.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card warning">
+        <div class="card-title"><i class="ti ti-alert-triangle"></i> Corrientes y peligros</div>
+        <ul class="bullet-list">
+          <li>Corriente general hacia el NE entre las islas (0.5–1 kn)</li>
+          <li>Canal entre Favignana y Levanzo: corrientes racheadas con viento fuerte</li>
+          <li>Bajos al S de Marettimo — navegar a más de 0.5 mn de la costa</li>
+          <li>Zona AMP (Área Marina Protegida) — velocidad máx 5 nudos, fondeo prohibido en zonas marcadas</li>
+          <li>Tráfico de ferries Trapani–Egadi: cruzar su línea con precaución</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><i class="ti ti-clock"></i> Travesías desde Trapani</div>
+        <div class="grid-2">
+          <div class="grid-info"><div class="label">Trapani → Favignana</div><div class="val">17 mn · 3–4h a 5 kn</div></div>
+          <div class="grid-info"><div class="label">Trapani → Levanzo</div><div class="val">15 mn · 2.5–3h</div></div>
+          <div class="grid-info"><div class="label">Trapani → Marettimo</div><div class="val">35 mn · 6–7h</div></div>
+          <div class="grid-info"><div class="label">Favignana → Marettimo</div><div class="val">20 mn · 4h</div></div>
+        </div>
+      </div>
+
+      <div class="card info">
+        <div class="card-title"><i class="ti ti-phone"></i> Servicios en la zona</div>
+        <ul class="bullet-list">
+          <li>Gasoil y agua: Favignana (marina) y Marettimo (puerto)</li>
+          <li>Supermercado: Favignana pueblo. Levanzo y Marettimo solo tiendas pequeñas</li>
+          <li>Médico: Favignana. Marettimo tiene puesto de primeros auxilios verano</li>
+          <li>Mecánico náutico: solo en Trapani — planificar con antelación</li>
+          <li>Boyas amarre AMP: se pagan in situ, reservar con antelación en verano</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ─── METEO ─── -->
+    <div id="panel-meteo" class="panel">
+      <div class="panel-title">Meteorología</div>
+      <div class="panel-subtitle">escala Beaufort, previsión y señales</div>
+
+      <div class="card">
+        <div class="card-title"><i class="ti ti-wind"></i> Escala Beaufort</div>
+        <div class="rule-item">
+          <div class="rule-icon" style="background:var(--green-bg);color:var(--green);border-color:var(--green-border);font-family:var(--mono);font-size:13px">F0–2</div>
+          <div class="rule-text"><h4>Calma a brisa suave — 0 a 11 km/h</h4><p>Mar rizada o ligeramente encrespada. Navegación fácil. Puede ser necesario motor en calma total.</p></div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon" style="background:var(--green-bg);color:var(--green);border-color:var(--green-border);font-family:var(--mono);font-size:13px">F3–4</div>
+          <div class="rule-text"><h4>Brisa suave a moderada — 12 a 28 km/h</h4><p>Condiciones ideales. Olas de 0.5–1.5 m. Navegación cómoda a vela. El rango perfecto para aprender.</p></div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon" style="background:var(--amber-bg);color:var(--amber);border-color:var(--amber-border);font-family:var(--mono);font-size:13px">F5–6</div>
+          <div class="rule-text"><h4>Brisa fresca a viento fresco — 29 a 49 km/h</h4><p>Olas de 1.5–3 m. Tomar rizos. Tripulación con arnés. No recomendable para primera travesía.</p></div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon" style="background:var(--red-bg);color:var(--red);border-color:var(--red-border);font-family:var(--mono);font-size:13px">F7+</div>
+          <div class="rule-text"><h4>Temporal — más de 50 km/h</h4><p>Quedarse en puerto. Si estás fuera: velas reducidas al mínimo, todo atado, arneses obligatorios, Canal 16 en guardia permanente.</p></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><i class="ti ti-device-mobile"></i> Fuentes de previsión</div>
+        <div class="rule-item">
+          <div class="rule-icon info"><i class="ti ti-world"></i></div>
+          <div class="rule-text"><h4>Windy.com</h4><p>Mejor visualización de viento y oleaje. Modelos GFS y ECMWF. Consultar siempre el modelo ECMWF para el Mediterráneo.</p></div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon info"><i class="ti ti-world"></i></div>
+          <div class="rule-text"><h4>Meteomar (Italia)</h4><p>Parte oficial de la Guardia Costiera italiana. Canal 68 VHF a las 07:33, 13:33 y 19:33 hora local. En italiano — esencial aprenderlo.</p></div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon neutral"><i class="ti ti-world"></i></div>
+          <div class="rule-text"><h4>Navionics / PredictWind</h4><p>Integran carta y meteo. Útiles para planificar la salida con antelación de 2–3 días.</p></div>
+        </div>
+      </div>
+
+      <div class="card warning">
+        <div class="card-title"><i class="ti ti-eye"></i> Señales visuales de cambio de tiempo</div>
+        <ul class="bullet-list">
+          <li><strong style="color:var(--text)">Cirros en abanico</strong> — frente cálido acercándose en 12–24h</li>
+          <li><strong style="color:var(--text)">Cumulonimbus (nube en yunque)</strong> — tormenta inminente, buscar abrigo</li>
+          <li><strong style="color:var(--text)">Halo alrededor del sol o la luna</strong> — lluvia en 12–24h</li>
+          <li><strong style="color:var(--text)">Horizonte rojizo al amanecer</strong> — mal tiempo posible en el día</li>
+          <li><strong style="color:var(--text)">Mar de fondo sin viento</strong> — temporal lejano aproximándose</li>
+          <li><strong style="color:var(--text)">Bajada rápida del barómetro</strong> — más de 3 hPa/hora indica borrasca rápida</li>
+          <li><strong style="color:var(--text)">Caída repistina del viento</strong> antes de una tormenta eléctrica — cuidado, puede volver con fuerza</li>
+        </ul>
+      </div>
+
+      <div class="card danger">
+        <div class="card-title"><i class="ti ti-bolt"></i> Tormentas eléctricas</div>
+        <ul class="bullet-list">
+          <li>Arriar velas y encender motor antes de que llegue</li>
+          <li>No tocar el mástil, obenques ni nada metálico</li>
+          <li>Desconectar electrónica no esencial</li>
+          <li>Todos bajo cubierta si es posible</li>
+          <li>Regla del 30: si entre rayo y trueno hay menos de 30 segundos, estás en peligro</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ─── NAVEGACIÓN ─── -->
+    <div id="panel-navegacion" class="panel">
+      <div class="panel-title">Navegación</div>
+      <div class="panel-subtitle">carta, rumbo, RIPA y reglas de cruce</div>
+
+      <div class="card">
+        <div class="card-title"><i class="ti ti-compass"></i> Conceptos básicos</div>
+        <div class="rule-item">
+          <div class="rule-icon neutral"><i class="ti ti-compass"></i></div>
+          <div class="rule-text"><h4>Rumbo verdadero vs magnético</h4><p>La carta da rumbos verdaderos (N geográfico). La brújula indica el magnético. En el Mediterráneo occidental la declinación es de unos 2–3°E — diferencia pequeña pero existente.</p></div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon neutral"><i class="ti ti-arrows-right-left"></i></div>
+          <div class="rule-text"><h4>Abatimiento (leeway)</h4><p>El viento empuja el barco sotavento respecto al rumbo de la proa. En ceñida puede ser 5–10°. Hay que corregirloen el rumbo real.</p></div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon neutral"><i class="ti ti-current-location"></i></div>
+          <div class="rule-text"><h4>Estima</h4><p>Calcular posición por rumbo + velocidad + tiempo sin GPS. Útil si falla el chartplotter. Anota siempre la hora de salida y el log.</p></div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon neutral"><i class="ti ti-eye"></i></div>
+          <div class="rule-text"><h4>Marcaciones visuales</h4><p>Dos marcaciones de puntos conocidos que se cruzan = posición. Mínimo dos, mejor tres. Útil en costa con faros o puntos destacados.</p></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><i class="ti ti-traffic-lights"></i> RIPA — reglas de cruce</div>
+        <div class="rule-item">
+          <div class="rule-icon danger"><i class="ti ti-arrow-right"></i></div>
+          <div class="rule-text"><h4>Cedes el paso si...</h4><p>Tienes a otro barco por tu estribor. Llevas motor y el otro lleva vela. Eres el más maniobrable. Embarcación de recreo ante pesquero, fondeado o con maniobrabilidad limitada.</p></div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon info"><i class="ti ti-arrow-left"></i></div>
+          <div class="rule-text"><h4>Tienes preferencia si...</h4><p>Llevas vela y el otro lleva motor. El otro te tiene a su estribor. Pero: la preferencia no exime de tomar medidas si el otro no cede.</p></div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon warning"><i class="ti ti-wind"></i></div>
+          <div class="rule-text"><h4>Entre velas</h4><p>Amura de estribor (viento por estribor) tiene preferencia sobre babor. Con la misma amura, el de barlovento cede al de sotavento.</p></div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon danger"><i class="ti ti-ship"></i></div>
+          <div class="rule-text"><h4>Grandes buques</h4><p>Técnicamente puedes tener preferencia, pero un buque de carga de 200m no puede maniobrar. Aléjate siempre. Nunca te fíes de las reglas contra un buque grande.</p></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><i class="ti ti-chart-line"></i> Señales sonoras</div>
+        <ul class="bullet-list">
+          <li><strong style="color:var(--text)">1 pitido corto</strong> — viro a estribor</li>
+          <li><strong style="color:var(--text)">2 pitidos cortos</strong> — viro a babor</li>
+          <li><strong style="color:var(--text)">3 pitidos cortos</strong> — máquina atrás</li>
+          <li><strong style="color:var(--text)">5 o más pitidos cortos</strong> — señal de peligro / no entiendo tu maniobra</li>
+          <li><strong style="color:var(--text)">1 pitido largo</strong> — barco en niebla o visibilidad reducida (cada 2 min)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><i class="ti ti-map-2"></i> Lectura de carta náutica</div>
+        <ul class="bullet-list">
+          <li><strong style="color:var(--text)">Números en azul</strong> — profundidad en metros (sonda)</li>
+          <li><strong style="color:var(--text)">Línea de puntos</strong> — límite de aguas jurisdiccionales o zona restringida</li>
+          <li><strong style="color:var(--text)">Cruz con círculo</strong> — posición de fondeo recomendado</li>
+          <li><strong style="color:var(--text)">Fl.R / Fl.G / Fl.W</strong> — luz de faro roja / verde / blanca con período indicado</li>
+          <li><strong style="color:var(--text)">Roca con número</strong> — roca sumergida a esa profundidad</li>
+          <li><strong style="color:var(--text)">Roca con aspas</strong> — roca que afluye o está a flor de agua</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ─── MOTOR ─── -->
+    <div id="panel-motor" class="panel">
+      <div class="panel-title">Motor</div>
+      <div class="panel-subtitle">arranque, mantenimiento y averías</div>
+
+      <div class="card">
+        <div class="card-title"><i class="ti ti-engine"></i> Arranque correcto</div>
+        <ul class="step-list">
+          <li>Comprobar nivel de aceite (varilla) y refrigerante antes de arrancar</li>
+          <li>Abrir la válvula de mar del circuito de refrigeración</li>
+          <li>Comprobar que el escape expulsa agua — señal de refrigeración correcta</li>
+          <li>Dejar calentar 2–3 minutos en ralentí antes de meter carga</li>
+          <li>Comprobar panel de alarmas: temperatura, presión de aceite, carga alternador</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><i class="ti ti-checklist"></i> Check diario</div>
+        <div class="grid-2">
+          <div class="grid-info"><div class="label">aceite motor</div><div class="val">entre MIN y MAX</div></div>
+          <div class="grid-info"><div class="label">refrigerante</div><div class="val">nivel correcto</div></div>
+          <div class="grid-info"><div class="label">correa alternador</div><div class="val">sin grietas ni holgura</div></div>
+          <div class="grid-info"><div class="label">filtro agua mar</div><div class="val">limpio, sin algas</div></div>
+          <div class="grid-info"><div class="label">nivel gasoil</div><div class="val">reserva para 3h motor</div></div>
+          <div class="grid-info"><div class="label">sentina</div><div class="val">seca o mínima</div></div>
+        </div>
+      </div>
+
+      <div class="card danger">
+        <div class="card-title"><i class="ti ti-alert-triangle"></i> Alarmas — qué hacer</div>
+        <div class="rule-item">
+          <div class="rule-icon danger"><i class="ti ti-thermometer"></i></div>
+          <div class="rule-text"><h4>Alarma de temperatura alta</h4><p>Parar motor inmediatamente. Comprobar válvula de mar abierta y filtro de agua limpio. Si el filtro está lleno de algas, limpiarlo con el motor parado y frío.</p></div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon danger"><i class="ti ti-droplet"></i></div>
+          <div class="rule-text"><h4>Alarma de presión de aceite</h4><p>Parar motor inmediatamente. Comprobar nivel de aceite. No arrancar hasta resolver la causa — puede destruir el motor en minutos.</p></div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon warning"><i class="ti ti-bolt"></i></div>
+          <div class="rule-text"><h4>Alarma de carga / batería</h4><p>El alternador no carga. Comprobar correa. Reducir consumo eléctrico. Las baterías de arranque pueden agotarse — reservar para arrancar.</p></div>
+        </div>
+      </div>
+
+      <div class="card warning">
+        <div class="card-title"><i class="ti ti-tools"></i> Averías comunes</div>
+        <div class="rule-item">
+          <div class="rule-icon warning"><i class="ti ti-gas-station"></i></div>
+          <div class="rule-text"><h4>Motor no arranca — falta de combustible</h4><p>Comprobar nivel de gasoil. Si el depósito se vació, hay aire en la línea — purgar el circuito de combustible según el manual del motor.</p></div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon warning"><i class="ti ti-seeding"></i></div>
+          <div class="rule-text"><h4>Hélice enredada</h4><p>Parar motor. Nunca intentar arrancar con cuerda en la hélice. Puede ser necesario bajar a cortarla. Llevar siempre un cuchillo de buceo a bordo.</p></div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon warning"><i class="ti ti-battery-off"></i></div>
+          <div class="rule-text"><h4>Batería descargada</h4><p>Paneles solares o generador si disponible. Si no: arranque de emergencia con batería auxiliar o mediante vela y esperar a puerto.</p></div>
+        </div>
+      </div>
+
+      <div class="card info">
+        <div class="card-title"><i class="ti ti-briefcase"></i> Repuestos mínimos a bordo</div>
+        <ul class="bullet-list">
+          <li>Aceite motor (1L del tipo correcto)</li>
+          <li>Correa del alternador (del modelo exacto)</li>
+          <li>Filtros de combustible y aceite de repuesto</li>
+          <li>Impeler de la bomba de agua (recambio del año)</li>
+          <li>Fusibles varios y terminal de batería</li>
+          <li>Cuchillo de buceo para emergencias con hélice</li>
+          <li>Grasa de cobre para roscas de mar</li>
+        </ul>
+      </div>
+    </div>
+
   </main>
 </div>
 
@@ -1011,6 +1476,10 @@ function showVela(key) {
   document.getElementById('vd-angulo').textContent = v.angulo;
   document.getElementById('vd-desc').textContent = v.desc;
   document.getElementById('vela-detail').style.display = 'block';
+}
+
+function getNav(id) {
+  return document.querySelector('.nav-item[onclick*="' + id + '"]');
 }
 
 function show(id, el) {
