@@ -3,1500 +3,1099 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vela · Guía de navegación</title>
+<title>Nauta · Guía de navegación</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css">
 <style>
 :root {
-  --bg: #0e1117;
-  --bg2: #161b26;
-  --bg3: #1e2535;
-  --bg4: #252d40;
-  --line: rgba(255,255,255,0.07);
-  --line2: rgba(255,255,255,0.13);
-  --text: #e8eaf2;
-  --text2: #a0a8bc;
-  --text3: #5a6278;
-  --accent: #4a9eff;
-  --green: #3ecf8e;
-  --amber: #f5a623;
-  --red: #f06a6a;
-  --red-bg: rgba(240,106,106,0.1);
-  --red-border: rgba(240,106,106,0.25);
-  --green-bg: rgba(62,207,142,0.08);
-  --green-border: rgba(62,207,142,0.2);
-  --amber-bg: rgba(245,166,35,0.08);
-  --amber-border: rgba(245,166,35,0.2);
-  --accent-bg: rgba(74,158,255,0.08);
-  --accent-border: rgba(74,158,255,0.2);
-  --radius: 12px;
-  --radius-sm: 8px;
-  --mono: 'DM Mono', monospace;
-  --sans: 'DM Sans', sans-serif;
+  --bg: #0e1117; --bg2: #161b26; --bg3: #1e2535; --bg4: #252d40;
+  --line: rgba(255,255,255,0.07); --line2: rgba(255,255,255,0.13);
+  --text: #e8eaf2; --text2: #a0a8bc; --text3: #5a6278;
+  --accent: #4a9eff; --green: #3ecf8e; --amber: #f5a623; --red: #f06a6a;
+  --red-bg: rgba(240,106,106,0.1); --red-b: rgba(240,106,106,0.25);
+  --green-bg: rgba(62,207,142,0.08); --green-b: rgba(62,207,142,0.2);
+  --amber-bg: rgba(245,166,35,0.08); --amber-b: rgba(245,166,35,0.2);
+  --accent-bg: rgba(74,158,255,0.08); --accent-b: rgba(74,158,255,0.2);
+  --r: 12px; --rs: 8px;
+  --mono: 'DM Mono', monospace; --sans: 'DM Sans', sans-serif;
 }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100dvh;line-height:1.6;-webkit-text-size-adjust:100%}
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* LAYOUT */
+.shell{display:flex;flex-direction:column;height:100dvh;overflow:hidden}
+.topbar{display:flex;align-items:center;padding:0 16px;height:50px;flex-shrink:0;border-bottom:1px solid var(--line);background:var(--bg);gap:10px;z-index:10}
+.logo{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:15px;font-weight:500;color:var(--text)}
+.logo i{font-size:20px;color:var(--accent)}
+.badge-v{font-family:var(--mono);font-size:10px;color:var(--text3);border:1px solid var(--line2);border-radius:4px;padding:2px 6px;margin-left:4px}
+.topbar-right{margin-left:auto}
+.topbar-chip{font-size:11px;color:var(--text3);font-family:var(--mono);border:1px solid var(--line);border-radius:4px;padding:3px 8px;display:none}
 
-html { font-size: 16px; }
+/* NAV */
+.sidebar{display:flex;overflow-x:auto;overflow-y:hidden;flex-shrink:0;border-bottom:1px solid var(--line);background:var(--bg2);padding:0 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.sidebar::-webkit-scrollbar{display:none}
+.slabel{display:none}
+.ni{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 12px;font-size:11px;color:var(--text3);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;user-select:none;min-width:fit-content;background:transparent;border-left:none;border-right:none;border-top:none}
+.ni i{font-size:22px}
+.ni .dot{display:none}
+.ni.active{color:var(--text);border-bottom-color:var(--accent)}
 
-body {
-  font-family: var(--sans);
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100dvh;
-  line-height: 1.6;
-  -webkit-text-size-adjust: 100%;
-}
+/* MAIN */
+.main{flex:1;overflow-y:auto;padding:18px 16px 48px;-webkit-overflow-scrolling:touch}
+.panel{display:none;animation:fi .15s ease}
+.panel.active{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.ptitle{font-size:22px;font-weight:500;margin-bottom:4px;letter-spacing:-.02em}
+.psub{font-size:13px;color:var(--text3);margin-bottom:20px;font-family:var(--mono)}
 
-/* ── MOBILE LAYOUT (base) ── */
-.app-shell {
-  display: flex;
-  flex-direction: column;
-  height: 100dvh;
-  overflow: hidden;
-}
+/* CARDS */
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:12px}
+.ctitle{font-size:15px;font-weight:500;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.ctitle i{font-size:17px}
+.card.danger{background:var(--red-bg);border-color:var(--red-b)}
+.card.warning{background:var(--amber-bg);border-color:var(--amber-b)}
+.card.info{background:var(--accent-bg);border-color:var(--accent-b)}
+.card.success{background:var(--green-bg);border-color:var(--green-b)}
+.card.danger .ctitle{color:var(--red)}
+.card.warning .ctitle{color:var(--amber)}
+.card.info .ctitle{color:var(--accent)}
+.card.success .ctitle{color:var(--green)}
 
-/* ── TOPBAR ── */
-.topbar {
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
-  height: 50px;
-  flex-shrink: 0;
-  border-bottom: 1px solid var(--line);
-  background: var(--bg);
-  gap: 10px;
-  z-index: 10;
-}
-.topbar-logo {
-  display: flex; align-items: center; gap: 8px;
-  font-family: var(--mono); font-size: 15px; font-weight: 500; color: var(--text);
-}
-.topbar-logo i { font-size: 20px; color: var(--accent); }
-.topbar-badge {
-  font-family: var(--mono); font-size: 10px; color: var(--text3);
-  border: 1px solid var(--line2); border-radius: 4px; padding: 2px 6px;
-  margin-left: 4px;
-}
-.topbar-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
-.topbar-chip {
-  font-size: 11px; color: var(--text3); font-family: var(--mono);
-  border: 1px solid var(--line); border-radius: 4px; padding: 3px 8px;
-  display: none;
-}
+/* BADGE */
+.bdg{display:inline-block;font-size:11px;font-weight:500;padding:2px 8px;border-radius:4px;font-family:var(--mono);vertical-align:middle}
+.bdg.info{background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent-b)}
+.bdg.danger{background:var(--red-bg);color:var(--red);border:1px solid var(--red-b)}
+.bdg.warning{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-b)}
 
-/* ── NAV TABS (mobile: horizontal scroll) ── */
-.sidebar {
-  display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  flex-shrink: 0;
-  border-bottom: 1px solid var(--line);
-  background: var(--bg2);
-  padding: 0 6px;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
-.sidebar::-webkit-scrollbar { display: none; }
-.sidebar-section-label { display: none; }
+/* RULE ITEMS */
+.ri{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line)}
+.ri:last-child{border-bottom:none}
+.ricon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;margin-top:1px;border:1px solid}
+.ricon.info{background:var(--accent-bg);color:var(--accent);border-color:var(--accent-b)}
+.ricon.danger{background:var(--red-bg);color:var(--red);border-color:var(--red-b)}
+.ricon.warning{background:var(--amber-bg);color:var(--amber);border-color:var(--amber-b)}
+.ricon.neu{background:var(--bg3);color:var(--text2);border-color:var(--line2)}
+.rt h4{font-size:15px;font-weight:500;margin-bottom:4px}
+.rt p{font-size:14px;color:var(--text2);line-height:1.55}
 
-.nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  padding: 10px 13px;
-  font-size: 11px;
-  font-weight: 400;
-  color: var(--text3);
-  cursor: pointer;
-  white-space: nowrap;
-  border-bottom: 2px solid transparent;
-  transition: color .15s, border-color .15s;
-  user-select: none;
-  min-width: fit-content;
-  border-radius: 0;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  background: transparent;
-}
-.nav-item i { font-size: 22px; }
-.nav-item .nav-dot { display: none; }
-.nav-item.active {
-  color: var(--text);
-  border-bottom-color: var(--accent);
-}
+/* LISTS */
+.slist{list-style:none;counter-reset:s}
+.slist li{counter-increment:s;padding:10px 0 10px 32px;position:relative;font-size:14px;color:var(--text2);border-bottom:1px solid var(--line);line-height:1.55}
+.slist li:last-child{border-bottom:none}
+.slist li::before{content:counter(s);position:absolute;left:0;top:11px;width:20px;height:20px;border-radius:50%;background:var(--bg4);color:var(--accent);font-size:10px;font-family:var(--mono);font-weight:500;display:flex;align-items:center;justify-content:center}
+.blist{list-style:none;padding:0}
+.blist li{font-size:14px;color:var(--text2);padding:5px 0 5px 18px;position:relative;line-height:1.55}
+.blist li::before{content:"→";position:absolute;left:0;color:var(--text3)}
 
-/* ── MAIN CONTENT ── */
-.main {
-  flex: 1;
-  overflow-y: auto;
-  padding: 18px 16px 48px;
-  -webkit-overflow-scrolling: touch;
-}
+/* MONO BLOCK */
+.mono{font-family:var(--mono);font-size:13px;background:var(--bg);border-radius:var(--rs);padding:14px;margin-top:10px;border:1px solid var(--line2);color:var(--text);line-height:1.9;word-break:break-word}
+.mono .hi{color:var(--red);font-weight:500}
+.mono .ha{color:var(--amber);font-weight:500}
 
-.panel { display: none; animation: fadeIn .15s ease; }
-.panel.active { display: block; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+/* PHONE */
+.phone{color:#5ce65c;font-family:var(--mono);font-weight:500;font-size:1.05em;letter-spacing:.02em}
+a.phone{text-decoration:none}
+a.phone:hover{text-decoration:underline}
 
-.panel-title {
-  font-size: 22px; font-weight: 500; margin-bottom: 4px; letter-spacing: -0.02em;
-}
-.panel-subtitle {
-  font-size: 13px; color: var(--text3); margin-bottom: 20px; font-family: var(--mono);
-}
+/* FREQ */
+.freq{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;font-family:var(--mono);font-size:13px;font-weight:500;flex-shrink:0;background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent-b)}
 
-/* ── CARDS ── */
-.card {
-  background: var(--bg2); border: 1px solid var(--line);
-  border-radius: var(--radius); padding: 16px; margin-bottom: 12px;
-}
-.card-title {
-  font-size: 15px; font-weight: 500; margin-bottom: 10px;
-  display: flex; align-items: center; gap: 8px;
-}
-.card-title i { font-size: 17px; }
+/* GRID */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ginfo{background:var(--bg3);border-radius:var(--rs);padding:12px}
+.ginfo .lbl{font-size:11px;color:var(--text3);font-family:var(--mono);margin-bottom:4px}
+.ginfo .val{font-size:14px;color:var(--text)}
 
-.card.danger { background: var(--red-bg); border-color: var(--red-border); }
-.card.warning { background: var(--amber-bg); border-color: var(--amber-border); }
-.card.success { background: var(--green-bg); border-color: var(--green-border); }
-.card.info { background: var(--accent-bg); border-color: var(--accent-border); }
+/* DIVIDER */
+.sdiv{font-size:11px;font-weight:500;color:var(--text3);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin:22px 0 12px}
+.sdiv i{font-size:14px}
+.sdiv::after{content:'';flex:1;height:1px;background:var(--line)}
 
-.card.danger .card-title { color: var(--red); }
-.card.warning .card-title { color: var(--amber); }
-.card.success .card-title { color: var(--green); }
-.card.info .card-title { color: var(--accent); }
+/* HIGHLIGHT */
+.hl{border-radius:var(--r);padding:14px 16px;margin-bottom:12px;border:1px solid}
+.hl.yellow{background:var(--amber-bg);border-color:var(--amber-b)}
+.hl.yellow h3{color:var(--amber);font-size:15px;font-weight:500;margin-bottom:8px}
+.hl.yellow p{font-size:14px;color:var(--text2);line-height:1.6}
+.hl.green{background:var(--green-bg);border-color:var(--green-b)}
+.hl.green h3{color:var(--green);font-size:15px;font-weight:500;margin-bottom:8px}
 
-/* ── BADGES / TAGS ── */
-.badge {
-  display: inline-block; font-size: 11px; font-weight: 500;
-  padding: 2px 8px; border-radius: 4px; font-family: var(--mono);
-  vertical-align: middle;
-}
-.badge.info { background: var(--accent-bg); color: var(--accent); border: 1px solid var(--accent-border); }
-.badge.danger { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
-.badge.warning { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
-.badge.success { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+/* PANIC */
+.pbtn{width:100%;padding:14px 16px;border-radius:var(--r);background:var(--red-bg);border:1px solid var(--red-b);color:var(--red);font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);transition:background .15s;margin-top:10px}
+.pbtn:hover{background:rgba(240,106,106,0.16)}
+.presp{display:none;background:var(--bg2);border-radius:var(--r);border:1px solid var(--line2);padding:16px;margin-top:8px}
+.presp.on{display:block}
+.pstep{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.pstep:last-child{border-bottom:none}
+.pnum{font-family:var(--mono);font-size:12px;color:var(--accent);flex-shrink:0;padding-top:2px;min-width:18px}
+.pstep p{font-size:14px;color:var(--text2);line-height:1.55}
+.pstep strong{color:var(--text);font-weight:500}
 
-/* ── RULE ITEMS ── */
-.rule-item {
-  display: flex; gap: 12px; align-items: flex-start;
-  padding: 14px 0; border-bottom: 1px solid var(--line);
-}
-.rule-item:last-child { border-bottom: none; }
-.rule-icon {
-  width: 36px; height: 36px; border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 17px; flex-shrink: 0; margin-top: 1px;
-  border: 1px solid;
-}
-.rule-icon.info { background: var(--accent-bg); color: var(--accent); border-color: var(--accent-border); }
-.rule-icon.danger { background: var(--red-bg); color: var(--red); border-color: var(--red-border); }
-.rule-icon.warning { background: var(--amber-bg); color: var(--amber); border-color: var(--amber-border); }
-.rule-icon.neutral { background: var(--bg3); color: var(--text2); border-color: var(--line2); }
-.rule-text h4 { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
-.rule-text p { font-size: 14px; color: var(--text2); line-height: 1.55; }
+/* HOME GRID */
+.hgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px}
+.hcard{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:16px 14px;cursor:pointer;transition:background .15s,border-color .15s;-webkit-tap-highlight-color:transparent;user-select:none}
+.hcard:active{background:var(--bg3);border-color:var(--line2)}
+.hicon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:10px;border:1px solid}
+.hlabel{font-size:15px;font-weight:500;margin-bottom:3px;color:var(--text)}
+.hdesc{font-size:12px;color:var(--text3);line-height:1.4}
 
-/* ── STEP LIST ── */
-.step-list { list-style: none; counter-reset: s; }
-.step-list li {
-  counter-increment: s; padding: 10px 0 10px 32px; position: relative;
-  font-size: 14px; color: var(--text2); border-bottom: 1px solid var(--line);
-  line-height: 1.55;
-}
-.step-list li:last-child { border-bottom: none; }
-.step-list li::before {
-  content: counter(s); position: absolute; left: 0; top: 11px;
-  width: 20px; height: 20px; border-radius: 50%;
-  background: var(--bg4); color: var(--accent);
-  font-size: 10px; font-family: var(--mono); font-weight: 500;
-  display: flex; align-items: center; justify-content: center;
-}
+/* VELA CARDS */
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.vcrd{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:14px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;transition:border-color .15s,background .15s;-webkit-tap-highlight-color:transparent}
+.vcrd:active,.vcrd.sel{background:var(--bg3);border-color:var(--line2)}
+.vcrd svg{display:block}
+.vangle{font-family:var(--mono);font-size:11px;color:var(--text3)}
+.vname{font-size:13px;font-weight:500}
+.vzmerta{background:var(--red-bg);border:1px solid var(--red-b);border-radius:var(--rs);padding:10px 14px;font-size:13px;color:var(--text2);text-align:center;margin-bottom:12px}
 
-/* ── BULLET LIST ── */
-.bullet-list { list-style: none; padding: 0; }
-.bullet-list li {
-  font-size: 14px; color: var(--text2); padding: 5px 0 5px 18px; position: relative;
-  line-height: 1.55;
-}
-.bullet-list li::before { content: "→"; position: absolute; left: 0; color: var(--text3); }
+/* MANIOBRA DIAGRAM */
+.msvg{width:100%;border-radius:var(--rs);overflow:hidden;margin-bottom:12px;display:block}
 
-/* ── CODE / MONO BLOCKS ── */
-.mono-block {
-  font-family: var(--mono); font-size: 13px; background: var(--bg);
-  border-radius: var(--radius-sm); padding: 14px; margin-top: 10px;
-  border: 1px solid var(--line2); color: var(--text); line-height: 1.9;
-  word-break: break-word;
-}
-.mono-block .hi { color: var(--red); font-weight: 500; }
-.mono-block .hi-amber { color: var(--amber); font-weight: 500; }
+/* LIGHT ROWS */
+.lrow{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.lrow:last-child{border-bottom:none}
+.ldot{width:14px;height:14px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.lrow h4{font-size:14px;font-weight:500;margin-bottom:3px}
+.lrow p{font-size:13px;color:var(--text2);line-height:1.45}
+.ldots{display:flex;gap:4px;align-items:center;margin-top:2px}
 
-/* ── FREQ BADGE ── */
-.freq {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 40px; height: 40px; border-radius: 10px; font-family: var(--mono);
-  font-size: 13px; font-weight: 500; flex-shrink: 0;
-  background: var(--accent-bg); color: var(--accent); border: 1px solid var(--accent-border);
-}
+/* BALIZA GRID */
+.bzgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bzcrd{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:14px;cursor:pointer;text-align:center;-webkit-tap-highlight-color:transparent;transition:border-color .15s}
+.bzcrd:active{border-color:var(--line2)}
+.bzsvg{display:block;margin:0 auto 8px}
+.bzname{font-size:13px;font-weight:500;margin-bottom:3px}
+.bzdesc{font-size:11px;color:var(--text3);line-height:1.35}
 
-/* ── LIGHTS ── */
-.light-row {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 12px 0; border-bottom: 1px solid var(--line);
-}
-.light-row:last-child { border-bottom: none; }
-.light-dot {
-  width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; margin-top: 4px;
-}
-.light-row h4 { font-size: 14px; font-weight: 500; margin-bottom: 3px; }
-.light-row p { font-size: 13px; color: var(--text2); line-height: 1.45; }
+/* INTERACTIVE BEAUFORT */
+.bft-slider{width:100%;margin:12px 0 4px;accent-color:var(--accent)}
+.bft-display{background:var(--bg3);border-radius:var(--r);padding:14px;text-align:center;margin-bottom:12px;border:1px solid var(--line2)}
+.bft-num{font-size:42px;font-weight:500;font-family:var(--mono);line-height:1}
+.bft-label{font-size:14px;color:var(--text2);margin-top:4px}
+.bft-speed{font-size:12px;color:var(--text3);font-family:var(--mono);margin-top:2px}
+.bft-sea{font-size:13px;color:var(--text2);margin-top:8px;line-height:1.5}
+.bft-rec{font-size:12px;font-weight:500;margin-top:6px;padding:4px 10px;border-radius:4px;display:inline-block}
 
-/* ── GRID ── */
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.grid-info {
-  background: var(--bg3); border-radius: var(--radius-sm); padding: 12px;
-}
-.grid-info .label { font-size: 11px; color: var(--text3); font-family: var(--mono); margin-bottom: 4px; }
-.grid-info .val { font-size: 14px; color: var(--text); }
-
-/* ── SECTION DIVIDER ── */
-.sdiv {
-  font-size: 11px; font-weight: 500; color: var(--text3);
-  font-family: var(--mono); letter-spacing: .08em; text-transform: uppercase;
-  display: flex; align-items: center; gap: 8px; margin: 22px 0 12px;
-}
-.sdiv i { font-size: 14px; }
-.sdiv::after { content: ''; flex: 1; height: 1px; background: var(--line); }
-
-/* ── PANIC BUTTON ── */
-.panic-btn {
-  width: 100%; padding: 14px 16px; border-radius: var(--radius);
-  background: var(--red-bg); border: 1px solid var(--red-border);
-  color: var(--red); font-size: 14px; font-weight: 500; cursor: pointer;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  font-family: var(--sans); transition: background .15s;
-  margin-top: 10px;
-}
-.panic-btn:hover { background: rgba(240,106,106,0.16); }
-
-.panic-response {
-  display: none; background: var(--bg2);
-  border-radius: var(--radius); border: 1px solid var(--line2);
-  padding: 16px; margin-top: 8px;
-}
-.panic-response.visible { display: block; }
-.panic-step {
-  display: flex; gap: 12px; padding: 10px 0;
-  border-bottom: 1px solid var(--line);
-}
-.panic-step:last-child { border-bottom: none; }
-.panic-num {
-  font-family: var(--mono); font-size: 12px; color: var(--accent);
-  flex-shrink: 0; padding-top: 2px; min-width: 18px;
-}
-.panic-step p { font-size: 14px; color: var(--text2); line-height: 1.55; }
-.panic-step strong { color: var(--text); font-weight: 500; }
-
-/* ── HIGHLIGHT BOX ── */
-.highlight {
-  border-radius: var(--radius); padding: 14px 16px; margin-bottom: 12px;
-  border: 1px solid;
-}
-.highlight.yellow { background: var(--amber-bg); border-color: var(--amber-border); }
-.highlight.yellow h3 { color: var(--amber); font-size: 15px; font-weight: 500; margin-bottom: 8px; }
-.highlight.yellow p { font-size: 14px; color: var(--text2); line-height: 1.6; }
-.highlight.green { background: var(--green-bg); border-color: var(--green-border); }
-.highlight.green h3 { color: var(--green); font-size: 15px; font-weight: 500; margin-bottom: 8px; }
-.highlight.green .bullet-list li { font-size: 14px; }
-
-/* ── VELA DETAIL ── */
-#vela-detail {
-  display: none; background: var(--bg3); border-radius: var(--radius);
-  border: 1px solid var(--line2); padding: 14px; margin-top: 10px;
-}
-#vd-titulo { font-size: 17px; font-weight: 500; }
-#vd-angulo { font-size: 12px; color: var(--text3); font-family: var(--mono); }
-#vd-desc { font-size: 14px; color: var(--text2); line-height: 1.6; margin-top: 6px; }
-
-/* ── SVG ── */
-svg text { font-family: var(--sans); }
-
-/* ── DESKTOP OVERRIDES ── */
-@media (min-width: 768px) {
-  .app-shell {
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    grid-template-rows: 56px 1fr;
-    height: 100vh;
-  }
-  .topbar {
-    grid-column: 1 / -1;
-    height: 56px;
-    padding: 0 20px;
-  }
-  .topbar-chip { display: block; }
-  .topbar-badge { display: inline-block; }
-  .sidebar {
-    flex-direction: column;
-    overflow-x: hidden;
-    overflow-y: auto;
-    border-bottom: none;
-    border-right: 1px solid var(--line);
-    background: var(--bg);
-    padding: 12px 8px;
-    scrollbar-width: thin;
-    scrollbar-color: var(--bg3) transparent;
-  }
-  .sidebar-section-label {
-    display: block;
-    font-size: 10px; font-weight: 500; color: var(--text3);
-    font-family: var(--mono); letter-spacing: .08em;
-    padding: 8px 10px 4px; text-transform: uppercase;
-  }
-  .nav-item {
-    flex-direction: row;
-    font-size: 13px;
-    padding: 7px 10px;
-    border-radius: 6px;
-    border: 1px solid transparent;
-    border-bottom: 1px solid transparent;
-    gap: 9px;
-    color: var(--text2);
-  }
-  .nav-item i { font-size: 15px; }
-  .nav-item .nav-dot { display: block; }
-  .nav-item:hover { background: var(--bg3); color: var(--text); }
-  .nav-item.active {
-    background: var(--bg3); color: var(--text);
-    border-color: var(--line2);
-    border-bottom-color: var(--line2);
-  }
-  .main {
-    padding: 28px 32px;
-    scrollbar-width: thin;
-    scrollbar-color: var(--bg3) transparent;
-  }
-  .panel-title { font-size: 20px; }
-  .panel-subtitle { font-size: 13px; margin-bottom: 24px; }
-  .grid-2 { grid-template-columns: 1fr 1fr; }
-}
-
-/* ── HOME GRID ── */
-.home-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 4px;
-}
-.home-card {
-  background: var(--bg2);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 16px 14px;
-  cursor: pointer;
-  transition: background .15s, border-color .15s;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
-}
-.home-card:active { background: var(--bg3); border-color: var(--line2); }
-.home-icon {
-  width: 42px; height: 42px; border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px; margin-bottom: 10px; border: 1px solid;
-}
-.home-label {
-  font-size: 15px; font-weight: 500; margin-bottom: 3px; color: var(--text);
-}
-.home-desc {
-  font-size: 12px; color: var(--text3); line-height: 1.4;
-}
-
-@media (min-width: 768px) {
-  .home-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
-  .home-card:hover { background: var(--bg3); border-color: var(--line2); }
+/* DESKTOP */
+@media(min-width:768px){
+  .shell{display:grid;grid-template-columns:220px 1fr;grid-template-rows:56px 1fr;height:100vh}
+  .topbar{grid-column:1/-1;height:56px;padding:0 20px}
+  .topbar-chip{display:block}
+  .sidebar{flex-direction:column;overflow-x:hidden;overflow-y:auto;border-bottom:none;border-right:1px solid var(--line);background:var(--bg);padding:12px 8px;scrollbar-width:thin;scrollbar-color:var(--bg3) transparent}
+  .slabel{display:block;font-size:10px;font-weight:500;color:var(--text3);font-family:var(--mono);letter-spacing:.08em;padding:8px 10px 4px;text-transform:uppercase}
+  .ni{flex-direction:row;font-size:13px;padding:7px 10px;border-radius:6px;border:1px solid transparent;border-bottom:1px solid transparent;gap:9px;color:var(--text2)}
+  .ni i{font-size:15px}
+  .ni .dot{display:block}
+  .ni:hover{background:var(--bg3);color:var(--text)}
+  .ni.active{background:var(--bg3);color:var(--text);border-color:var(--line2);border-bottom-color:var(--line2)}
+  .main{padding:28px 32px;scrollbar-width:thin;scrollbar-color:var(--bg3) transparent}
+  .ptitle{font-size:20px}
+  .g2{grid-template-columns:1fr 1fr}
+  .hgrid{grid-template-columns:repeat(3,1fr);gap:12px}
+  .hcard:hover{background:var(--bg3);border-color:var(--line2)}
+  .vgrid{grid-template-columns:repeat(4,1fr)}
+  .bzgrid{grid-template-columns:repeat(4,1fr)}
 }
 </style>
 </head>
 <body>
-<div class="app-shell">
+<div class="shell">
 
-  <!-- TOPBAR -->
-  <header class="topbar">
-    <div class="topbar-logo">
-      <i class="ti ti-sail"></i>
-      vela.guide
-      <span class="topbar-badge">v1.0</span>
+<header class="topbar">
+  <div class="logo"><i class="ti ti-sail"></i>nauta<span class="badge-v">v2.0</span></div>
+  <div class="topbar-right"><span class="topbar-chip">Egadi · Sicilia</span></div>
+</header>
+
+<nav class="sidebar">
+  <div class="slabel">menú</div>
+  <div class="ni active" onclick="go('home',this)"><i class="ti ti-grid-dots"></i>Inicio</div>
+  <div class="slabel" style="margin-top:8px">navegación</div>
+  <div class="ni" onclick="go('velas',this)"><i class="ti ti-wind"></i>Velas<span class="dot" style="width:5px;height:5px;border-radius:50%;margin-left:auto;background:var(--accent)"></span></div>
+  <div class="ni" onclick="go('maniobras',this)"><i class="ti ti-rotate"></i>Maniobras</div>
+  <div class="ni" onclick="go('puerto',this)"><i class="ti ti-anchor"></i>Puerto</div>
+  <div class="ni" onclick="go('nav',this)"><i class="ti ti-compass"></i>Navegación</div>
+  <div class="ni" onclick="go('motor',this)"><i class="ti ti-engine"></i>Motor</div>
+  <div class="slabel" style="margin-top:8px">luces y señales</div>
+  <div class="ni" onclick="go('luces',this)"><i class="ti ti-moon"></i>Luces noche</div>
+  <div class="ni" onclick="go('balizas',this)"><i class="ti ti-buoy"></i>Balizas</div>
+  <div class="slabel" style="margin-top:8px">emergencias</div>
+  <div class="ni" onclick="go('radio',this)"><i class="ti ti-radio"></i>Radio VHF<span class="dot" style="width:5px;height:5px;border-radius:50%;margin-left:auto;background:var(--red)"></span></div>
+  <div class="ni" onclick="go('seguridad',this)"><i class="ti ti-lifebuoy"></i>Seguridad</div>
+  <div class="slabel" style="margin-top:8px">zona y a bordo</div>
+  <div class="ni" onclick="go('egadi',this)"><i class="ti ti-map-pin"></i>Egadi<span class="dot" style="width:5px;height:5px;border-radius:50%;margin-left:auto;background:var(--green)"></span></div>
+  <div class="ni" onclick="go('meteo',this)"><i class="ti ti-cloud-storm"></i>Meteo</div>
+  <div class="ni" onclick="go('conducta',this)"><i class="ti ti-heart"></i>Conducta</div>
+</nav>
+
+<main class="main">
+
+<!-- HOME -->
+<div id="p-home" class="panel active">
+  <div style="padding:4px 0 20px">
+    <div style="font-size:13px;color:var(--text3);font-family:var(--mono);margin-bottom:6px">nauta.guide</div>
+    <div style="font-size:26px;font-weight:500;letter-spacing:-.02em;margin-bottom:4px">Guía de navegación</div>
+    <div style="font-size:14px;color:var(--text3)">Isole Egadi · Sicilia</div>
+  </div>
+
+  <div class="slabel" style="display:block;padding:0 0 10px">NAVEGACIÓN</div>
+  <div class="hgrid">
+    <div class="hcard" onclick="go('velas',n('velas'))">
+      <div class="hicon" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent-b)"><i class="ti ti-wind"></i></div>
+      <div class="hlabel">Velas</div><div class="hdesc">Puntos y ángulos</div>
     </div>
-    <div class="topbar-right">
-      <span class="topbar-chip">Egadi · Sicilia</span>
+    <div class="hcard" onclick="go('maniobras',n('maniobras'))">
+      <div class="hicon" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent-b)"><i class="ti ti-rotate"></i></div>
+      <div class="hlabel">Maniobras</div><div class="hdesc">Virada y trasluchada</div>
     </div>
-  </header>
-
-  <!-- SIDEBAR -->
-  <nav class="sidebar">
-    <div class="sidebar-section-label">navegación</div>
-    <div class="nav-item active" onclick="show('home',this)">
-      <i class="ti ti-grid-dots"></i> Inicio
+    <div class="hcard" onclick="go('puerto',n('puerto'))">
+      <div class="hicon" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent-b)"><i class="ti ti-anchor"></i></div>
+      <div class="hlabel">Puerto</div><div class="hdesc">Atracar y fondear</div>
     </div>
-    <div class="nav-item" onclick="show('velas',this)">
-      <i class="ti ti-wind"></i> Velas
+    <div class="hcard" onclick="go('nav',n('nav'))">
+      <div class="hicon" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent-b)"><i class="ti ti-compass"></i></div>
+      <div class="hlabel">Navegación</div><div class="hdesc">Carta, rumbo, RIPA</div>
     </div>
-    <div class="nav-item" onclick="show('maniobras',this)">
-      <i class="ti ti-rotate"></i> Maniobras
+    <div class="hcard" onclick="go('luces',n('luces'))">
+      <div class="hicon" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent-b)"><i class="ti ti-moon"></i></div>
+      <div class="hlabel">Luces noche</div><div class="hdesc">Barcos y sectores</div>
     </div>
-    <div class="nav-item" onclick="show('atracar',this)">
-      <i class="ti ti-anchor"></i> Puerto
+    <div class="hcard" onclick="go('balizas',n('balizas'))">
+      <div class="hicon" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent-b)"><i class="ti ti-buoy"></i></div>
+      <div class="hlabel">Balizas</div><div class="hdesc">Sistema IALA</div>
     </div>
-    <div class="nav-item" onclick="show('noche',this)">
-      <i class="ti ti-moon"></i> Noche
+    <div class="hcard" onclick="go('motor',n('motor'))">
+      <div class="hicon" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent-b)"><i class="ti ti-engine"></i></div>
+      <div class="hlabel">Motor</div><div class="hdesc">Arranque y averías</div>
     </div>
-    <div class="sidebar-section-label" style="margin-top:8px">emergencias</div>
-    <div class="nav-item" onclick="show('radio',this)">
-      <i class="ti ti-radio"></i> Radio VHF
+  </div>
+
+  <div class="slabel" style="display:block;padding:20px 0 10px">EMERGENCIAS</div>
+  <div class="hgrid">
+    <div class="hcard" onclick="go('radio',n('radio'))">
+      <div class="hicon" style="background:var(--red-bg);color:var(--red);border-color:var(--red-b)"><i class="ti ti-radio"></i></div>
+      <div class="hlabel">Radio VHF</div><div class="hdesc">MAYDAY · Canal 16</div>
     </div>
-    <div class="nav-item" onclick="show('seguridad',this)">
-      <i class="ti ti-lifebuoy"></i> Seguridad
+    <div class="hcard" onclick="go('seguridad',n('seguridad'))">
+      <div class="hicon" style="background:var(--red-bg);color:var(--red);border-color:var(--red-b)"><i class="ti ti-lifebuoy"></i></div>
+      <div class="hlabel">Seguridad</div><div class="hdesc">MOB · fuego · agua</div>
     </div>
-    <div class="sidebar-section-label" style="margin-top:8px">zona</div>
-    <div class="nav-item" onclick="show('egadi',this)">
-      <i class="ti ti-map-pin"></i> Egadi
-      <span class="nav-dot" style="background:var(--green)"></span>
+  </div>
+
+  <div class="slabel" style="display:block;padding:20px 0 10px">ZONA Y A BORDO</div>
+  <div class="hgrid">
+    <div class="hcard" onclick="go('egadi',n('egadi'))">
+      <div class="hicon" style="background:var(--green-bg);color:var(--green);border-color:var(--green-b)"><i class="ti ti-map-pin"></i></div>
+      <div class="hlabel">Egadi</div><div class="hdesc">Islas y puertos</div>
     </div>
-    <div class="nav-item" onclick="show('meteo',this)">
-      <i class="ti ti-cloud-storm"></i> Meteo
+    <div class="hcard" onclick="go('meteo',n('meteo'))">
+      <div class="hicon" style="background:var(--green-bg);color:var(--green);border-color:var(--green-b)"><i class="ti ti-cloud-storm"></i></div>
+      <div class="hlabel">Meteo</div><div class="hdesc">Beaufort · señales</div>
     </div>
-    <div class="sidebar-section-label" style="margin-top:8px">a bordo</div>
-    <div class="nav-item" onclick="show('navegacion',this)">
-      <i class="ti ti-compass"></i> Navegación
+    <div class="hcard" onclick="go('conducta',n('conducta'))">
+      <div class="hicon" style="background:var(--red-bg);color:var(--red);border-color:var(--red-b)"><i class="ti ti-heart"></i></div>
+      <div class="hlabel">Conducta</div><div class="hdesc">Pareja a bordo</div>
     </div>
-    <div class="nav-item" onclick="show('motor',this)">
-      <i class="ti ti-engine"></i> Motor
-    </div>
-    <div class="nav-item" onclick="show('pareja',this)">
-      <i class="ti ti-heart"></i> Conducta
-      <span class="nav-dot" style="background:var(--red)"></span>
-    </div>
-  </nav>
+  </div>
 
-  <!-- MAIN -->
-  <main class="main">
+  <div style="margin-top:24px;background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:16px;text-align:center">
+    <div style="font-size:12px;color:var(--text3);font-family:var(--mono);margin-bottom:4px">Guardia Costiera Trapani</div>
+    <a href="tel:+390923545111" class="phone" style="font-size:22px;display:block;margin:4px 0">+39 0923 545111</a>
+    <div style="font-size:12px;color:var(--text3)">Canal 16 VHF · MRCC Roma <a href="tel:+390659084400" class="phone">+39 06 59084400</a></div>
+  </div>
+</div>
 
-    <!-- ─── HOME ─── -->
-    <div id="panel-home" class="panel active">
-      <div style="padding: 4px 0 20px">
-        <div style="font-size:13px;color:var(--text3);font-family:var(--mono);margin-bottom:6px">vela.guide</div>
-        <div style="font-size:26px;font-weight:500;letter-spacing:-0.02em;margin-bottom:4px">Guía de navegación</div>
-        <div style="font-size:14px;color:var(--text3)">Isole Egadi · Sicilia</div>
-      </div>
+<!-- VELAS -->
+<div id="p-velas" class="panel">
+  <div class="ptitle">Puntos de vela</div>
+  <div class="psub">toca cada punto para ver más</div>
 
-      <div style="font-size:11px;font-weight:500;color:var(--text3);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px">NAVEGACIÓN</div>
+  <div class="vzmerta">⚠ Zona muerta ≈45° — imposible navegar hacia el viento</div>
 
-      <div class="home-grid">
-        <div class="home-card" onclick="show('velas', getNav('velas'))">
-          <div class="home-icon" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent-border)"><i class="ti ti-wind"></i></div>
-          <div class="home-label">Velas</div>
-          <div class="home-desc">Puntos de vela y ángulos</div>
-        </div>
-        <div class="home-card" onclick="show('maniobras', getNav('maniobras'))">
-          <div class="home-icon" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent-border)"><i class="ti ti-rotate"></i></div>
-          <div class="home-label">Maniobras</div>
-          <div class="home-desc">Virada y trasluchada</div>
-        </div>
-        <div class="home-card" onclick="show('atracar', getNav('atracar'))">
-          <div class="home-icon" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent-border)"><i class="ti ti-anchor"></i></div>
-          <div class="home-label">Puerto</div>
-          <div class="home-desc">Atracar y fondear</div>
-        </div>
-        <div class="home-card" onclick="show('navegacion', getNav('navegacion'))">
-          <div class="home-icon" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent-border)"><i class="ti ti-compass"></i></div>
-          <div class="home-label">Navegación</div>
-          <div class="home-desc">Carta, rumbo y RIPA</div>
-        </div>
-        <div class="home-card" onclick="show('noche', getNav('noche'))">
-          <div class="home-icon" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent-border)"><i class="ti ti-moon"></i></div>
-          <div class="home-label">Noche</div>
-          <div class="home-desc">Luces y guardias</div>
-        </div>
-        <div class="home-card" onclick="show('motor', getNav('motor'))">
-          <div class="home-icon" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent-border)"><i class="ti ti-engine"></i></div>
-          <div class="home-label">Motor</div>
-          <div class="home-desc">Arranque y averías</div>
-        </div>
-      </div>
-
-      <div style="font-size:11px;font-weight:500;color:var(--text3);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;margin:20px 0 10px">EMERGENCIAS</div>
-
-      <div class="home-grid">
-        <div class="home-card home-card-danger" onclick="show('radio', getNav('radio'))">
-          <div class="home-icon" style="background:var(--red-bg);color:var(--red);border-color:var(--red-border)"><i class="ti ti-radio"></i></div>
-          <div class="home-label">Radio VHF</div>
-          <div class="home-desc">MAYDAY · Canal 16</div>
-        </div>
-        <div class="home-card home-card-danger" onclick="show('seguridad', getNav('seguridad'))">
-          <div class="home-icon" style="background:var(--red-bg);color:var(--red);border-color:var(--red-border)"><i class="ti ti-lifebuoy"></i></div>
-          <div class="home-label">Seguridad</div>
-          <div class="home-desc">MOB · fuego · vía agua</div>
-        </div>
-      </div>
-
-      <div style="font-size:11px;font-weight:500;color:var(--text3);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;margin:20px 0 10px">ZONA Y A BORDO</div>
-
-      <div class="home-grid">
-        <div class="home-card" onclick="show('egadi', getNav('egadi'))">
-          <div class="home-icon" style="background:var(--green-bg);color:var(--green);border-color:var(--green-border)"><i class="ti ti-map-pin"></i></div>
-          <div class="home-label">Egadi</div>
-          <div class="home-desc">Islas, puertos, vientos</div>
-        </div>
-        <div class="home-card" onclick="show('meteo', getNav('meteo'))">
-          <div class="home-icon" style="background:var(--green-bg);color:var(--green);border-color:var(--green-border)"><i class="ti ti-cloud-storm"></i></div>
-          <div class="home-label">Meteo</div>
-          <div class="home-desc">Beaufort · previsión</div>
-        </div>
-        <div class="home-card" onclick="show('pareja', getNav('pareja'))">
-          <div class="home-icon" style="background:var(--red-bg);color:var(--red);border-color:var(--red-border)"><i class="ti ti-heart"></i></div>
-          <div class="home-label">Conducta</div>
-          <div class="home-desc">Pareja a bordo</div>
-        </div>
-      </div>
-
-      <div style="margin-top:28px;padding:14px 16px;border-radius:var(--radius);background:var(--bg2);border:1px solid var(--line);text-align:center">
-        <div style="font-size:13px;color:var(--text3);font-family:var(--mono)">Guardia Costiera Trapani</div>
-        <div style="font-size:20px;font-weight:500;color:var(--text);margin:4px 0;letter-spacing:-0.01em">+39 0923 545111</div>
-        <div style="font-size:12px;color:var(--text3)">Canal 16 · MRCC Roma +39 06 59084400</div>
-      </div>
-    </div>
-
-    <!-- ─── VELAS ─── -->
-    <div id="panel-velas" class="panel">
-      <div class="panel-title">Puntos de vela</div>
-      <div class="panel-subtitle">ángulos de navegación respecto al viento</div>
-
-      <svg width="100%" viewBox="0 0 640 320" style="margin-bottom:16px;display:block">
-        <defs>
-          <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </marker>
-        </defs>
-        <text x="320" y="14" text-anchor="middle" font-size="10" fill="#5a6278" font-family="DM Mono,monospace">VIENTO</text>
-        <line x1="320" y1="18" x2="320" y2="46" stroke="#5a6278" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr)"/>
-        <path d="M320 52 L284 96 L320 91 L356 96 Z" fill="rgba(240,106,106,0.12)" stroke="rgba(240,106,106,0.3)" stroke-width="0.5" stroke-dasharray="3 3"/>
-        <text x="320" y="74" text-anchor="middle" font-size="9" fill="#f06a6a" font-weight="500" font-family="DM Mono,monospace">zona muerta</text>
-        <text x="320" y="86" text-anchor="middle" font-size="8" fill="#f06a6a" font-family="DM Mono,monospace">≈45°</text>
-
-        <g style="cursor:pointer" onclick="showVela('cenida')">
-          <g transform="translate(160,118)">
-            <ellipse rx="9" ry="20" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(-25)"/>
-            <line x1="-6" y1="-19" x2="6" y2="19" stroke="#3a4558" stroke-width="0.7" transform="rotate(-25)"/>
-            <line x1="-4" y1="-18" x2="-18" y2="2" stroke="#4a9eff" stroke-width="2" stroke-linecap="round"/>
-            <line x1="-2" y1="-6" x2="-13" y2="8" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round"/>
-          </g>
-          <rect x="104" y="148" width="56" height="18" rx="4" fill="rgba(74,158,255,0.12)" stroke="rgba(74,158,255,0.3)" stroke-width="0.5"/>
-          <text x="132" y="160" text-anchor="middle" font-size="10" fill="#4a9eff" font-weight="500" font-family="DM Mono,monospace">Ceñida</text>
-          <g transform="translate(480,118)">
-            <ellipse rx="9" ry="20" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(25)"/>
-            <line x1="6" y1="-19" x2="-6" y2="19" stroke="#3a4558" stroke-width="0.7" transform="rotate(25)"/>
-            <line x1="4" y1="-18" x2="18" y2="2" stroke="#4a9eff" stroke-width="2" stroke-linecap="round"/>
-            <line x1="2" y1="-6" x2="13" y2="8" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round"/>
-          </g>
-          <rect x="452" y="148" width="56" height="18" rx="4" fill="rgba(74,158,255,0.12)" stroke="rgba(74,158,255,0.3)" stroke-width="0.5"/>
-          <text x="480" y="160" text-anchor="middle" font-size="10" fill="#4a9eff" font-weight="500" font-family="DM Mono,monospace">Ceñida</text>
-        </g>
-
-        <g style="cursor:pointer" onclick="showVela('traves')">
-          <g transform="translate(108,208)">
-            <ellipse rx="20" ry="9" fill="#1e2535" stroke="#3a4558" stroke-width="1"/>
-            <line x1="-20" y1="0" x2="20" y2="0" stroke="#3a4558" stroke-width="0.7"/>
-            <line x1="0" y1="-2" x2="-4" y2="-20" stroke="#f5a623" stroke-width="2" stroke-linecap="round"/>
-            <line x1="7" y1="-1" x2="3" y2="-14" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"/>
-          </g>
-          <rect x="62" y="226" width="52" height="18" rx="4" fill="rgba(245,166,35,0.1)" stroke="rgba(245,166,35,0.3)" stroke-width="0.5"/>
-          <text x="88" y="238" text-anchor="middle" font-size="10" fill="#f5a623" font-weight="500" font-family="DM Mono,monospace">Través</text>
-          <g transform="translate(532,208)">
-            <ellipse rx="20" ry="9" fill="#1e2535" stroke="#3a4558" stroke-width="1"/>
-            <line x1="-20" y1="0" x2="20" y2="0" stroke="#3a4558" stroke-width="0.7"/>
-            <line x1="0" y1="-2" x2="4" y2="-20" stroke="#f5a623" stroke-width="2" stroke-linecap="round"/>
-            <line x1="-7" y1="-1" x2="-3" y2="-14" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"/>
-          </g>
-          <rect x="506" y="226" width="52" height="18" rx="4" fill="rgba(245,166,35,0.1)" stroke="rgba(245,166,35,0.3)" stroke-width="0.5"/>
-          <text x="532" y="238" text-anchor="middle" font-size="10" fill="#f5a623" font-weight="500" font-family="DM Mono,monospace">Través</text>
-        </g>
-
-        <g style="cursor:pointer" onclick="showVela('largo')">
-          <g transform="translate(158,268)">
-            <ellipse rx="16" ry="7" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(-18)"/>
-            <line x1="-13" y1="-9" x2="13" y2="9" stroke="#3a4558" stroke-width="0.7"/>
-            <line x1="-2" y1="-7" x2="-20" y2="-13" stroke="#3ecf8e" stroke-width="2" stroke-linecap="round"/>
-          </g>
-          <rect x="110" y="285" width="48" height="18" rx="4" fill="rgba(62,207,142,0.1)" stroke="rgba(62,207,142,0.25)" stroke-width="0.5"/>
-          <text x="134" y="297" text-anchor="middle" font-size="10" fill="#3ecf8e" font-weight="500" font-family="DM Mono,monospace">Largo</text>
-          <g transform="translate(482,268)">
-            <ellipse rx="16" ry="7" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(18)"/>
-            <line x1="13" y1="-9" x2="-13" y2="9" stroke="#3a4558" stroke-width="0.7"/>
-            <line x1="2" y1="-7" x2="20" y2="-13" stroke="#3ecf8e" stroke-width="2" stroke-linecap="round"/>
-          </g>
-          <rect x="458" y="285" width="48" height="18" rx="4" fill="rgba(62,207,142,0.1)" stroke="rgba(62,207,142,0.25)" stroke-width="0.5"/>
-          <text x="482" y="297" text-anchor="middle" font-size="10" fill="#3ecf8e" font-weight="500" font-family="DM Mono,monospace">Largo</text>
-        </g>
-
-        <g style="cursor:pointer" onclick="showVela('popa')">
-          <g transform="translate(320,290)">
-            <ellipse rx="11" ry="24" fill="#1e2535" stroke="#3a4558" stroke-width="1"/>
-            <line x1="0" y1="-24" x2="0" y2="24" stroke="#3a4558" stroke-width="0.7"/>
-            <line x1="0" y1="-18" x2="-22" y2="2" stroke="#f06a6a" stroke-width="2" stroke-linecap="round"/>
-            <line x1="0" y1="-8" x2="22" y2="4" stroke="#f06a6a" stroke-width="2" stroke-linecap="round"/>
-          </g>
-          <rect x="292" y="296" width="56" height="18" rx="4" fill="rgba(240,106,106,0.1)" stroke="rgba(240,106,106,0.25)" stroke-width="0.5"/>
-          <text x="320" y="308" text-anchor="middle" font-size="10" fill="#f06a6a" font-weight="500" font-family="DM Mono,monospace">Popa</text>
-        </g>
-
-        <path d="M320 52 L202 128" stroke="#252d40" stroke-width="0.5" stroke-dasharray="3 5"/>
-        <path d="M320 52 L438 128" stroke="#252d40" stroke-width="0.5" stroke-dasharray="3 5"/>
-        <path d="M320 52 L140 218" stroke="#252d40" stroke-width="0.5" stroke-dasharray="2 6"/>
-        <path d="M320 52 L500 218" stroke="#252d40" stroke-width="0.5" stroke-dasharray="2 6"/>
-
-        <text x="320" y="315" text-anchor="middle" font-size="9" fill="#5a6278" font-family="DM Mono,monospace">· toca cada punto de vela ·</text>
+  <div class="vgrid">
+    <div class="vcrd" id="vc-cenida" onclick="selVela('cenida')">
+      <svg viewBox="0 0 70 80" width="70" height="80">
+        <text x="35" y="9" text-anchor="middle" font-size="8" fill="#5a6278" font-family="DM Mono,monospace">↓ viento</text>
+        <ellipse cx="35" cy="44" rx="9" ry="22" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(-22,35,44)"/>
+        <line x1="32" y1="24" x2="16" y2="46" stroke="#4a9eff" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="33" y1="36" x2="20" y2="52" stroke="#4a9eff" stroke-width="1.8" stroke-linecap="round"/>
       </svg>
-
-      <div id="vela-detail">
-        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px">
-          <span id="vd-titulo" style="font-size:14px;font-weight:500"></span>
-          <span id="vd-angulo" style="font-size:11px;color:var(--text3);font-family:var(--mono)"></span>
-        </div>
-        <p id="vd-desc" style="font-size:12px;color:var(--text2);line-height:1.6"></p>
-      </div>
+      <div class="vname" style="color:var(--accent)">Ceñida</div>
+      <div class="vangle">30–45°</div>
     </div>
-
-    <!-- ─── MANIOBRAS ─── -->
-    <div id="panel-maniobras" class="panel">
-      <div class="panel-title">Maniobras</div>
-      <div class="panel-subtitle">virada, trasluchada y rizos</div>
-
-      <div class="card">
-        <div class="card-title"><span class="badge info">virada</span> proa pasa por el viento</div>
-        <svg width="100%" viewBox="0 0 620 150" style="margin-bottom:12px;display:block">
-          <defs>
-            <marker id="am" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
-              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </marker>
-          </defs>
-          <text x="300" y="13" text-anchor="middle" font-size="9" fill="#5a6278" font-family="DM Mono,monospace">↓ VIENTO ↓</text>
-          <g transform="translate(80,88)">
-            <ellipse rx="8" ry="18" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(-28)"/>
-            <line x1="-4" y1="-18" x2="-18" y2="1" stroke="#4a9eff" stroke-width="2" stroke-linecap="round"/>
-          </g>
-          <text x="80" y="122" text-anchor="middle" font-size="9" fill="#4a9eff" font-family="DM Mono,monospace">babor ceñida</text>
-          <path d="M128 88 Q200 28 300 74 Q378 112 438 88" fill="none" stroke="#4a9eff" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#am)"/>
-          <g transform="translate(300,74)">
-            <ellipse rx="8" ry="18" fill="rgba(240,106,106,0.15)" stroke="rgba(240,106,106,0.4)" stroke-width="1"/>
-            <line x1="0" y1="-18" x2="0" y2="18" stroke="#5a6278" stroke-width="0.7"/>
-          </g>
-          <text x="300" y="108" text-anchor="middle" font-size="9" fill="#f06a6a" font-family="DM Mono,monospace">ojo del viento</text>
-          <text x="300" y="120" text-anchor="middle" font-size="8" fill="#5a6278" font-family="DM Mono,monospace">"listos" → "avante"</text>
-          <g transform="translate(498,88)">
-            <ellipse rx="8" ry="18" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(28)"/>
-            <line x1="4" y1="-18" x2="18" y2="1" stroke="#4a9eff" stroke-width="2" stroke-linecap="round"/>
-          </g>
-          <text x="498" y="122" text-anchor="middle" font-size="9" fill="#4a9eff" font-family="DM Mono,monospace">estribor ceñida</text>
-        </svg>
-        <ul class="step-list">
-          <li><strong>"¿Listos para virar?" → "¡Avante!"</strong> — timonel gira caña a sotavento</li>
-          <li>Soltar escota del génova al cruzar la proa</li>
-          <li>Cobrar escota nueva banda, cazar velas</li>
-          <li>Ajustar rumbo cuando la proa ya pasó el viento</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><span class="badge danger">trasluchada</span> popa pasa por el viento — riesgo botavara</div>
-        <svg width="100%" viewBox="0 0 620 150" style="margin-bottom:12px;display:block">
-          <defs>
-            <marker id="am2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
-              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </marker>
-          </defs>
-          <text x="300" y="13" text-anchor="middle" font-size="9" fill="#5a6278" font-family="DM Mono,monospace">↑ VIENTO ↑</text>
-          <g transform="translate(80,78)">
-            <ellipse rx="8" ry="18" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(22)"/>
-            <line x1="-18" y1="-8" x2="2" y2="14" stroke="#3ecf8e" stroke-width="2" stroke-linecap="round"/>
-          </g>
-          <text x="80" y="112" text-anchor="middle" font-size="9" fill="#3ecf8e" font-family="DM Mono,monospace">largo babor</text>
-          <path d="M128 78 Q200 126 300 98 Q378 74 438 78" fill="none" stroke="#f06a6a" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#am2)"/>
-          <g transform="translate(300,98)">
-            <ellipse rx="8" ry="18" fill="rgba(245,166,35,0.12)" stroke="rgba(245,166,35,0.35)" stroke-width="1"/>
-            <line x1="-18" y1="1" x2="18" y2="-1" stroke="#f5a623" stroke-width="2" stroke-linecap="round"/>
-          </g>
-          <text x="300" y="132" text-anchor="middle" font-size="9" fill="#f5a623" font-family="DM Mono,monospace">popa al viento — ¡agacha la cabeza!</text>
-          <g transform="translate(498,78)">
-            <ellipse rx="8" ry="18" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(-22)"/>
-            <line x1="18" y1="-8" x2="-2" y2="14" stroke="#3ecf8e" stroke-width="2" stroke-linecap="round"/>
-          </g>
-          <text x="498" y="112" text-anchor="middle" font-size="9" fill="#3ecf8e" font-family="DM Mono,monospace">largo estribor</text>
-        </svg>
-        <ul class="step-list">
-          <li><strong>"¡Cuidado a la botavara!"</strong> — todos agachan la cabeza</li>
-          <li>Cobrar escota mayor para controlar el volteo</li>
-          <li>Girar caña a barlovento, dejar pasar la popa</li>
-          <li>Largar escota mayor a la nueva banda con control</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><i class="ti ti-minus"></i> Tomar rizos</div>
-        <ul class="step-list">
-          <li>Navegar en ceñida o través antes de tomar rizo</li>
-          <li>Cazar escota mayor, soltar driza ligeramente</li>
-          <li>Enganchar el punto de amura del rizo en el mástil</li>
-          <li>Cobrar la retenida (puja) hasta tensar el gratil</li>
-          <li>Liar el paño sobrante o meter los tomadores</li>
-        </ul>
-      </div>
+    <div class="vcrd" id="vc-traves" onclick="selVela('traves')">
+      <svg viewBox="0 0 70 80" width="70" height="80">
+        <text x="35" y="9" text-anchor="middle" font-size="8" fill="#5a6278" font-family="DM Mono,monospace">↓ viento</text>
+        <ellipse cx="35" cy="50" rx="22" ry="9" fill="#1e2535" stroke="#3a4558" stroke-width="1"/>
+        <line x1="35" y1="48" x2="30" y2="24" stroke="#f5a623" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="44" y1="49" x2="40" y2="30" stroke="#f5a623" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <div class="vname" style="color:var(--amber)">Través</div>
+      <div class="vangle">90°</div>
     </div>
-
-    <!-- ─── PUERTO ─── -->
-    <div id="panel-atracar" class="panel">
-      <div class="panel-title">Puerto</div>
-      <div class="panel-subtitle">atracar, desatracar y fondear</div>
-
-      <div class="card">
-        <div class="card-title"><i class="ti ti-anchor"></i> Atracar en muelle</div>
-        <svg width="100%" viewBox="0 0 620 200" style="margin-bottom:12px;display:block">
-          <defs>
-            <marker id="am3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
-              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </marker>
-          </defs>
-          <rect x="40" y="142" width="560" height="38" rx="4" fill="#1e2535" stroke="#3a4558" stroke-width="1"/>
-          <text x="320" y="165" text-anchor="middle" font-size="10" fill="#5a6278" font-family="DM Mono,monospace">MUELLE / PANTALÁN</text>
-          <g transform="translate(320,112)">
-            <ellipse rx="15" ry="38" fill="rgba(74,158,255,0.08)" stroke="rgba(74,158,255,0.25)" stroke-width="1"/>
-            <text x="0" y="4" text-anchor="middle" font-size="12" fill="#4a9eff" font-family="DM Sans,sans-serif">⚓</text>
-          </g>
-          <line x1="308" y1="76" x2="184" y2="142" stroke="#f5a623" stroke-width="1.2" stroke-dasharray="4 3"/>
-          <line x1="332" y1="76" x2="456" y2="142" stroke="#f5a623" stroke-width="1.2" stroke-dasharray="4 3"/>
-          <line x1="306" y1="150" x2="204" y2="142" stroke="#f5a623" stroke-width="1.2" stroke-dasharray="4 3"/>
-          <line x1="334" y1="150" x2="436" y2="142" stroke="#f5a623" stroke-width="1.2" stroke-dasharray="4 3"/>
-          <circle cx="184" cy="142" r="3" fill="#f5a623"/><circle cx="456" cy="142" r="3" fill="#f5a623"/>
-          <circle cx="204" cy="142" r="3" fill="#f5a623"/><circle cx="436" cy="142" r="3" fill="#f5a623"/>
-          <ellipse cx="308" cy="142" rx="3.5" ry="5.5" fill="rgba(245,166,35,0.15)" stroke="rgba(245,166,35,0.4)" stroke-width="0.5"/>
-          <ellipse cx="332" cy="142" rx="3.5" ry="5.5" fill="rgba(245,166,35,0.15)" stroke="rgba(245,166,35,0.4)" stroke-width="0.5"/>
-          <path d="M320 26 L320 70" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#am3)"/>
-          <text x="334" y="50" font-size="8" fill="var(--accent)" font-family="DM Mono,monospace">aproximación lenta</text>
-        </svg>
-        <div class="grid-2" style="margin-top:4px">
-          <div class="grid-info"><div class="label">defensas</div><div class="val">poner antes de entrar</div></div>
-          <div class="grid-info"><div class="label">velocidad</div><div class="val">paso de peatón o menos</div></div>
-          <div class="grid-info"><div class="label">velas</div><div class="val">arriadas en puerto</div></div>
-          <div class="grid-info"><div class="label">amarras</div><div class="val">proa, popa y esprínes</div></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><i class="ti ti-logout"></i> Desatracar</div>
-        <ul class="step-list">
-          <li>Motor en marcha mínimo 5 min antes. Velas preparadas pero no izadas.</li>
-          <li>Conservar el esprín de proa para pivotar. Soltar popa y esprín de popa.</li>
-          <li>Motor atrás suave — sacar la popa del muelle.</li>
-          <li>Soltar último esprín, motor avante, gobierno firme.</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><i class="ti ti-circle-dot"></i> Fondear</div>
-        <ul class="step-list">
-          <li>Arena o fango, 3–10 m de profundidad. Sin otros barcos en el arco de borneo.</li>
-          <li>Arribar proa al viento hasta parar completamente.</li>
-          <li>Dejar caer el ancla — no tirarla. Cadena cae mientras el barco retrocede.</li>
-          <li>Cadena: mínimo 3× profundidad, ideal 5–7× con viento. Tensar para que muerda.</li>
-        </ul>
-      </div>
+    <div class="vcrd" id="vc-largo" onclick="selVela('largo')">
+      <svg viewBox="0 0 70 80" width="70" height="80">
+        <text x="35" y="9" text-anchor="middle" font-size="8" fill="#5a6278" font-family="DM Mono,monospace">↓ viento</text>
+        <ellipse cx="38" cy="52" rx="19" ry="8" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(14,38,52)"/>
+        <line x1="40" y1="44" x2="16" y2="32" stroke="#3ecf8e" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="46" y1="48" x2="26" y2="38" stroke="#3ecf8e" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <div class="vname" style="color:var(--green)">Largo</div>
+      <div class="vangle">120–150°</div>
     </div>
-
-    <!-- ─── NOCHE ─── -->
-    <div id="panel-noche" class="panel">
-      <div class="panel-title">Navegación nocturna</div>
-      <div class="panel-subtitle">luces de navegación y guardias</div>
-
-      <div class="card">
-        <div class="card-title"><i class="ti ti-bulb"></i> Luces de navegación</div>
-        <svg width="100%" viewBox="0 0 620 280" style="margin-bottom:4px;display:block">
-          <ellipse cx="310" cy="140" rx="19" ry="52" fill="#1e2535" stroke="#3a4558" stroke-width="1.5"/>
-          <path d="M310 140 L172 58 A152 152 0 0 0 158 222 Z" fill="rgba(240,106,106,0.08)" stroke="none"/>
-          <path d="M310 140 L172 58" stroke="rgba(240,106,106,0.25)" stroke-width="0.5" stroke-dasharray="4 4"/>
-          <path d="M310 140 L158 222" stroke="rgba(240,106,106,0.25)" stroke-width="0.5" stroke-dasharray="4 4"/>
-          <circle cx="289" cy="89" r="6" fill="#f06a6a"/>
-          <text x="130" y="142" text-anchor="middle" font-size="11" fill="#f06a6a" font-weight="500" font-family="DM Mono,monospace">BABOR</text>
-          <text x="130" y="155" text-anchor="middle" font-size="9" fill="#f06a6a" font-family="DM Mono,monospace">rojo · 112.5°</text>
-          <path d="M310 140 L448 58 A152 152 0 0 1 462 222 Z" fill="rgba(62,207,142,0.06)" stroke="none"/>
-          <path d="M310 140 L448 58" stroke="rgba(62,207,142,0.2)" stroke-width="0.5" stroke-dasharray="4 4"/>
-          <path d="M310 140 L462 222" stroke="rgba(62,207,142,0.2)" stroke-width="0.5" stroke-dasharray="4 4"/>
-          <circle cx="331" cy="89" r="6" fill="#3ecf8e"/>
-          <text x="490" y="142" text-anchor="middle" font-size="11" fill="#3ecf8e" font-weight="500" font-family="DM Mono,monospace">ESTRIBOR</text>
-          <text x="490" y="155" text-anchor="middle" font-size="9" fill="#3ecf8e" font-family="DM Mono,monospace">verde · 112.5°</text>
-          <circle cx="310" cy="192" r="6" fill="#e8eaf2" stroke="#5a6278" stroke-width="0.5"/>
-          <text x="310" y="242" text-anchor="middle" font-size="9" fill="#5a6278" font-family="DM Mono,monospace">blanca popa · 135°</text>
-          <circle cx="310" cy="82" r="5" fill="#e8eaf2" stroke="#5a6278" stroke-width="0.5"/>
-          <text x="310" y="70" text-anchor="middle" font-size="9" fill="#5a6278" font-family="DM Mono,monospace">tope · 225°</text>
-          <text x="310" y="143" text-anchor="middle" font-size="8" fill="#3a4558" font-family="DM Mono,monospace">↑ proa</text>
-        </svg>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><i class="ti ti-eye"></i> Qué ves → qué significa</div>
-        <div class="light-row">
-          <div class="light-dot" style="background:#f06a6a"></div><div class="light-dot" style="background:#e8eaf2;border:1px solid #555"></div>
-          <div><h4>Rojo + blanco tope</h4><p>Barco de frente o ligeramente a su estribor. Cedes el paso si ves su verde.</p></div>
-        </div>
-        <div class="light-row">
-          <div class="light-dot" style="background:#3ecf8e"></div><div class="light-dot" style="background:#e8eaf2;border:1px solid #555"></div>
-          <div><h4>Verde + blanco tope</h4><p>Barco de frente, ligeramente a su babor. Tienes preferencia — pero vigila siempre.</p></div>
-        </div>
-        <div class="light-row">
-          <div class="light-dot" style="background:#f06a6a"></div><div class="light-dot" style="background:#3ecf8e"></div><div class="light-dot" style="background:#e8eaf2;border:1px solid #555"></div>
-          <div><h4>Rojo + verde + blanco tope</h4><p>Barco de frente directo. Vira a estribor para cruzar a su popa.</p></div>
-        </div>
-        <div class="light-row">
-          <div class="light-dot" style="background:#e8eaf2;border:1px solid #555"></div>
-          <div><h4>Solo blanco (luz popa)</h4><p>Barco alejándose. Sin peligro inmediato, vigila que no vire.</p></div>
-        </div>
-        <div class="light-row">
-          <div class="light-dot" style="background:#e8eaf2;border:1px solid #555"></div><div class="light-dot" style="background:#e8eaf2;border:1px solid #555"></div>
-          <div><h4>Dos blancos</h4><p>Barco fondeado o con redes. Mantén distancia generosa.</p></div>
-        </div>
-      </div>
-
-      <div class="card warning">
-        <div class="card-title"><i class="ti ti-moon"></i> Guardias nocturnas</div>
-        <ul class="bullet-list">
-          <li>Acostumbrar la vista a la oscuridad: 20 min mínimo sin luz blanca</li>
-          <li>Nunca usar luz blanca en cubierta — arruina la visión nocturna</li>
-          <li>Vigilancia del horizonte cada 5–10 min</li>
-          <li>Velocidad reducida con tráfico o visibilidad limitada</li>
-          <li>Arnés y línea de seguridad en cubierta siempre</li>
-          <li>Al menos dos personas despiertas en guardias largas</li>
-        </ul>
-      </div>
+    <div class="vcrd" id="vc-popa" onclick="selVela('popa')">
+      <svg viewBox="0 0 70 80" width="70" height="80">
+        <text x="35" y="9" text-anchor="middle" font-size="8" fill="#5a6278" font-family="DM Mono,monospace">↓ viento</text>
+        <ellipse cx="35" cy="50" rx="11" ry="26" fill="#1e2535" stroke="#3a4558" stroke-width="1"/>
+        <line x1="35" y1="28" x2="12" y2="46" stroke="#f06a6a" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="35" y1="40" x2="58" y2="54" stroke="#f06a6a" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <div class="vname" style="color:var(--red)">Popa</div>
+      <div class="vangle">180°</div>
     </div>
+  </div>
 
-    <!-- ─── RADIO ─── -->
-    <div id="panel-radio" class="panel">
-      <div class="panel-title">Radio VHF</div>
-      <div class="panel-subtitle">canales, emergencias y contactos Sicilia / Egadi</div>
-
-      <div class="card danger">
-        <div class="card-title"><i class="ti ti-alert-triangle"></i> MAYDAY — vida en peligro</div>
-        <div class="mono-block">
-          <span class="hi">MAYDAY MAYDAY MAYDAY</span><br>
-          Aquí [nombre del barco] [nombre] [nombre]<br>
-          MAYDAY [nombre del barco]<br>
-          Posición: <span class="hi">[lat/lon o referencia]</span><br>
-          Naturaleza: <span class="hi">[fuego / hundimiento / MOB…]</span><br>
-          Personas a bordo: <span class="hi">[N]</span><br>
-          Cambio
-        </div>
-        <p style="font-size:11px;color:var(--red);margin-top:8px;font-family:var(--mono)">Canal 16 · 156.8 MHz · repite cada 2 min hasta respuesta</p>
-      </div>
-
-      <div class="card warning">
-        <div class="card-title"><i class="ti ti-alert-circle"></i> PAN PAN — urgencia (sin peligro inmediato de vida)</div>
-        <div class="mono-block">
-          <span class="hi-amber">PAN PAN PAN PAN PAN PAN</span><br>
-          Aquí [nombre del barco]<br>
-          Posición: [posición]<br>
-          [descripción del problema — avería, persona enferma…]<br>
-          Solicito asistencia · Cambio
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><i class="ti ti-radio"></i> Canales clave</div>
-        <div class="rule-item">
-          <div class="freq">16</div>
-          <div class="rule-text"><h4>Emergencias y llamada</h4><p>Guardia permanente obligatoria. Guardia Costiera italiana.</p></div>
-        </div>
-        <div class="rule-item">
-          <div class="freq">70</div>
-          <div class="rule-text"><h4>DSC — llamada digital</h4><p>Distress automático si el radio VHF tiene DSC activado con MMSI.</p></div>
-        </div>
-        <div class="rule-item">
-          <div class="freq">09</div>
-          <div class="rule-text"><h4>Marina / puerto</h4><p>Comunicación con puertos y marinas en Italia y Sicilia.</p></div>
-        </div>
-        <div class="rule-item">
-          <div class="freq">67</div>
-          <div class="rule-text"><h4>SAR Guardia Costiera</h4><p>Coordinación SAR Italia.</p></div>
-        </div>
-      </div>
-
-      <div class="card info">
-        <div class="card-title"><i class="ti ti-phone"></i> Contactos Sicilia / Isole Egadi</div>
-        <div class="rule-item">
-          <div class="rule-icon info"><i class="ti ti-phone"></i></div>
-          <div class="rule-text"><h4>Guardia Costiera Trapani</h4><p>+39 0923 545111 · Zona Egadi (Favignana, Levanzo, Marettimo)</p></div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon info"><i class="ti ti-phone"></i></div>
-          <div class="rule-text"><h4>MRCC Roma — SAR nacional</h4><p>+39 06 59084400 · Coordinación SAR todo el Mediterráneo italiano</p></div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon info"><i class="ti ti-phone"></i></div>
-          <div class="rule-text"><h4>Emergencias generales Italia</h4><p>112 · funciona desde móvil si hay cobertura</p></div>
-        </div>
-      </div>
+  <div id="vela-detail" style="display:none;background:var(--bg2);border:1px solid var(--line2);border-radius:var(--r);padding:16px;margin-bottom:12px">
+    <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:8px">
+      <span id="vd-t" style="font-size:17px;font-weight:500"></span>
+      <span id="vd-a" style="font-size:12px;color:var(--text3);font-family:var(--mono)"></span>
     </div>
+    <p id="vd-d" style="font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:8px"></p>
+    <p id="vd-tip" style="font-size:13px;color:var(--text3);font-family:var(--mono)"></p>
+  </div>
 
-    <!-- ─── SEGURIDAD ─── -->
-    <div id="panel-seguridad" class="panel">
-      <div class="panel-title">Seguridad</div>
-      <div class="panel-subtitle">emergencias, procedimientos y lista previa a salida</div>
-
-      <div class="card danger">
-        <div class="card-title"><i class="ti ti-user-off"></i> Hombre al agua (MOB)</div>
-        <ul class="bullet-list">
-          <li><strong style="color:var(--text)">Inmediato:</strong> gritar "¡Hombre al agua!" + pulsar MOB en GPS</li>
-          <li>Lanzar aro salvavidas con luz y cabo inmediatamente</li>
-          <li>Designar vigía que NO quite ojo de la persona</li>
-          <li>Método Boutakov (vela): virar, ceñir 60°, arribar sobre la persona</li>
-          <li>Motor: virar hacia el lado de caída, acercarse desde sotavento</li>
-          <li>Canal 16 si no recuperas en pocos minutos</li>
-        </ul>
-      </div>
-
-      <div class="card danger">
-        <div class="card-title"><i class="ti ti-flame"></i> Fuego a bordo</div>
-        <ul class="bullet-list">
-          <li>Gritar "¡Fuego!" — tripulación en cubierta</li>
-          <li>Cerrar válvulas de gas y combustible</li>
-          <li>Orientar el barco: viento aleja llamas de la eslora</li>
-          <li>Extintor CO₂ para fuego eléctrico/motor — nunca agua</li>
-          <li>Si no se controla en 60 segundos: preparar abandono, Canal 16</li>
-        </ul>
-      </div>
-
-      <div class="card warning">
-        <div class="card-title"><i class="ti ti-waves"></i> Vía de agua</div>
-        <ul class="bullet-list">
-          <li>Localizar origen — manga, quilla, bocas de mar</li>
-          <li>Tapar con cuña de madera, trapo o epoxy marino</li>
-          <li>Bomba de achique eléctrica + manual al máximo</li>
-          <li>Si supera capacidad: Canal 16 + preparar abandono</li>
-        </ul>
-      </div>
-
-      <div class="card info">
-        <div class="card-title"><i class="ti ti-checklist"></i> Lista previa a salida</div>
-        <ul class="bullet-list">
-          <li>Parte meteorológico consultado (Meteomar, Windy, Navionics)</li>
-          <li>Plan de navegación dejado en tierra</li>
-          <li>Chalecos salvavidas accesibles y en buen estado</li>
-          <li>Arneses y líneas de seguridad preparados</li>
-          <li>Bengalas en fecha y balsa salvavidas revisada</li>
-          <li>Radio VHF cargado, canal 16 en guardia</li>
-          <li>Cartas actualizadas para la zona</li>
-          <li>Combustible suficiente + reserva para volver a motor</li>
-        </ul>
-      </div>
-
-      <div class="card warning">
-        <div class="card-title"><i class="ti ti-cloud-storm"></i> Temporal improvisto</div>
-        <ul class="bullet-list">
-          <li>Tomar rizos antes de que parezca necesario</li>
-          <li>Bajar o enrollar parcialmente el génova</li>
-          <li>Todos con arnés y enganchados al pasamano</li>
-          <li>Buscar abrigo o fondear si la situación empeora</li>
-          <li>Canal 16 en escucha permanente</li>
-        </ul>
-      </div>
+  <div class="card">
+    <div class="ctitle"><i class="ti ti-info-circle"></i>Amura</div>
+    <div class="ri">
+      <div class="ricon info"><i class="ti ti-arrow-right"></i></div>
+      <div class="rt"><h4>Amura de estribor</h4><p>El viento entra por estribor (derecha). Tiene preferencia frente a babor en las reglas de cruce.</p></div>
     </div>
-
-    <!-- ─── PAREJA ─── -->
-    <div id="panel-pareja" class="panel">
-      <div class="panel-title">Código de conducta</div>
-      <div class="panel-subtitle">pareja navegando junta por primera vez</div>
-
-      <div class="highlight yellow">
-        <h3>A bordo hay un capitán. Fuera del barco, sois pareja.</h3>
-        <p>Esta distinción lo resuelve casi todo. Cuando estás en maniobra, en emergencia o con viento, el que tiene más experiencia manda sin debate. No es jerarquía emocional — es protocolo de seguridad. En tierra, en el ancladero, tomando vino: volvéis a ser iguales.</p>
-      </div>
-
-      <div class="sdiv"><i class="ti ti-message-circle"></i> comunicación a bordo</div>
-
-      <div class="card">
-        <div class="rule-item">
-          <div class="rule-icon info"><i class="ti ti-volume"></i></div>
-          <div class="rule-text">
-            <h4>Hablar claro y alto, sin ironía <span class="badge info">obligatorio</span></h4>
-            <p>El viento distorsiona. Las instrucciones son cortas, directas, sin doble sentido. "Caza la escota" — no "¿no crees que deberías cazar un poco?". Fuera del barco podéis hablar como os dé la gana.</p>
-          </div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon info"><i class="ti ti-repeat"></i></div>
-          <div class="rule-text">
-            <h4>Confirmar siempre la orden recibida <span class="badge info">obligatorio</span></h4>
-            <p>"¿Cazas la escota?" → "Cazando." Este eco evita el 80% de los malentendidos. Si no has entendido, preguntas. Nunca finjas que has oído.</p>
-          </div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon warning"><i class="ti ti-mood-sad"></i></div>
-          <div class="rule-text">
-            <h4>Decir cuándo estás asustado/a — sin vergüenza <span class="badge warning">crítico</span></h4>
-            <p>El miedo no expresado se convierte en tensión y luego en pelea. "Esto me supera" es información útil para el capitán, no es queja. Es parte de la seguridad.</p>
-          </div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon danger"><i class="ti ti-ban"></i></div>
-          <div class="rule-text">
-            <h4>Nada de reproches en plena maniobra <span class="badge danger">prohibido</span></h4>
-            <p>"Siempre haces lo mismo" durante una virada puede provocar una emergencia real. Las críticas se guardan para cuando el barco está quieto y fondado. En maniobra: solo lo que sirva para resolver el problema ahora.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="sdiv"><i class="ti ti-users"></i> roles y reparto</div>
-
-      <div class="card">
-        <div class="rule-item">
-          <div class="rule-icon neutral"><i class="ti ti-list-check"></i></div>
-          <div class="rule-text">
-            <h4>Acordar roles antes de salir, no durante</h4>
-            <p>¿Quién va al timón en la salida del puerto? ¿Quién maneja las escotas? ¿Quién vigila las cartas? Repartidlo en tierra. Cambiarlo en maniobra crea confusión.</p>
-          </div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon neutral"><i class="ti ti-school"></i></div>
-          <div class="rule-text">
-            <h4>El que aprende pregunta antes, no durante</h4>
-            <p>"¿Qué haré yo cuando viréis?" es una pregunta excelente en el ancladero. En maniobra es demasiado tarde.</p>
-          </div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon neutral"><i class="ti ti-chef-hat"></i></div>
-          <div class="rule-text">
-            <h4>Las tareas del barco no son "de uno"</h4>
-            <p>Cocina, achique, velar, limpiar: todo se reparte. Acordadlo antes de zarpar — el resentimiento silencioso destroza las travesías largas.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="sdiv"><i class="ti ti-heart"></i> convivencia</div>
-
-      <div class="card">
-        <div class="rule-item">
-          <div class="rule-icon neutral"><i class="ti ti-clock"></i></div>
-          <div class="rule-text">
-            <h4>Respetar el espacio de agotamiento</h4>
-            <p>Después de una guardia nocturna o maniobra difícil, la persona puede estar irritable. No es el momento de resolver conflictos de pareja. "Estoy cansado/a" es una señal, no un ataque.</p>
-          </div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon neutral"><i class="ti ti-sun"></i></div>
-          <div class="rule-text">
-            <h4>Celebrar lo bueno en voz alta</h4>
-            <p>"Eso ha salido bien" después de una virada limpia hace más por la convivencia a bordo que cualquier protocolo.</p>
-          </div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon neutral"><i class="ti ti-flag"></i></div>
-          <div class="rule-text">
-            <h4>Derecho a veto sin explicación</h4>
-            <p>Cualquiera puede decir "hoy no me siento bien para esto" — mal tiempo, cansancio, sensación de riesgo — y el plan cambia sin drama.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="sdiv"><i class="ti ti-alert-triangle"></i> cuando la tensión sube</div>
-
-      <div class="highlight green">
-        <h3>Protocolo de desescalada</h3>
-        <ul class="bullet-list">
-          <li>Nombrar el estado: "Estoy tensionado/a, no contigo, con la situación"</li>
-          <li>Resolver primero lo náutico, hablar lo personal después</li>
-          <li>Si hay bronca en marcha: fondear o atracar antes de continuar</li>
-          <li>Regla de las 24h: conflictos de pareja se hablan en tierra</li>
-          <li>Nunca abandonar el barco de la discusión cuando hay viento</li>
-        </ul>
-      </div>
-
-      <button class="panic-btn" onclick="togglePanic()" id="panic-btn">
-        <i class="ti ti-first-aid-kit"></i>
-        Nos estamos peleando a bordo — ¿qué hacemos ahora?
-      </button>
-      <div class="panic-response" id="panic-resp">
-        <div class="panic-step">
-          <span class="panic-num">01</span>
-          <p><strong>Parar la discusión ahora mismo.</strong> Una sola frase: "Paramos. Resolvemos primero el barco."</p>
-        </div>
-        <div class="panic-step">
-          <span class="panic-num">02</span>
-          <p><strong>Estabilizar la navegación.</strong> Si estáis en maniobra o con viento, la pelea espera. El barco no.</p>
-        </div>
-        <div class="panic-step">
-          <span class="panic-num">03</span>
-          <p><strong>Fondear o atracar si es posible.</strong> La discusión no se resuelve bien con olas y viento.</p>
-        </div>
-        <div class="panic-step">
-          <span class="panic-num">04</span>
-          <p><strong>Silencio activo: 20 minutos.</strong> Sin hablar del conflicto. Haced algo físico: preparar el ancla, hacer café.</p>
-        </div>
-        <div class="panic-step">
-          <span class="panic-num">05</span>
-          <p><strong>Hablar desde el "yo".</strong> "Yo me he sentido..." — no "tú siempre...". Estáis en el mismo barco, literalmente.</p>
-        </div>
-      </div>
-
-      <div style="margin-top:20px;padding:14px 16px;border-radius:var(--radius);background:var(--bg2);border:1px solid var(--line);text-align:center">
-        <p style="font-size:12px;color:var(--text2);line-height:1.7">
-          La mayoría de parejas que navegan juntas dicen que el barco les enseñó a comunicarse mejor que cualquier otra cosa que hayan hecho juntas.
-        </p>
-        <p style="font-size:11px;color:var(--text3);margin-top:4px;font-family:var(--mono)">clave: separar bien cuándo sois tripulación y cuándo sois pareja</p>
-      </div>
+    <div class="ri">
+      <div class="ricon neu"><i class="ti ti-arrow-left"></i></div>
+      <div class="rt"><h4>Amura de babor</h4><p>El viento entra por babor (izquierda). Cede el paso a estribor.</p></div>
     </div>
+  </div>
+</div>
 
+<!-- MANIOBRAS -->
+<div id="p-maniobras" class="panel">
+  <div class="ptitle">Maniobras</div>
+  <div class="psub">virada, trasluchada y rizos</div>
 
-    <!-- ─── EGADI ─── -->
-    <div id="panel-egadi" class="panel">
-      <div class="panel-title">Isole Egadi</div>
-      <div class="panel-subtitle">puertos, fondeos y zona de navegación</div>
+  <div class="card">
+    <div class="ctitle"><span class="bdg info">virada</span> proa pasa por el viento</div>
+    <svg class="msvg" viewBox="0 0 360 130">
+      <defs><marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+      <text x="180" y="12" text-anchor="middle" font-size="9" fill="#5a6278" font-family="DM Mono,monospace">↓ VIENTO ↓</text>
+      <g transform="translate(48,80)">
+        <ellipse rx="8" ry="18" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(-25)"/>
+        <line x1="-4" y1="-18" x2="-18" y2="1" stroke="#4a9eff" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <text x="48" y="112" text-anchor="middle" font-size="9" fill="#4a9eff" font-family="DM Mono,monospace">babor ceñida</text>
+      <path d="M76 80 Q128 28 180 68 Q222 100 264 80" fill="none" stroke="#4a9eff" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#a1)"/>
+      <g transform="translate(180,68)">
+        <ellipse rx="8" ry="18" fill="rgba(240,106,106,0.15)" stroke="rgba(240,106,106,0.4)" stroke-width="1"/>
+      </g>
+      <text x="180" y="100" text-anchor="middle" font-size="9" fill="#f06a6a" font-family="DM Mono,monospace">ojo del viento</text>
+      <text x="180" y="112" text-anchor="middle" font-size="8" fill="#5a6278" font-family="DM Mono,monospace">"listos" → "avante"</text>
+      <g transform="translate(300,80)">
+        <ellipse rx="8" ry="18" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(25)"/>
+        <line x1="4" y1="-18" x2="18" y2="1" stroke="#4a9eff" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <text x="300" y="112" text-anchor="middle" font-size="9" fill="#4a9eff" font-family="DM Mono,monospace">estribor ceñida</text>
+    </svg>
+    <ul class="slist">
+      <li><strong>"¿Listos para virar?" → "¡Avante!"</strong> — timonel gira caña a sotavento</li>
+      <li>Soltar escota del génova al cruzar la proa</li>
+      <li>Cobrar escota nueva banda rápidamente</li>
+      <li>Ajustar rumbo cuando la proa ya pasó el viento</li>
+    </ul>
+  </div>
 
-      <div class="card info">
-        <div class="card-title"><i class="ti ti-map-pin"></i> Las tres islas</div>
-        <div class="rule-item">
-          <div class="rule-icon info"><i class="ti ti-anchor"></i></div>
-          <div class="rule-text">
-            <h4>Favignana</h4>
-            <p>La mayor. Puerto principal con marina y servicios. Fondeos en Cala Azzurra (SE) y Cala Rossa (N). Mucho tráfico en verano — llegar antes de las 11h para conseguir sitio.</p>
-          </div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon neutral"><i class="ti ti-anchor"></i></div>
-          <div class="rule-text">
-            <h4>Levanzo</h4>
-            <p>La más pequeña. Puerto pequeño con pocos amarres para visitantes. Buen fondeo en la bahía principal con fondo de arena a 6–10 m. Tranquila, sin servicios.</p>
-          </div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon neutral"><i class="ti ti-anchor"></i></div>
-          <div class="rule-text">
-            <h4>Marettimo</h4>
-            <p>La más alejada y salvaje. Puerto pequeño. Fondeos en Cala Bianca (N) y Cala Manione (S). Aguas de cristal, pocas boyas de amarre. Requiere motor en calmas.</p>
-          </div>
-        </div>
-      </div>
+  <div class="card">
+    <div class="ctitle"><span class="bdg danger">trasluchada</span> popa pasa por el viento — ¡botavara!</div>
+    <svg class="msvg" viewBox="0 0 360 130">
+      <defs><marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+      <text x="180" y="12" text-anchor="middle" font-size="9" fill="#5a6278" font-family="DM Mono,monospace">↑ VIENTO ↑</text>
+      <g transform="translate(48,76)">
+        <ellipse rx="8" ry="18" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(22)"/>
+        <line x1="-18" y1="-7" x2="2" y2="14" stroke="#3ecf8e" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <text x="48" y="108" text-anchor="middle" font-size="9" fill="#3ecf8e" font-family="DM Mono,monospace">largo babor</text>
+      <path d="M76 76 Q128 118 180 96 Q228 74 264 76" fill="none" stroke="#f06a6a" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#a2)"/>
+      <g transform="translate(180,96)">
+        <ellipse rx="8" ry="18" fill="rgba(245,166,35,0.15)" stroke="rgba(245,166,35,0.4)" stroke-width="1"/>
+        <line x1="-18" y1="1" x2="18" y2="-1" stroke="#f5a623" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <text x="180" y="126" text-anchor="middle" font-size="8" fill="#f5a623" font-family="DM Mono,monospace">¡agacha la cabeza!</text>
+      <g transform="translate(300,76)">
+        <ellipse rx="8" ry="18" fill="#1e2535" stroke="#3a4558" stroke-width="1" transform="rotate(-22)"/>
+        <line x1="18" y1="-7" x2="-2" y2="14" stroke="#3ecf8e" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <text x="300" y="108" text-anchor="middle" font-size="9" fill="#3ecf8e" font-family="DM Mono,monospace">largo estribor</text>
+    </svg>
+    <ul class="slist">
+      <li><strong>"¡Cuidado a la botavara!"</strong> — todos agachan la cabeza</li>
+      <li>Cobrar escota mayor para controlar el volteo</li>
+      <li>Girar caña a barlovento, dejar pasar la popa</li>
+      <li>Largar escota mayor a nueva banda con control</li>
+    </ul>
+  </div>
 
-      <div class="card">
-        <div class="card-title"><i class="ti ti-wind"></i> Vientos locales</div>
-        <div class="rule-item">
-          <div class="rule-icon warning"><i class="ti ti-arrow-up"></i></div>
-          <div class="rule-text">
-            <h4>Tramontana (N)</h4>
-            <p>Viento seco del norte. Puede alcanzar F6–7. Racheado entre las islas. Fondeos del sur quedan abrigados. Vigilar si está anunciado.</p>
-          </div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon warning"><i class="ti ti-arrow-down-left"></i></div>
-          <div class="rule-text">
-            <h4>Libeccio (SO)</h4>
-            <p>El más peligroso en la zona. Marejada corta y tendida desde el Atlántico. Puede subir rápido a F7–8. Si se anuncia Libeccio, buscar abrigo inmediatamente.</p>
-          </div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon neutral"><i class="ti ti-arrow-down"></i></div>
-          <div class="rule-text">
-            <h4>Scirocco (SE)</h4>
-            <p>Viento cálido y húmedo del Sahara. Reduce visibilidad. Mar larga y tendida. Los fondeos del norte quedan abrigados.</p>
-          </div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon neutral"><i class="ti ti-sun"></i></div>
-          <div class="rule-text">
-            <h4>Brisa termal (verano)</h4>
-            <p>Maestral de tarde (NO) típico en verano. Sale hacia las 11–12h, cesa al atardecer. Navegación diurna muy agradable en F3–4.</p>
-          </div>
-        </div>
-      </div>
+  <div class="card">
+    <div class="ctitle"><i class="ti ti-minus"></i>Tomar rizos</div>
+    <ul class="slist">
+      <li>Navegar en ceñida o través antes de tomar rizo</li>
+      <li>Cazar escota mayor, soltar driza ligeramente</li>
+      <li>Enganchar punto de amura del rizo en el mástil</li>
+      <li>Cobrar la retenida (puja) hasta tensar el gratil</li>
+      <li>Liar el paño sobrante o meter los tomadores</li>
+    </ul>
+  </div>
+</div>
 
-      <div class="card warning">
-        <div class="card-title"><i class="ti ti-alert-triangle"></i> Corrientes y peligros</div>
-        <ul class="bullet-list">
-          <li>Corriente general hacia el NE entre las islas (0.5–1 kn)</li>
-          <li>Canal entre Favignana y Levanzo: corrientes racheadas con viento fuerte</li>
-          <li>Bajos al S de Marettimo — navegar a más de 0.5 mn de la costa</li>
-          <li>Zona AMP (Área Marina Protegida) — velocidad máx 5 nudos, fondeo prohibido en zonas marcadas</li>
-          <li>Tráfico de ferries Trapani–Egadi: cruzar su línea con precaución</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><i class="ti ti-clock"></i> Travesías desde Trapani</div>
-        <div class="grid-2">
-          <div class="grid-info"><div class="label">Trapani → Favignana</div><div class="val">17 mn · 3–4h a 5 kn</div></div>
-          <div class="grid-info"><div class="label">Trapani → Levanzo</div><div class="val">15 mn · 2.5–3h</div></div>
-          <div class="grid-info"><div class="label">Trapani → Marettimo</div><div class="val">35 mn · 6–7h</div></div>
-          <div class="grid-info"><div class="label">Favignana → Marettimo</div><div class="val">20 mn · 4h</div></div>
-        </div>
-      </div>
-
-      <div class="card info">
-        <div class="card-title"><i class="ti ti-phone"></i> Servicios en la zona</div>
-        <ul class="bullet-list">
-          <li>Gasoil y agua: Favignana (marina) y Marettimo (puerto)</li>
-          <li>Supermercado: Favignana pueblo. Levanzo y Marettimo solo tiendas pequeñas</li>
-          <li>Médico: Favignana. Marettimo tiene puesto de primeros auxilios verano</li>
-          <li>Mecánico náutico: solo en Trapani — planificar con antelación</li>
-          <li>Boyas amarre AMP: se pagan in situ, reservar con antelación en verano</li>
-        </ul>
-      </div>
+<!-- PUERTO -->
+<div id="p-puerto" class="panel">
+  <div class="ptitle">Puerto</div>
+  <div class="psub">atracar, desatracar y fondear</div>
+  <div class="card">
+    <div class="ctitle"><i class="ti ti-anchor"></i>Atracar en muelle</div>
+    <svg class="msvg" viewBox="0 0 360 180">
+      <defs><marker id="a3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+      <rect x="20" y="130" width="320" height="34" rx="4" fill="#1e2535" stroke="#3a4558" stroke-width="1"/>
+      <text x="180" y="150" text-anchor="middle" font-size="10" fill="#5a6278" font-family="DM Mono,monospace">MUELLE / PANTALÁN</text>
+      <g transform="translate(180,100)"><ellipse rx="14" ry="36" fill="rgba(74,158,255,0.08)" stroke="rgba(74,158,255,0.25)" stroke-width="1"/><text x="0" y="5" text-anchor="middle" font-size="14" fill="#4a9eff">⚓</text></g>
+      <line x1="168" y1="66" x2="100" y2="130" stroke="#f5a623" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <line x1="192" y1="66" x2="260" y2="130" stroke="#f5a623" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <line x1="168" y1="134" x2="112" y2="130" stroke="#f5a623" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <line x1="192" y1="134" x2="248" y2="130" stroke="#f5a623" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <circle cx="100" cy="130" r="3" fill="#f5a623"/><circle cx="260" cy="130" r="3" fill="#f5a623"/>
+      <circle cx="112" cy="130" r="3" fill="#f5a623"/><circle cx="248" cy="130" r="3" fill="#f5a623"/>
+      <ellipse cx="170" cy="130" rx="3" ry="5" fill="rgba(245,166,35,0.2)" stroke="rgba(245,166,35,0.5)" stroke-width="0.5"/>
+      <ellipse cx="190" cy="130" rx="3" ry="5" fill="rgba(245,166,35,0.2)" stroke="rgba(245,166,35,0.5)" stroke-width="0.5"/>
+      <path d="M180 18 L180 60" stroke="#4a9eff" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#a3)"/>
+      <text x="196" y="42" font-size="9" fill="#4a9eff" font-family="DM Mono,monospace">aprox. lenta</text>
+    </svg>
+    <div class="g2" style="margin-top:8px">
+      <div class="ginfo"><div class="lbl">defensas</div><div class="val">poner antes de entrar</div></div>
+      <div class="ginfo"><div class="lbl">velocidad</div><div class="val">paso de peatón</div></div>
+      <div class="ginfo"><div class="lbl">velas</div><div class="val">arriadas en puerto</div></div>
+      <div class="ginfo"><div class="lbl">amarras</div><div class="val">proa, popa, esprínes</div></div>
     </div>
+  </div>
+  <div class="card">
+    <div class="ctitle"><i class="ti ti-logout"></i>Desatracar</div>
+    <ul class="slist">
+      <li>Motor en marcha 5 min antes. Velas preparadas pero no izadas.</li>
+      <li>Conservar esprín de proa para pivotar. Soltar popa y esprín de popa.</li>
+      <li>Motor atrás suave — sacar la popa del muelle.</li>
+      <li>Soltar último esprín, motor avante, gobierno firme.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="ctitle"><i class="ti ti-circle-dot"></i>Fondear</div>
+    <ul class="slist">
+      <li>Arena o fango, 3–10 m. Sin otros barcos en el arco de borneo.</li>
+      <li>Arribar proa al viento hasta parar completamente.</li>
+      <li>Dejar caer el ancla despacio — no tirarla.</li>
+      <li>Cadena: mínimo 3× profundidad, ideal 5–7× con viento.</li>
+    </ul>
+  </div>
+</div>
 
-    <!-- ─── METEO ─── -->
-    <div id="panel-meteo" class="panel">
-      <div class="panel-title">Meteorología</div>
-      <div class="panel-subtitle">escala Beaufort, previsión y señales</div>
+<!-- NAVEGACIÓN -->
+<div id="p-nav" class="panel">
+  <div class="ptitle">Navegación</div>
+  <div class="psub">carta, rumbo y reglas de cruce RIPA</div>
+  <div class="card">
+    <div class="ctitle"><i class="ti ti-compass"></i>Conceptos esenciales</div>
+    <div class="ri"><div class="ricon neu"><i class="ti ti-compass"></i></div><div class="rt"><h4>Rumbo verdadero vs magnético</h4><p>La carta da rumbos verdaderos. La brújula indica el magnético. En el Mediterráneo occidental la declinación es ~2–3°E.</p></div></div>
+    <div class="ri"><div class="ricon neu"><i class="ti ti-arrows-right-left"></i></div><div class="rt"><h4>Abatimiento (leeway)</h4><p>El viento empuja el barco a sotavento. En ceñida puede ser 5–10°. Hay que corregirlo en el rumbo real.</p></div></div>
+    <div class="ri"><div class="ricon neu"><i class="ti ti-current-location"></i></div><div class="rt"><h4>Estima</h4><p>Posición calculada por rumbo + velocidad + tiempo sin GPS. Anota siempre hora de salida y log.</p></div></div>
+  </div>
+  <div class="card">
+    <div class="ctitle"><i class="ti ti-traffic-lights"></i>RIPA — quién cede el paso</div>
+    <div class="ri"><div class="ricon danger"><i class="ti ti-arrow-right"></i></div><div class="rt"><h4>Cedes el paso si...</h4><p>Tienes otro barco por tu estribor. Llevas motor y el otro lleva vela. Eres el más maniobrable.</p></div></div>
+    <div class="ri"><div class="ricon info"><i class="ti ti-arrow-left"></i></div><div class="rt"><h4>Tienes preferencia si...</h4><p>Llevas vela y el otro motor. El otro te tiene a su estribor. Pero: nunca te fíes contra un buque grande.</p></div></div>
+    <div class="ri"><div class="ricon warning"><i class="ti ti-wind"></i></div><div class="rt"><h4>Entre velas</h4><p>Amura de estribor tiene preferencia sobre babor. Con la misma amura, el de barlovento cede al de sotavento.</p></div></div>
+    <div class="ri"><div class="ricon danger"><i class="ti ti-ship"></i></div><div class="rt"><h4>Grandes buques</h4><p>Un buque de carga de 200m no puede maniobrar. Aléjate siempre aunque tengas preferencia.</p></div></div>
+  </div>
+  <div class="card">
+    <div class="ctitle"><i class="ti ti-volume"></i>Señales sonoras</div>
+    <ul class="blist">
+      <li><strong style="color:var(--text)">1 pitido corto</strong> — viro a estribor</li>
+      <li><strong style="color:var(--text)">2 pitidos cortos</strong> — viro a babor</li>
+      <li><strong style="color:var(--text)">3 pitidos cortos</strong> — máquina atrás</li>
+      <li><strong style="color:var(--text)">5+ pitidos cortos</strong> — señal de peligro</li>
+      <li><strong style="color:var(--text)">1 pitido largo</strong> — niebla, cada 2 min</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="ctitle"><i class="ti ti-map-2"></i>Lectura de carta náutica</div>
+    <ul class="blist">
+      <li><strong style="color:var(--text)">Números en azul</strong> — profundidad en metros</li>
+      <li><strong style="color:var(--text)">Línea de puntos</strong> — zona restringida</li>
+      <li><strong style="color:var(--text)">Fl.R / Fl.G / Fl.W</strong> — faro rojo/verde/blanco</li>
+      <li><strong style="color:var(--text)">Roca con número</strong> — profundidad sobre la roca</li>
+      <li><strong style="color:var(--text)">Roca con aspas</strong> — roca a flor de agua</li>
+    </ul>
+  </div>
+</div>
 
-      <div class="card">
-        <div class="card-title"><i class="ti ti-wind"></i> Escala Beaufort</div>
-        <div class="rule-item">
-          <div class="rule-icon" style="background:var(--green-bg);color:var(--green);border-color:var(--green-border);font-family:var(--mono);font-size:13px">F0–2</div>
-          <div class="rule-text"><h4>Calma a brisa suave — 0 a 11 km/h</h4><p>Mar rizada o ligeramente encrespada. Navegación fácil. Puede ser necesario motor en calma total.</p></div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon" style="background:var(--green-bg);color:var(--green);border-color:var(--green-border);font-family:var(--mono);font-size:13px">F3–4</div>
-          <div class="rule-text"><h4>Brisa suave a moderada — 12 a 28 km/h</h4><p>Condiciones ideales. Olas de 0.5–1.5 m. Navegación cómoda a vela. El rango perfecto para aprender.</p></div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon" style="background:var(--amber-bg);color:var(--amber);border-color:var(--amber-border);font-family:var(--mono);font-size:13px">F5–6</div>
-          <div class="rule-text"><h4>Brisa fresca a viento fresco — 29 a 49 km/h</h4><p>Olas de 1.5–3 m. Tomar rizos. Tripulación con arnés. No recomendable para primera travesía.</p></div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon" style="background:var(--red-bg);color:var(--red);border-color:var(--red-border);font-family:var(--mono);font-size:13px">F7+</div>
-          <div class="rule-text"><h4>Temporal — más de 50 km/h</h4><p>Quedarse en puerto. Si estás fuera: velas reducidas al mínimo, todo atado, arneses obligatorios, Canal 16 en guardia permanente.</p></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><i class="ti ti-device-mobile"></i> Fuentes de previsión</div>
-        <div class="rule-item">
-          <div class="rule-icon info"><i class="ti ti-world"></i></div>
-          <div class="rule-text"><h4>Windy.com</h4><p>Mejor visualización de viento y oleaje. Modelos GFS y ECMWF. Consultar siempre el modelo ECMWF para el Mediterráneo.</p></div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon info"><i class="ti ti-world"></i></div>
-          <div class="rule-text"><h4>Meteomar (Italia)</h4><p>Parte oficial de la Guardia Costiera italiana. Canal 68 VHF a las 07:33, 13:33 y 19:33 hora local. En italiano — esencial aprenderlo.</p></div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon neutral"><i class="ti ti-world"></i></div>
-          <div class="rule-text"><h4>Navionics / PredictWind</h4><p>Integran carta y meteo. Útiles para planificar la salida con antelación de 2–3 días.</p></div>
-        </div>
-      </div>
-
-      <div class="card warning">
-        <div class="card-title"><i class="ti ti-eye"></i> Señales visuales de cambio de tiempo</div>
-        <ul class="bullet-list">
-          <li><strong style="color:var(--text)">Cirros en abanico</strong> — frente cálido acercándose en 12–24h</li>
-          <li><strong style="color:var(--text)">Cumulonimbus (nube en yunque)</strong> — tormenta inminente, buscar abrigo</li>
-          <li><strong style="color:var(--text)">Halo alrededor del sol o la luna</strong> — lluvia en 12–24h</li>
-          <li><strong style="color:var(--text)">Horizonte rojizo al amanecer</strong> — mal tiempo posible en el día</li>
-          <li><strong style="color:var(--text)">Mar de fondo sin viento</strong> — temporal lejano aproximándose</li>
-          <li><strong style="color:var(--text)">Bajada rápida del barómetro</strong> — más de 3 hPa/hora indica borrasca rápida</li>
-          <li><strong style="color:var(--text)">Caída repistina del viento</strong> antes de una tormenta eléctrica — cuidado, puede volver con fuerza</li>
-        </ul>
-      </div>
-
-      <div class="card danger">
-        <div class="card-title"><i class="ti ti-bolt"></i> Tormentas eléctricas</div>
-        <ul class="bullet-list">
-          <li>Arriar velas y encender motor antes de que llegue</li>
-          <li>No tocar el mástil, obenques ni nada metálico</li>
-          <li>Desconectar electrónica no esencial</li>
-          <li>Todos bajo cubierta si es posible</li>
-          <li>Regla del 30: si entre rayo y trueno hay menos de 30 segundos, estás en peligro</li>
-        </ul>
-      </div>
+<!-- MOTOR -->
+<div id="p-motor" class="panel">
+  <div class="ptitle">Motor</div>
+  <div class="psub">arranque, averías y mantenimiento</div>
+  <div class="card"><div class="ctitle"><i class="ti ti-engine"></i>Arranque correcto</div>
+    <ul class="slist">
+      <li>Comprobar aceite (varilla) y refrigerante</li>
+      <li>Abrir válvula de mar del circuito de refrigeración</li>
+      <li>Arrancar y comprobar que el escape expulsa agua</li>
+      <li>Calentar 2–3 min en ralentí antes de meter carga</li>
+      <li>Comprobar panel: temperatura, presión aceite, alternador</li>
+    </ul>
+  </div>
+  <div class="card"><div class="ctitle"><i class="ti ti-checklist"></i>Check diario</div>
+    <div class="g2">
+      <div class="ginfo"><div class="lbl">aceite motor</div><div class="val">entre MIN y MAX</div></div>
+      <div class="ginfo"><div class="lbl">refrigerante</div><div class="val">nivel correcto</div></div>
+      <div class="ginfo"><div class="lbl">correa alternador</div><div class="val">sin grietas</div></div>
+      <div class="ginfo"><div class="lbl">filtro agua mar</div><div class="val">limpio, sin algas</div></div>
+      <div class="ginfo"><div class="lbl">nivel gasoil</div><div class="val">reserva para 3h</div></div>
+      <div class="ginfo"><div class="lbl">sentina</div><div class="val">seca o mínima</div></div>
     </div>
+  </div>
+  <div class="card danger"><div class="ctitle"><i class="ti ti-alert-triangle"></i>Alarmas — qué hacer</div>
+    <div class="ri"><div class="ricon danger"><i class="ti ti-thermometer"></i></div><div class="rt"><h4>Temperatura alta</h4><p>Parar motor inmediatamente. Comprobar válvula de mar y filtro de agua. Limpiar si está lleno de algas.</p></div></div>
+    <div class="ri"><div class="ricon danger"><i class="ti ti-droplet"></i></div><div class="rt"><h4>Presión de aceite baja</h4><p>Parar motor inmediatamente. Comprobar nivel de aceite. No arrancar hasta resolver — puede destruir el motor en minutos.</p></div></div>
+    <div class="ri"><div class="ricon warning"><i class="ti ti-bolt"></i></div><div class="rt"><h4>Batería / alternador</h4><p>El alternador no carga. Comprobar correa. Reducir consumo. Reservar batería de arranque.</p></div></div>
+  </div>
+  <div class="card warning"><div class="ctitle"><i class="ti ti-tools"></i>Averías comunes</div>
+    <div class="ri"><div class="ricon warning"><i class="ti ti-seeding"></i></div><div class="rt"><h4>Hélice enredada</h4><p>Parar motor. Nunca arrancar con cuerda en la hélice. Llevar siempre cuchillo de buceo a bordo.</p></div></div>
+    <div class="ri"><div class="ricon warning"><i class="ti ti-gas-station"></i></div><div class="rt"><h4>Motor no arranca — sin gasoil</h4><p>Si el depósito se vació hay aire en la línea — purgar el circuito de combustible según el manual.</p></div></div>
+    <div class="ri"><div class="ricon warning"><i class="ti ti-battery-off"></i></div><div class="rt"><h4>Batería descargada</h4><p>Panel solar o generador si disponible. Si no: navegar a vela y esperar a puerto.</p></div></div>
+  </div>
+</div>
 
-    <!-- ─── NAVEGACIÓN ─── -->
-    <div id="panel-navegacion" class="panel">
-      <div class="panel-title">Navegación</div>
-      <div class="panel-subtitle">carta, rumbo, RIPA y reglas de cruce</div>
+<!-- LUCES NOCHE -->
+<div id="p-luces" class="panel">
+  <div class="ptitle">Luces de navegación</div>
+  <div class="psub">toca cada barco para ver su significado</div>
 
-      <div class="card">
-        <div class="card-title"><i class="ti ti-compass"></i> Conceptos básicos</div>
-        <div class="rule-item">
-          <div class="rule-icon neutral"><i class="ti ti-compass"></i></div>
-          <div class="rule-text"><h4>Rumbo verdadero vs magnético</h4><p>La carta da rumbos verdaderos (N geográfico). La brújula indica el magnético. En el Mediterráneo occidental la declinación es de unos 2–3°E — diferencia pequeña pero existente.</p></div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon neutral"><i class="ti ti-arrows-right-left"></i></div>
-          <div class="rule-text"><h4>Abatimiento (leeway)</h4><p>El viento empuja el barco sotavento respecto al rumbo de la proa. En ceñida puede ser 5–10°. Hay que corregirloen el rumbo real.</p></div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon neutral"><i class="ti ti-current-location"></i></div>
-          <div class="rule-text"><h4>Estima</h4><p>Calcular posición por rumbo + velocidad + tiempo sin GPS. Útil si falla el chartplotter. Anota siempre la hora de salida y el log.</p></div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon neutral"><i class="ti ti-eye"></i></div>
-          <div class="rule-text"><h4>Marcaciones visuales</h4><p>Dos marcaciones de puntos conocidos que se cruzan = posición. Mínimo dos, mejor tres. Útil en costa con faros o puntos destacados.</p></div>
-        </div>
-      </div>
+  <div style="background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:12px">
+    <div style="font-size:13px;font-weight:500;margin-bottom:12px;color:var(--text2)">Sectores de tu propio barco</div>
+    <svg width="100%" viewBox="0 0 320 260">
+      <ellipse cx="160" cy="130" rx="16" ry="46" fill="#1e2535" stroke="#3a4558" stroke-width="1.5"/>
+      <path d="M160 130 L60 52 A148 148 0 0 0 52 208 Z" fill="rgba(240,106,106,0.1)" stroke="none"/>
+      <path d="M160 130 L60 52" stroke="rgba(240,106,106,0.3)" stroke-width="0.5" stroke-dasharray="4 4"/>
+      <path d="M160 130 L52 208" stroke="rgba(240,106,106,0.3)" stroke-width="0.5" stroke-dasharray="4 4"/>
+      <circle cx="143" cy="88" r="7" fill="#f06a6a"/>
+      <text x="32" y="130" text-anchor="middle" font-size="12" fill="#f06a6a" font-weight="500" font-family="DM Mono,monospace">BABOR</text>
+      <text x="32" y="145" text-anchor="middle" font-size="10" fill="#f06a6a" font-family="DM Mono,monospace">rojo·112.5°</text>
+      <path d="M160 130 L260 52 A148 148 0 0 1 268 208 Z" fill="rgba(62,207,142,0.07)" stroke="none"/>
+      <path d="M160 130 L260 52" stroke="rgba(62,207,142,0.2)" stroke-width="0.5" stroke-dasharray="4 4"/>
+      <path d="M160 130 L268 208" stroke="rgba(62,207,142,0.2)" stroke-width="0.5" stroke-dasharray="4 4"/>
+      <circle cx="177" cy="88" r="7" fill="#3ecf8e"/>
+      <text x="290" y="130" text-anchor="middle" font-size="12" fill="#3ecf8e" font-weight="500" font-family="DM Mono,monospace">ESTRIB.</text>
+      <text x="290" y="145" text-anchor="middle" font-size="10" fill="#3ecf8e" font-family="DM Mono,monospace">verde·112.5°</text>
+      <circle cx="160" cy="176" r="6" fill="#e8eaf2" stroke="#5a6278" stroke-width="0.5"/>
+      <text x="160" y="220" text-anchor="middle" font-size="10" fill="#5a6278" font-family="DM Mono,monospace">blanca popa·135°</text>
+      <circle cx="160" cy="82" r="6" fill="#e8eaf2" stroke="#5a6278" stroke-width="0.5"/>
+      <text x="160" y="68" text-anchor="middle" font-size="10" fill="#5a6278" font-family="DM Mono,monospace">tope·225°</text>
+      <text x="160" y="134" text-anchor="middle" font-size="9" fill="#3a4558" font-family="DM Mono,monospace">↑ proa</text>
+    </svg>
+  </div>
 
-      <div class="card">
-        <div class="card-title"><i class="ti ti-traffic-lights"></i> RIPA — reglas de cruce</div>
-        <div class="rule-item">
-          <div class="rule-icon danger"><i class="ti ti-arrow-right"></i></div>
-          <div class="rule-text"><h4>Cedes el paso si...</h4><p>Tienes a otro barco por tu estribor. Llevas motor y el otro lleva vela. Eres el más maniobrable. Embarcación de recreo ante pesquero, fondeado o con maniobrabilidad limitada.</p></div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon info"><i class="ti ti-arrow-left"></i></div>
-          <div class="rule-text"><h4>Tienes preferencia si...</h4><p>Llevas vela y el otro lleva motor. El otro te tiene a su estribor. Pero: la preferencia no exime de tomar medidas si el otro no cede.</p></div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon warning"><i class="ti ti-wind"></i></div>
-          <div class="rule-text"><h4>Entre velas</h4><p>Amura de estribor (viento por estribor) tiene preferencia sobre babor. Con la misma amura, el de barlovento cede al de sotavento.</p></div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon danger"><i class="ti ti-ship"></i></div>
-          <div class="rule-text"><h4>Grandes buques</h4><p>Técnicamente puedes tener preferencia, pero un buque de carga de 200m no puede maniobrar. Aléjate siempre. Nunca te fíes de las reglas contra un buque grande.</p></div>
-        </div>
-      </div>
+  <div class="sdiv"><i class="ti ti-eye"></i>Qué ves → qué significa</div>
 
-      <div class="card">
-        <div class="card-title"><i class="ti ti-chart-line"></i> Señales sonoras</div>
-        <ul class="bullet-list">
-          <li><strong style="color:var(--text)">1 pitido corto</strong> — viro a estribor</li>
-          <li><strong style="color:var(--text)">2 pitidos cortos</strong> — viro a babor</li>
-          <li><strong style="color:var(--text)">3 pitidos cortos</strong> — máquina atrás</li>
-          <li><strong style="color:var(--text)">5 o más pitidos cortos</strong> — señal de peligro / no entiendo tu maniobra</li>
-          <li><strong style="color:var(--text)">1 pitido largo</strong> — barco en niebla o visibilidad reducida (cada 2 min)</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><i class="ti ti-map-2"></i> Lectura de carta náutica</div>
-        <ul class="bullet-list">
-          <li><strong style="color:var(--text)">Números en azul</strong> — profundidad en metros (sonda)</li>
-          <li><strong style="color:var(--text)">Línea de puntos</strong> — límite de aguas jurisdiccionales o zona restringida</li>
-          <li><strong style="color:var(--text)">Cruz con círculo</strong> — posición de fondeo recomendado</li>
-          <li><strong style="color:var(--text)">Fl.R / Fl.G / Fl.W</strong> — luz de faro roja / verde / blanca con período indicado</li>
-          <li><strong style="color:var(--text)">Roca con número</strong> — roca sumergida a esa profundidad</li>
-          <li><strong style="color:var(--text)">Roca con aspas</strong> — roca que afluye o está a flor de agua</li>
-        </ul>
-      </div>
+  <div id="luz-selector" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+    <div class="lsel-btn" onclick="selLuz(0)" style="background:var(--bg2);border:1px solid var(--line);border-radius:var(--rs);padding:12px;cursor:pointer;text-align:center">
+      <div class="ldots" style="justify-content:center;margin-bottom:6px"><div class="ldot" style="background:#f06a6a;box-shadow:0 0 6px #f06a6a"></div><div class="ldot" style="background:#e8eaf2;border:1px solid #555"></div></div>
+      <div style="font-size:12px;color:var(--text2)">Rojo + tope</div>
     </div>
-
-    <!-- ─── MOTOR ─── -->
-    <div id="panel-motor" class="panel">
-      <div class="panel-title">Motor</div>
-      <div class="panel-subtitle">arranque, mantenimiento y averías</div>
-
-      <div class="card">
-        <div class="card-title"><i class="ti ti-engine"></i> Arranque correcto</div>
-        <ul class="step-list">
-          <li>Comprobar nivel de aceite (varilla) y refrigerante antes de arrancar</li>
-          <li>Abrir la válvula de mar del circuito de refrigeración</li>
-          <li>Comprobar que el escape expulsa agua — señal de refrigeración correcta</li>
-          <li>Dejar calentar 2–3 minutos en ralentí antes de meter carga</li>
-          <li>Comprobar panel de alarmas: temperatura, presión de aceite, carga alternador</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><i class="ti ti-checklist"></i> Check diario</div>
-        <div class="grid-2">
-          <div class="grid-info"><div class="label">aceite motor</div><div class="val">entre MIN y MAX</div></div>
-          <div class="grid-info"><div class="label">refrigerante</div><div class="val">nivel correcto</div></div>
-          <div class="grid-info"><div class="label">correa alternador</div><div class="val">sin grietas ni holgura</div></div>
-          <div class="grid-info"><div class="label">filtro agua mar</div><div class="val">limpio, sin algas</div></div>
-          <div class="grid-info"><div class="label">nivel gasoil</div><div class="val">reserva para 3h motor</div></div>
-          <div class="grid-info"><div class="label">sentina</div><div class="val">seca o mínima</div></div>
-        </div>
-      </div>
-
-      <div class="card danger">
-        <div class="card-title"><i class="ti ti-alert-triangle"></i> Alarmas — qué hacer</div>
-        <div class="rule-item">
-          <div class="rule-icon danger"><i class="ti ti-thermometer"></i></div>
-          <div class="rule-text"><h4>Alarma de temperatura alta</h4><p>Parar motor inmediatamente. Comprobar válvula de mar abierta y filtro de agua limpio. Si el filtro está lleno de algas, limpiarlo con el motor parado y frío.</p></div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon danger"><i class="ti ti-droplet"></i></div>
-          <div class="rule-text"><h4>Alarma de presión de aceite</h4><p>Parar motor inmediatamente. Comprobar nivel de aceite. No arrancar hasta resolver la causa — puede destruir el motor en minutos.</p></div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon warning"><i class="ti ti-bolt"></i></div>
-          <div class="rule-text"><h4>Alarma de carga / batería</h4><p>El alternador no carga. Comprobar correa. Reducir consumo eléctrico. Las baterías de arranque pueden agotarse — reservar para arrancar.</p></div>
-        </div>
-      </div>
-
-      <div class="card warning">
-        <div class="card-title"><i class="ti ti-tools"></i> Averías comunes</div>
-        <div class="rule-item">
-          <div class="rule-icon warning"><i class="ti ti-gas-station"></i></div>
-          <div class="rule-text"><h4>Motor no arranca — falta de combustible</h4><p>Comprobar nivel de gasoil. Si el depósito se vació, hay aire en la línea — purgar el circuito de combustible según el manual del motor.</p></div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon warning"><i class="ti ti-seeding"></i></div>
-          <div class="rule-text"><h4>Hélice enredada</h4><p>Parar motor. Nunca intentar arrancar con cuerda en la hélice. Puede ser necesario bajar a cortarla. Llevar siempre un cuchillo de buceo a bordo.</p></div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-icon warning"><i class="ti ti-battery-off"></i></div>
-          <div class="rule-text"><h4>Batería descargada</h4><p>Paneles solares o generador si disponible. Si no: arranque de emergencia con batería auxiliar o mediante vela y esperar a puerto.</p></div>
-        </div>
-      </div>
-
-      <div class="card info">
-        <div class="card-title"><i class="ti ti-briefcase"></i> Repuestos mínimos a bordo</div>
-        <ul class="bullet-list">
-          <li>Aceite motor (1L del tipo correcto)</li>
-          <li>Correa del alternador (del modelo exacto)</li>
-          <li>Filtros de combustible y aceite de repuesto</li>
-          <li>Impeler de la bomba de agua (recambio del año)</li>
-          <li>Fusibles varios y terminal de batería</li>
-          <li>Cuchillo de buceo para emergencias con hélice</li>
-          <li>Grasa de cobre para roscas de mar</li>
-        </ul>
-      </div>
+    <div class="lsel-btn" onclick="selLuz(1)" style="background:var(--bg2);border:1px solid var(--line);border-radius:var(--rs);padding:12px;cursor:pointer;text-align:center">
+      <div class="ldots" style="justify-content:center;margin-bottom:6px"><div class="ldot" style="background:#3ecf8e;box-shadow:0 0 6px #3ecf8e"></div><div class="ldot" style="background:#e8eaf2;border:1px solid #555"></div></div>
+      <div style="font-size:12px;color:var(--text2)">Verde + tope</div>
     </div>
+    <div class="lsel-btn" onclick="selLuz(2)" style="background:var(--bg2);border:1px solid var(--line);border-radius:var(--rs);padding:12px;cursor:pointer;text-align:center">
+      <div class="ldots" style="justify-content:center;margin-bottom:6px"><div class="ldot" style="background:#f06a6a;box-shadow:0 0 6px #f06a6a"></div><div class="ldot" style="background:#3ecf8e;box-shadow:0 0 6px #3ecf8e"></div><div class="ldot" style="background:#e8eaf2;border:1px solid #555"></div></div>
+      <div style="font-size:12px;color:var(--text2)">Rojo+verde+tope</div>
+    </div>
+    <div class="lsel-btn" onclick="selLuz(3)" style="background:var(--bg2);border:1px solid var(--line);border-radius:var(--rs);padding:12px;cursor:pointer;text-align:center">
+      <div class="ldots" style="justify-content:center;margin-bottom:6px"><div class="ldot" style="background:#e8eaf2;border:1px solid #555"></div></div>
+      <div style="font-size:12px;color:var(--text2)">Solo blanco</div>
+    </div>
+    <div class="lsel-btn" onclick="selLuz(4)" style="background:var(--bg2);border:1px solid var(--line);border-radius:var(--rs);padding:12px;cursor:pointer;text-align:center">
+      <div class="ldots" style="justify-content:center;margin-bottom:6px"><div class="ldot" style="background:#e8eaf2;border:1px solid #555"></div><div class="ldot" style="background:#e8eaf2;border:1px solid #555"></div></div>
+      <div style="font-size:12px;color:var(--text2)">Dos blancos</div>
+    </div>
+    <div class="lsel-btn" onclick="selLuz(5)" style="background:var(--bg2);border:1px solid var(--line);border-radius:var(--rs);padding:12px;cursor:pointer;text-align:center">
+      <div class="ldots" style="justify-content:center;margin-bottom:6px"><div class="ldot" style="background:#f5a623;box-shadow:0 0 6px #f5a623"></div><div class="ldot" style="background:#e8eaf2;border:1px solid #555"></div></div>
+      <div style="font-size:12px;color:var(--text2)">Amarillo + blanco</div>
+    </div>
+    <div class="lsel-btn" onclick="selLuz(6)" style="background:var(--bg2);border:1px solid var(--line);border-radius:var(--rs);padding:12px;cursor:pointer;text-align:center">
+      <div class="ldots" style="justify-content:center;margin-bottom:6px"><div class="ldot" style="background:#3ecf8e;box-shadow:0 0 6px #3ecf8e"></div><div class="ldot" style="background:#3ecf8e;box-shadow:0 0 6px #3ecf8e"></div></div>
+      <div style="font-size:12px;color:var(--text2)">Dos verdes</div>
+    </div>
+    <div class="lsel-btn" onclick="selLuz(7)" style="background:var(--bg2);border:1px solid var(--line);border-radius:var(--rs);padding:12px;cursor:pointer;text-align:center">
+      <div class="ldots" style="justify-content:center;margin-bottom:6px"><div class="ldot" style="background:#f06a6a;box-shadow:0 0 6px #f06a6a"></div><div class="ldot" style="background:#f06a6a;box-shadow:0 0 6px #f06a6a"></div><div class="ldot" style="background:#f06a6a;box-shadow:0 0 6px #f06a6a"></div></div>
+      <div style="font-size:12px;color:var(--text2)">Tres rojos</div>
+    </div>
+  </div>
 
-  </main>
+  <div id="luz-detail" style="display:none;background:var(--bg2);border:1px solid var(--line2);border-radius:var(--r);padding:16px;margin-bottom:12px">
+    <div style="font-size:15px;font-weight:500;margin-bottom:6px" id="lz-title"></div>
+    <p style="font-size:14px;color:var(--text2);line-height:1.6" id="lz-desc"></p>
+    <p style="font-size:13px;color:var(--amber);margin-top:8px;font-family:var(--mono)" id="lz-action"></p>
+  </div>
+
+  <div class="card warning">
+    <div class="ctitle"><i class="ti ti-moon"></i>Guardias nocturnas</div>
+    <ul class="blist">
+      <li>Acostumbrar la vista a la oscuridad: 20 min sin luz blanca</li>
+      <li>Nunca luz blanca en cubierta — arruina la visión nocturna</li>
+      <li>Vigilancia del horizonte cada 5–10 min</li>
+      <li>Arnés y línea de seguridad en cubierta siempre</li>
+      <li>Al menos dos personas despiertas en guardias largas</li>
+    </ul>
+  </div>
+</div>
+
+<!-- BALIZAS -->
+<div id="p-balizas" class="panel">
+  <div class="ptitle">Balizas IALA-A</div>
+  <div class="psub">toca cada baliza para ver qué significa</div>
+
+  <div class="card info" style="margin-bottom:12px">
+    <div class="ctitle"><i class="ti ti-info-circle"></i>Sistema IALA-A (Europa, Africa, Asia)</div>
+    <p style="font-size:14px;color:var(--text2)">En Europa se usa el sistema IALA-A. La regla básica: <strong style="color:var(--text)">rojo a babor al entrar al puerto</strong> (viniendo del mar). Verde a estribor.</p>
+  </div>
+
+  <div class="bzgrid" id="bz-grid">
+    <div class="bzcrd" onclick="selBaliza('lateral-babor')">
+      <svg class="bzsvg" viewBox="0 0 50 90" width="50" height="90">
+        <polygon points="25,10 40,60 10,60" fill="#f06a6a" stroke="#c04040" stroke-width="1"/>
+        <rect x="23" y="60" width="4" height="25" fill="#5a6278"/>
+        <circle cx="25" cy="8" r="5" fill="none" stroke="#f06a6a" stroke-width="1.5" stroke-dasharray="3 2"/>
+      </svg>
+      <div class="bzname">Lateral babor</div>
+      <div class="bzdesc">Roja · cono · Fl.R<br>Dejarla a babor entrando</div>
+    </div>
+    <div class="bzcrd" onclick="selBaliza('lateral-estribor')">
+      <svg class="bzsvg" viewBox="0 0 50 90" width="50" height="90">
+        <rect x="12" y="10" width="26" height="50" rx="2" fill="#3ecf8e" stroke="#2a9f6e" stroke-width="1"/>
+        <rect x="23" y="60" width="4" height="25" fill="#5a6278"/>
+        <circle cx="25" cy="8" r="5" fill="none" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="3 2"/>
+      </svg>
+      <div class="bzname">Lateral estribor</div>
+      <div class="bzdesc">Verde · cilindro · Fl.G<br>Dejarla a estribor entrando</div>
+    </div>
+    <div class="bzcrd" onclick="selBaliza('cardinal-norte')">
+      <svg class="bzsvg" viewBox="0 0 50 90" width="50" height="90">
+        <polygon points="25,10 40,60 10,60" fill="#f5a623" stroke="#c08010" stroke-width="1"/>
+        <polygon points="25,70 40,60 10,60" fill="#0e1117" stroke="#c08010" stroke-width="1"/>
+        <rect x="23" y="70" width="4" height="15" fill="#5a6278"/>
+        <polygon points="25,2 30,10 20,10" fill="#0e1117"/>
+        <polygon points="25,8 30,16 20,16" fill="#0e1117"/>
+      </svg>
+      <div class="bzname">Cardinal Norte</div>
+      <div class="bzdesc">Negro arriba · amarillo<br>Pasar al Norte</div>
+    </div>
+    <div class="bzcrd" onclick="selBaliza('cardinal-sur')">
+      <svg class="bzsvg" viewBox="0 0 50 90" width="50" height="90">
+        <polygon points="25,10 40,60 10,60" fill="#0e1117" stroke="#c08010" stroke-width="1"/>
+        <polygon points="25,70 40,60 10,60" fill="#f5a623" stroke="#c08010" stroke-width="1"/>
+        <rect x="23" y="70" width="4" height="15" fill="#5a6278"/>
+        <polygon points="25,2 30,10 20,10" fill="#f5a623"/>
+        <polygon points="25,8 30,16 20,16" fill="#f5a623"/>
+      </svg>
+      <div class="bzname">Cardinal Sur</div>
+      <div class="bzdesc">Amarillo arriba · negro<br>Pasar al Sur</div>
+    </div>
+    <div class="bzcrd" onclick="selBaliza('cardinal-este')">
+      <svg class="bzsvg" viewBox="0 0 50 90" width="50" height="90">
+        <polygon points="25,10 40,60 10,60" fill="#f5a623" stroke="#c08010" stroke-width="1"/>
+        <polygon points="25,70 40,60 10,60" fill="#f5a623" stroke="#c08010" stroke-width="1"/>
+        <rect x="23" y="70" width="4" height="15" fill="#5a6278"/>
+        <polygon points="22,2 27,10 17,10" fill="#0e1117"/>
+        <polygon points="28,8 33,16 23,16" fill="#0e1117"/>
+      </svg>
+      <div class="bzname">Cardinal Este</div>
+      <div class="bzdesc">Amarillo·negro·amarillo<br>Pasar al Este</div>
+    </div>
+    <div class="bzcrd" onclick="selBaliza('cardinal-oeste')">
+      <svg class="bzsvg" viewBox="0 0 50 90" width="50" height="90">
+        <polygon points="25,10 40,60 10,60" fill="#0e1117" stroke="#c08010" stroke-width="1"/>
+        <polygon points="25,70 40,60 10,60" fill="#0e1117" stroke="#c08010" stroke-width="1"/>
+        <rect x="23" y="70" width="4" height="15" fill="#5a6278"/>
+        <polygon points="28,2 23,10 33,10" fill="#f5a623"/>
+        <polygon points="22,8 17,16 27,16" fill="#f5a623"/>
+      </svg>
+      <div class="bzname">Cardinal Oeste</div>
+      <div class="bzdesc">Negro·amarillo·negro<br>Pasar al Oeste</div>
+    </div>
+    <div class="bzcrd" onclick="selBaliza('peligro-aislado')">
+      <svg class="bzsvg" viewBox="0 0 50 90" width="50" height="90">
+        <rect x="12" y="15" width="26" height="50" rx="13" fill="#0e1117" stroke="#f06a6a" stroke-width="1.5"/>
+        <rect x="18" y="15" width="14" height="15" rx="0" fill="#f06a6a"/>
+        <rect x="18" y="50" width="14" height="15" rx="0" fill="#f06a6a"/>
+        <rect x="23" y="65" width="4" height="20" fill="#5a6278"/>
+        <circle cx="21" cy="10" r="3.5" fill="#0e1117" stroke="#e8eaf2" stroke-width="1"/>
+        <circle cx="29" cy="10" r="3.5" fill="#0e1117" stroke="#e8eaf2" stroke-width="1"/>
+      </svg>
+      <div class="bzname">Peligro aislado</div>
+      <div class="bzdesc">Negro y rojo · 2 esferas<br>Rodearlo por todos lados</div>
+    </div>
+    <div class="bzcrd" onclick="selBaliza('aguas-seguras')">
+      <svg class="bzsvg" viewBox="0 0 50 90" width="50" height="90">
+        <rect x="12" y="10" width="26" height="55" rx="13" fill="#f06a6a" stroke="#c04040" stroke-width="1"/>
+        <rect x="12" y="22" width="26" height="10" fill="#e8eaf2"/>
+        <rect x="12" y="42" width="26" height="10" fill="#e8eaf2"/>
+        <rect x="23" y="65" width="4" height="20" fill="#5a6278"/>
+        <circle cx="25" cy="7" r="4" fill="#e8eaf2"/>
+      </svg>
+      <div class="bzname">Aguas seguras</div>
+      <div class="bzdesc">Rojo y blanco vertical<br>Paso seguro por los lados</div>
+    </div>
+  </div>
+
+  <div id="bz-detail" style="display:none;background:var(--bg2);border:1px solid var(--line2);border-radius:var(--r);padding:16px;margin-top:12px">
+    <div style="font-size:15px;font-weight:500;margin-bottom:6px" id="bz-title"></div>
+    <p style="font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:6px" id="bz-desc"></p>
+    <p style="font-size:13px;color:var(--amber);font-family:var(--mono)" id="bz-action"></p>
+  </div>
+</div>
+
+<!-- RADIO -->
+<div id="p-radio" class="panel">
+  <div class="ptitle">Radio VHF</div>
+  <div class="psub">emergencias, canales y contactos Egadi</div>
+  <div class="card danger">
+    <div class="ctitle"><i class="ti ti-alert-triangle"></i>MAYDAY — vida en peligro</div>
+    <div class="mono">
+      <span class="hi">MAYDAY MAYDAY MAYDAY</span><br>
+      Aquí [nombre del barco] [nombre] [nombre]<br>
+      MAYDAY [nombre del barco]<br>
+      Posición: <span class="hi">[lat/lon o referencia]</span><br>
+      Naturaleza: <span class="hi">[fuego / hundimiento / MOB…]</span><br>
+      Personas a bordo: <span class="hi">[N]</span><br>
+      Cambio
+    </div>
+    <p style="font-size:12px;color:var(--red);margin-top:8px;font-family:var(--mono)">Canal 16 · 156.8 MHz · repite cada 2 min hasta respuesta</p>
+  </div>
+  <div class="card warning">
+    <div class="ctitle"><i class="ti ti-alert-circle"></i>PAN PAN — urgencia (sin peligro inmediato de vida)</div>
+    <div class="mono"><span class="ha">PAN PAN PAN PAN PAN PAN</span><br>Aquí [nombre del barco]<br>Posición: [posición]<br>[descripción — avería, persona enferma…]<br>Solicito asistencia · Cambio</div>
+  </div>
+  <div class="card">
+    <div class="ctitle"><i class="ti ti-radio"></i>Canales clave</div>
+    <div class="ri"><div class="freq">16</div><div class="rt"><h4>Emergencias y llamada</h4><p>Guardia permanente obligatoria. Guardia Costiera italiana.</p></div></div>
+    <div class="ri"><div class="freq">70</div><div class="rt"><h4>DSC — llamada digital</h4><p>Distress automático si el radio VHF tiene DSC con MMSI activado.</p></div></div>
+    <div class="ri"><div class="freq">09</div><div class="rt"><h4>Marina / puerto</h4><p>Comunicación con puertos y marinas en Italia y Sicilia.</p></div></div>
+    <div class="ri"><div class="freq">67</div><div class="rt"><h4>SAR Guardia Costiera</h4><p>Coordinación SAR Italia. Meteomar también en este canal.</p></div></div>
+    <div class="ri"><div class="freq">68</div><div class="rt"><h4>Meteomar Italia</h4><p>Parte meteorológico 07:33, 13:33 y 19:33 hora local.</p></div></div>
+  </div>
+  <div class="card info">
+    <div class="ctitle"><i class="ti ti-phone"></i>Contactos Sicilia / Egadi</div>
+    <div class="ri"><div class="ricon info"><i class="ti ti-phone"></i></div><div class="rt"><h4>Guardia Costiera Trapani</h4><p>Zona Egadi (Favignana, Levanzo, Marettimo)<br><a href="tel:+390923545111" class="phone">+39 0923 545111</a></p></div></div>
+    <div class="ri"><div class="ricon info"><i class="ti ti-phone"></i></div><div class="rt"><h4>MRCC Roma — SAR nacional</h4><p>Coordinación SAR todo el Mediterráneo italiano<br><a href="tel:+390659084400" class="phone">+39 06 59084400</a></p></div></div>
+    <div class="ri"><div class="ricon info"><i class="ti ti-phone"></i></div><div class="rt"><h4>Emergencias generales Italia</h4><p><a href="tel:112" class="phone">112</a> · funciona desde móvil si hay cobertura</p></div></div>
+  </div>
+</div>
+
+<!-- SEGURIDAD -->
+<div id="p-seguridad" class="panel">
+  <div class="ptitle">Seguridad</div>
+  <div class="psub">emergencias y lista de salida</div>
+  <div class="card danger"><div class="ctitle"><i class="ti ti-user-off"></i>Hombre al agua (MOB)</div>
+    <ul class="blist">
+      <li><strong style="color:var(--text)">Inmediato:</strong> gritar "¡Hombre al agua!" + pulsar MOB en GPS</li>
+      <li>Lanzar aro salvavidas con luz y cabo inmediatamente</li>
+      <li>Designar vigía que NO quite ojo de la persona</li>
+      <li>Método Boutakov (vela): virar, ceñir 60°, arribar sobre la persona</li>
+      <li>Motor: virar hacia el lado de caída, acercarse desde sotavento</li>
+      <li>Canal 16 si no recuperas en pocos minutos</li>
+    </ul>
+  </div>
+  <div class="card danger"><div class="ctitle"><i class="ti ti-flame"></i>Fuego a bordo</div>
+    <ul class="blist">
+      <li>Gritar "¡Fuego!" — tripulación en cubierta</li>
+      <li>Cerrar válvulas de gas y combustible</li>
+      <li>Orientar el barco: viento aleja llamas de la eslora</li>
+      <li>Extintor CO₂ para fuego eléctrico — nunca agua</li>
+      <li>Si no se controla en 60 s: Canal 16 + preparar abandono</li>
+    </ul>
+  </div>
+  <div class="card warning"><div class="ctitle"><i class="ti ti-waves"></i>Vía de agua</div>
+    <ul class="blist">
+      <li>Localizar origen — manga, quilla, bocas de mar</li>
+      <li>Tapar con cuña de madera, trapo o epoxy marino</li>
+      <li>Bomba de achique eléctrica + manual al máximo</li>
+      <li>Si supera capacidad: Canal 16 + preparar abandono</li>
+    </ul>
+  </div>
+  <div class="card info"><div class="ctitle"><i class="ti ti-checklist"></i>Lista previa a salida</div>
+    <ul class="blist">
+      <li>Parte meteorológico consultado (Meteomar, Windy)</li>
+      <li>Plan de navegación dejado en tierra</li>
+      <li>Chalecos salvavidas accesibles y en buen estado</li>
+      <li>Arneses y líneas de seguridad preparados</li>
+      <li>Bengalas en fecha y balsa revisada</li>
+      <li>Radio VHF cargado, canal 16 en guardia</li>
+      <li>Combustible + reserva para volver a motor</li>
+    </ul>
+  </div>
+</div>
+
+<!-- EGADI -->
+<div id="p-egadi" class="panel">
+  <div class="ptitle">Isole Egadi</div>
+  <div class="psub">puertos, fondeos y navegación local</div>
+  <div class="card info">
+    <div class="ctitle"><i class="ti ti-map-pin"></i>Las tres islas</div>
+    <div class="ri"><div class="ricon info"><i class="ti ti-anchor"></i></div><div class="rt"><h4>Favignana</h4><p>La mayor. Puerto principal con marina y servicios. Fondeos en Cala Azzurra (SE) y Cala Rossa (N). Mucho tráfico en verano — llegar antes de las 11h.</p></div></div>
+    <div class="ri"><div class="ricon neu"><i class="ti ti-anchor"></i></div><div class="rt"><h4>Levanzo</h4><p>Puerto pequeño con pocos amarres para visitantes. Fondeo en la bahía principal, fondo de arena a 6–10 m. Tranquila, sin servicios.</p></div></div>
+    <div class="ri"><div class="ricon neu"><i class="ti ti-anchor"></i></div><div class="rt"><h4>Marettimo</h4><p>La más salvaje. Fondeos en Cala Bianca (N) y Cala Manione (S). Aguas cristalinas, pocas boyas. Requiere motor en calmas.</p></div></div>
+  </div>
+  <div class="card">
+    <div class="ctitle"><i class="ti ti-clock"></i>Distancias desde Trapani</div>
+    <div class="g2">
+      <div class="ginfo"><div class="lbl">→ Favignana</div><div class="val">17 mn · 3–4h a 5 kn</div></div>
+      <div class="ginfo"><div class="lbl">→ Levanzo</div><div class="val">15 mn · 2.5–3h</div></div>
+      <div class="ginfo"><div class="lbl">→ Marettimo</div><div class="val">35 mn · 6–7h</div></div>
+      <div class="ginfo"><div class="lbl">Favignana → Marettimo</div><div class="val">20 mn · 4h</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ctitle"><i class="ti ti-wind"></i>Vientos locales</div>
+    <div class="ri"><div class="ricon danger"><i class="ti ti-arrow-down-left"></i></div><div class="rt"><h4>Libeccio (SO) — el más peligroso</h4><p>Marejada corta y tendida. Puede subir a F7–8 rápido. Si se anuncia Libeccio, buscar abrigo inmediatamente.</p></div></div>
+    <div class="ri"><div class="ricon warning"><i class="ti ti-arrow-up"></i></div><div class="rt"><h4>Tramontana (N)</h4><p>Viento seco del norte. Puede alcanzar F6–7. Racheado entre las islas. Fondeos del sur quedan abrigados.</p></div></div>
+    <div class="ri"><div class="ricon neu"><i class="ti ti-arrow-down"></i></div><div class="rt"><h4>Scirocco (SE)</h4><p>Cálido y húmedo del Sahara. Reduce visibilidad. Los fondeos del norte quedan abrigados.</p></div></div>
+    <div class="ri"><div class="ricon neu"><i class="ti ti-sun"></i></div><div class="rt"><h4>Brisa termal verano</h4><p>Maestral (NO) de tarde, sale hacia las 11–12h. F3–4, navegación diurna muy agradable.</p></div></div>
+  </div>
+  <div class="card warning">
+    <div class="ctitle"><i class="ti ti-alert-triangle"></i>Peligros y restricciones</div>
+    <ul class="blist">
+      <li>Corriente general hacia el NE entre las islas (0.5–1 kn)</li>
+      <li>Canal entre Favignana y Levanzo: corrientes racheadas con viento fuerte</li>
+      <li>Bajos al S de Marettimo — navegar a más de 0.5 mn de la costa</li>
+      <li>Zona AMP — velocidad máx 5 nudos, fondeo prohibido en zonas marcadas</li>
+      <li>Tráfico de ferries Trapani–Egadi: cruzar su línea con precaución</li>
+    </ul>
+  </div>
+  <div class="card info">
+    <div class="ctitle"><i class="ti ti-phone"></i>Contacto de emergencia zona</div>
+    <div style="background:var(--bg);border-radius:var(--rs);padding:14px;text-align:center">
+      <div style="font-size:12px;color:var(--text3);font-family:var(--mono);margin-bottom:4px">Guardia Costiera Trapani</div>
+      <a href="tel:+390923545111" class="phone" style="font-size:20px;display:block">+39 0923 545111</a>
+    </div>
+  </div>
+</div>
+
+<!-- METEO -->
+<div id="p-meteo" class="panel">
+  <div class="ptitle">Meteorología</div>
+  <div class="psub">mueve el deslizador para ver cada fuerza</div>
+
+  <div style="background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:12px">
+    <div class="bft-display" id="bft-disp">
+      <div class="bft-num" id="bft-num">3</div>
+      <div class="bft-label" id="bft-label">Brisa suave</div>
+      <div class="bft-speed" id="bft-speed">12–19 km/h · 7–10 kn</div>
+      <div class="bft-sea" id="bft-sea">Olas pequeñas 0.6–1 m. Navegación cómoda a vela. Condiciones ideales para aprender.</div>
+      <div class="bft-rec" id="bft-rec" style="background:var(--green-bg);color:var(--green)">✓ Condiciones ideales</div>
+    </div>
+    <input type="range" class="bft-slider" id="bft-slider" min="0" max="12" value="3" oninput="updateBft(this.value)">
+    <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);font-family:var(--mono)"><span>F0</span><span>F4</span><span>F8</span><span>F12</span></div>
+  </div>
+
+  <div class="card warning">
+    <div class="ctitle"><i class="ti ti-eye"></i>Señales visuales de cambio</div>
+    <ul class="blist">
+      <li><strong style="color:var(--text)">Cirros en abanico</strong> — frente cálido en 12–24h</li>
+      <li><strong style="color:var(--text)">Cumulonimbus (yunque)</strong> — tormenta inminente, buscar abrigo</li>
+      <li><strong style="color:var(--text)">Halo sol o luna</strong> — lluvia en 12–24h</li>
+      <li><strong style="color:var(--text)">Horizonte rojo al amanecer</strong> — mal tiempo posible</li>
+      <li><strong style="color:var(--text)">Mar de fondo sin viento</strong> — temporal lejano acercándose</li>
+      <li><strong style="color:var(--text)">Barómetro baja &gt;3 hPa/h</strong> — borrasca rápida</li>
+    </ul>
+  </div>
+  <div class="card danger">
+    <div class="ctitle"><i class="ti ti-bolt"></i>Tormentas eléctricas</div>
+    <ul class="blist">
+      <li>Arriar velas y encender motor antes de que llegue</li>
+      <li>No tocar mástil, obenques ni nada metálico</li>
+      <li>Desconectar electrónica no esencial</li>
+      <li>Regla 30: si rayo-trueno &lt;30 s, estás en peligro</li>
+      <li>Todos bajo cubierta si es posible</li>
+    </ul>
+  </div>
+</div>
+
+<!-- CONDUCTA -->
+<div id="p-conducta" class="panel">
+  <div class="ptitle">Código de conducta</div>
+  <div class="psub">pareja navegando junta por primera vez</div>
+
+  <div class="hl yellow">
+    <h3>A bordo hay un capitán. Fuera del barco, sois pareja.</h3>
+    <p>Cuando estás en maniobra o emergencia, el que tiene más experiencia manda sin debate. No es jerarquía emocional — es protocolo de seguridad. En tierra, en el ancladero, tomando vino: volvéis a ser iguales.</p>
+  </div>
+
+  <div class="sdiv"><i class="ti ti-message-circle"></i>comunicación a bordo</div>
+  <div class="card">
+    <div class="ri"><div class="ricon info"><i class="ti ti-volume"></i></div><div class="rt"><h4>Hablar claro y alto, sin ironía <span class="bdg info">obligatorio</span></h4><p>El viento distorsiona. Instrucciones cortas y directas. "Caza la escota" — no "¿no crees que deberías cazar?"</p></div></div>
+    <div class="ri"><div class="ricon info"><i class="ti ti-repeat"></i></div><div class="rt"><h4>Confirmar siempre la orden <span class="bdg info">obligatorio</span></h4><p>"¿Cazas?" → "Cazando." Este eco evita el 80% de los malentendidos. Nunca finjas que has oído.</p></div></div>
+    <div class="ri"><div class="ricon warning"><i class="ti ti-mood-sad"></i></div><div class="rt"><h4>Decir cuándo estás asustado/a <span class="bdg warning">crítico</span></h4><p>"Esto me supera" es información útil para el capitán. No es queja — es parte de la seguridad.</p></div></div>
+    <div class="ri"><div class="ricon danger"><i class="ti ti-ban"></i></div><div class="rt"><h4>Nada de reproches en maniobra <span class="bdg danger">prohibido</span></h4><p>"Siempre haces lo mismo" durante una virada puede causar una emergencia real. Las críticas, en tierra.</p></div></div>
+  </div>
+
+  <div class="sdiv"><i class="ti ti-users"></i>roles y convivencia</div>
+  <div class="card">
+    <div class="ri"><div class="ricon neu"><i class="ti ti-list-check"></i></div><div class="rt"><h4>Acordar roles antes de salir</h4><p>¿Quién al timón en la salida? ¿Quién maneja escotas? Repartidlo en tierra — cambiarlo en maniobra crea confusión.</p></div></div>
+    <div class="ri"><div class="ricon neu"><i class="ti ti-school"></i></div><div class="rt"><h4>El que aprende pregunta antes</h4><p>"¿Qué haré cuando viréis?" es una pregunta excelente en el ancladero. En maniobra es demasiado tarde.</p></div></div>
+    <div class="ri"><div class="ricon neu"><i class="ti ti-sun"></i></div><div class="rt"><h4>Celebrar lo bueno en voz alta</h4><p>"Eso ha salido bien" después de una virada limpia hace más por la convivencia que cualquier protocolo.</p></div></div>
+    <div class="ri"><div class="ricon neu"><i class="ti ti-flag"></i></div><div class="rt"><h4>Derecho a veto sin explicación</h4><p>Cualquiera puede decir "hoy no" — mal tiempo, cansancio, miedo — y el plan cambia sin drama.</p></div></div>
+  </div>
+
+  <div class="sdiv"><i class="ti ti-alert-triangle"></i>cuando la tensión sube</div>
+  <div class="hl green">
+    <h3>Protocolo de desescalada</h3>
+    <ul class="blist">
+      <li>Nombrar el estado: "Estoy tensionado/a, no contigo, con la situación"</li>
+      <li>Resolver primero lo náutico, hablar lo personal después</li>
+      <li>Si hay bronca: fondear o atracar antes de continuar</li>
+      <li>Regla de las 24h: conflictos de pareja se hablan en tierra</li>
+    </ul>
+  </div>
+
+  <button class="pbtn" onclick="togglePanic()" id="pbtn">
+    <i class="ti ti-first-aid-kit"></i> Nos estamos peleando a bordo — ¿qué hacemos?
+  </button>
+  <div class="presp" id="presp">
+    <div class="pstep"><span class="pnum">01</span><p><strong>Parar la discusión ahora mismo.</strong> "Paramos. Resolvemos primero el barco."</p></div>
+    <div class="pstep"><span class="pnum">02</span><p><strong>Estabilizar la navegación.</strong> La pelea espera. El barco no.</p></div>
+    <div class="pstep"><span class="pnum">03</span><p><strong>Fondear o atracar si es posible.</strong> La discusión no se resuelve bien con olas y viento.</p></div>
+    <div class="pstep"><span class="pnum">04</span><p><strong>Silencio activo 20 min.</strong> Haced algo físico: preparar el ancla, hacer café.</p></div>
+    <div class="pstep"><span class="pnum">05</span><p><strong>Hablar desde el "yo".</strong> "Yo me he sentido..." — no "tú siempre...". Estáis en el mismo barco.</p></div>
+  </div>
+</div>
+
+</main>
 </div>
 
 <script>
-const velas = {
-  cenida: { titulo:"Ceñida", angulo:"30°–45° del viento aparente", desc:"Punto más cerca del viento. Velas cazadas. El más lento pero controlado. Imposible navegar más de ~45° hacia el viento (zona muerta)." },
-  traves: { titulo:"Través", angulo:"90° del viento aparente", desc:"Barco perpendicular al viento. Generalmente el punto más rápido en un velero de quilla. Velas a media escota." },
-  largo:  { titulo:"Largo", angulo:"120°–150° del viento aparente", desc:"Viento por la aleta. Gran velocidad. Ojo con la trasluchada accidental al pasar de largo a popa." },
-  popa:   { titulo:"Popa", angulo:"180° — viento directo por popa", desc:"Mayor y génova pueden ir abiertos en mariposa a bandas contrarias. Riesgo de trasluchada accidental. Movimiento más lento y menos estable." }
-};
-
-function showVela(key) {
-  const v = velas[key];
-  document.getElementById('vd-titulo').textContent = v.titulo;
-  document.getElementById('vd-angulo').textContent = v.angulo;
-  document.getElementById('vd-desc').textContent = v.desc;
-  document.getElementById('vela-detail').style.display = 'block';
-}
-
-function getNav(id) {
-  return document.querySelector('.nav-item[onclick*="' + id + '"]');
-}
-
-function show(id, el) {
+// NAV
+function go(id, el) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById('panel-'+id).classList.add('active');
-  el.classList.add('active');
+  document.querySelectorAll('.ni').forEach(n => n.classList.remove('active'));
+  document.getElementById('p-'+id).classList.add('active');
+  document.querySelector('.main').scrollTop = 0;
+  if (el) el.classList.add('active');
+}
+function n(id) { return document.querySelector('.ni[onclick*="\''+id+'\'"]'); }
+
+// VELAS
+const velas = {
+  cenida: { t:'Ceñida', a:'30–45° del viento aparente', d:'El punto más cercano al viento. Velas cazadas al máximo. El más lento pero controlado. Imposible navegar más de ~45° hacia el viento — esa es la zona muerta.', tip:'💡 Consejo: si la vela tiembla por el gratil, cazas un poco o caes ligeramente.' },
+  traves: { t:'Través', a:'90° del viento aparente', d:'El barco va perpendicular al viento. Generalmente el punto más rápido en un velero de quilla. Velas a media escota, equilibrio entre velocidad y comodidad.', tip:'💡 El viento y las olas suelen llegar a la vez — movimiento más oscilante.' },
+  largo:  { t:'Largo', a:'120–150° del viento aparente', d:'Viento por la aleta (cuarto trasero). Escota larga. Gran velocidad. Ojo con la trasluchada accidental al pasar de largo a popa.', tip:'💡 Atención si el génova empieza a "lavar" — puede indicar que viras involuntariamente.' },
+  popa:   { t:'Popa', a:'180° — viento directo por popa', d:'Mayor y génova pueden ir a bandas contrarias en mariposa. El movimiento de balanceo puede ser pronunciado. Riesgo de trasluchada accidental si el rumbo oscila.', tip:'💡 En popa, el viento real puede parecer débil aunque sea fuerte — el barco "escapa" de él.' }
+};
+function selVela(k) {
+  document.querySelectorAll('.vcrd').forEach(c => c.classList.remove('sel'));
+  document.getElementById('vc-'+k).classList.add('sel');
+  const v = velas[k];
+  document.getElementById('vd-t').textContent = v.t;
+  document.getElementById('vd-a').textContent = v.a;
+  document.getElementById('vd-d').textContent = v.d;
+  document.getElementById('vd-tip').textContent = v.tip;
+  document.getElementById('vela-detail').style.display = 'block';
+  document.getElementById('vela-detail').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
+// LUCES
+const luces = [
+  { t:'Rojo + blanco de tope', d:'Barco de frente o ligeramente a tu babor (ves su costado de estribor). Viene hacia ti con la amura de estribor.', a:'→ Cedes el paso. Pasa a su popa virando a estribor.' },
+  { t:'Verde + blanco de tope', d:'Barco de frente o ligeramente a tu estribor (ves su costado de babor). Viene hacia ti con la amura de babor.', a:'→ Tienes preferencia. Pero vigila — no des nada por seguro.' },
+  { t:'Rojo + verde + blanco de tope', d:'Barco de frente directo. Ves sus dos costados. Situación de cruce o encuentro de proa a proa.', a:'→ Vira a estribor para cruzar a su popa. Ambos viráis a estribor.' },
+  { t:'Solo luz blanca (popa)', d:'Barco alejándose de ti. Ves su luz de popa. No hay cruce inminente.', a:'→ Sin peligro inmediato. Vigila que no vire de repente.' },
+  { t:'Dos luces blancas (fondeado / pesquero)', d:'Barco fondeado (dos blancos, una sobre otra) o pesquero con redes. No está maniobrando con libertad.', a:'→ Mantén distancia generosa. Puede haber redes extendidas.' },
+  { t:'Amarillo + blanco de tope', d:'Barco remolcando o siendo remolcado. Maniobrabilidad limitada. El cabo de remolque puede estar tenso y sumergido.', a:'→ Nunca cruces entre el remolcador y el remolcado. Rodéalos.' },
+  { t:'Dos luces verdes', d:'Barco de pesca arrastrando redes (trawler). Limitado en su capacidad de maniobra.', a:'→ Dale espacio amplio. Puede haber artes de pesca subacuáticas.' },
+  { t:'Tres luces rojas verticales', d:'Barco sin gobierno (avería, pérdida de control). No puede maniobrar. Máxima precaución.', a:'→ Evítalo por completo. Puede moverse en cualquier dirección.' }
+];
+function selLuz(i) {
+  document.querySelectorAll('.lsel-btn').forEach((b,j) => {
+    b.style.borderColor = j===i ? 'var(--accent)' : 'var(--line)';
+    b.style.background = j===i ? 'var(--bg3)' : 'var(--bg2)';
+  });
+  const l = luces[i];
+  document.getElementById('lz-title').textContent = l.t;
+  document.getElementById('lz-desc').textContent = l.d;
+  document.getElementById('lz-action').textContent = l.a;
+  document.getElementById('luz-detail').style.display = 'block';
+  document.getElementById('luz-detail').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// BALIZAS
+const balizas = {
+  'lateral-babor':     { t:'Baliza lateral de babor', d:'Cono rojo (punta arriba) o boya roja. Luz roja (Fl.R). Marca el lado de babor del canal navegable. Sistema IALA-A: se deja a babor cuando se entra al puerto (viniendo del mar).', a:'→ Entrando al puerto: dejar a babor (izquierda). Saliendo: dejar a estribor (derecha).' },
+  'lateral-estribor':  { t:'Baliza lateral de estribor', d:'Cilindro verde o boya verde. Luz verde (Fl.G). Marca el lado de estribor del canal navegable. Se deja a estribor cuando se entra al puerto.', a:'→ Entrando al puerto: dejar a estribor (derecha). Saliendo: dejar a babor.' },
+  'cardinal-norte':    { t:'Baliza cardinal Norte', d:'Negro arriba, amarillo abajo. Dos conos con puntas hacia arriba. Luz: Q o VQ (destellos rápidos). Indica que el peligro está al Sur de la baliza.', a:'→ Pasa al Norte de esta baliza. El peligro (bajo, roca) está al Sur.' },
+  'cardinal-sur':      { t:'Baliza cardinal Sur', d:'Amarillo arriba, negro abajo. Dos conos con puntas hacia abajo. Luz: Q(6)+LFl o VQ(6)+LFl. Indica que el peligro está al Norte.', a:'→ Pasa al Sur de esta baliza. El peligro está al Norte.' },
+  'cardinal-este':     { t:'Baliza cardinal Este', d:'Amarillo-negro-amarillo. Dos conos con puntas separadas (como reloj de arena). Luz: Q(3) cada 10s. Indica que el peligro está al Oeste.', a:'→ Pasa al Este de esta baliza. El peligro está al Oeste.' },
+  'cardinal-oeste':    { t:'Baliza cardinal Oeste', d:'Negro-amarillo-negro. Dos conos con puntas juntas. Luz: Q(9) cada 15s. Indica que el peligro está al Este.', a:'→ Pasa al Oeste de esta baliza. El peligro está al Este.' },
+  'peligro-aislado':   { t:'Baliza de peligro aislado', d:'Negro y rojo en bandas horizontales. Marca de tope: dos esferas negras. Luz: Fl(2). Señala un peligro aislado (roca, bajo) rodeado de aguas navegables.', a:'→ El peligro está justo debajo o alrededor de la baliza. Rodéala con margen por todos lados.' },
+  'aguas-seguras':     { t:'Baliza de aguas seguras', d:'Rojo y blanco en franjas verticales. Esfera roja de tope. Luz: Iso, Oc o LFl. Indica aguas navegables a ambos lados — se usa en la entrada de canales o paso medio.', a:'→ Aguas seguras a todos los lados. Puedes pasar por cualquier lado.' }
+};
+function selBaliza(k) {
+  document.querySelectorAll('.bzcrd').forEach(c => c.style.borderColor = 'var(--line)');
+  event.currentTarget.style.borderColor = 'var(--accent)';
+  const b = balizas[k];
+  document.getElementById('bz-title').textContent = b.t;
+  document.getElementById('bz-desc').textContent = b.d;
+  document.getElementById('bz-action').textContent = b.a;
+  document.getElementById('bz-detail').style.display = 'block';
+  document.getElementById('bz-detail').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// BEAUFORT
+const bft = [
+  { l:'Calma', s:'<1 km/h · <1 kn', sea:'Mar como un espejo. Sin olas.', rec:'Motor necesario', rc:'var(--amber-bg)', rt:'var(--amber)' },
+  { l:'Ventolina', s:'1–5 km/h · 1–3 kn', sea:'Pequeñas escamas, sin espuma.', rec:'Motor o vela con paciencia', rc:'var(--amber-bg)', rt:'var(--amber)' },
+  { l:'Brisa muy suave', s:'6–11 km/h · 4–6 kn', sea:'Olas pequeñas 0.2 m. Se puede navegar.', rec:'✓ Aceptable', rc:'var(--green-bg)', rt:'var(--green)' },
+  { l:'Brisa suave', s:'12–19 km/h · 7–10 kn', sea:'Olas pequeñas 0.6–1 m. Navegación cómoda.', rec:'✓ Condiciones ideales', rc:'var(--green-bg)', rt:'var(--green)' },
+  { l:'Brisa moderada', s:'20–28 km/h · 11–16 kn', sea:'Olas 1–1.5 m. Alguna espuma. Excelente para navegar.', rec:'✓ Navegación ideal', rc:'var(--green-bg)', rt:'var(--green)' },
+  { l:'Brisa fresca', s:'29–38 km/h · 17–21 kn', sea:'Olas 2 m. Crestas con espuma. Tomar un rizo.', rec:'⚠ Tomar rizos', rc:'var(--amber-bg)', rt:'var(--amber)' },
+  { l:'Viento fresco', s:'39–49 km/h · 22–27 kn', sea:'Olas 3 m. Mucha espuma. Manejable con experiencia.', rec:'⚠ Solo con experiencia', rc:'var(--amber-bg)', rt:'var(--amber)' },
+  { l:'Viento fuerte', s:'50–61 km/h · 28–33 kn', sea:'Olas 4 m. Espuma densa. Difícil mantenerse en cubierta.', rec:'✗ No recomendable', rc:'var(--red-bg)', rt:'var(--red)' },
+  { l:'Temporal', s:'62–74 km/h · 34–40 kn', sea:'Olas 5.5 m. Rotura de crestas. Condiciones peligrosas.', rec:'✗ Buscar abrigo', rc:'var(--red-bg)', rt:'var(--red)' },
+  { l:'Temporal fuerte', s:'75–88 km/h · 41–47 kn', sea:'Olas 7 m. Espuma densa. Visibilidad reducida.', rec:'✗ Puerto urgente', rc:'var(--red-bg)', rt:'var(--red)' },
+  { l:'Tempestad', s:'89–102 km/h · 48–55 kn', sea:'Olas 9 m. Mar blanco de espuma.', rec:'✗ Emergencia', rc:'var(--red-bg)', rt:'var(--red)' },
+  { l:'Tempestad violenta', s:'103–117 km/h · 56–63 kn', sea:'Olas 11 m. Visibilidad muy reducida.', rec:'✗ Emergencia grave', rc:'var(--red-bg)', rt:'var(--red)' },
+  { l:'Huracán', s:'>118 km/h · >64 kn', sea:'Olas >14 m. Aire lleno de espuma.', rec:'✗ Catastrófico', rc:'var(--red-bg)', rt:'var(--red)' }
+];
+function updateBft(v) {
+  const b = bft[v];
+  document.getElementById('bft-num').textContent = 'F'+v;
+  document.getElementById('bft-label').textContent = b.l;
+  document.getElementById('bft-speed').textContent = b.s;
+  document.getElementById('bft-sea').textContent = b.sea;
+  const r = document.getElementById('bft-rec');
+  r.textContent = b.rec;
+  r.style.background = b.rc;
+  r.style.color = b.rt;
+}
+
+// PANIC
 function togglePanic() {
-  const r = document.getElementById('panic-resp');
-  const b = document.getElementById('panic-btn');
-  const open = r.classList.contains('visible');
-  r.classList.toggle('visible', !open);
-  b.innerHTML = open
-    ? '<i class="ti ti-first-aid-kit"></i> Nos estamos peleando a bordo — ¿qué hacemos ahora?'
-    : '<i class="ti ti-x"></i> Cerrar protocolo de emergencia';
+  const r = document.getElementById('presp');
+  const b = document.getElementById('pbtn');
+  const on = r.classList.contains('on');
+  r.classList.toggle('on', !on);
+  b.innerHTML = on ? '<i class="ti ti-first-aid-kit"></i> Nos estamos peleando a bordo — ¿qué hacemos?' : '<i class="ti ti-x"></i> Cerrar protocolo';
 }
 </script>
 </body>
